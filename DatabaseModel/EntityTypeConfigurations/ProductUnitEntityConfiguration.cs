@@ -7,7 +7,59 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<ProductUnitEntity> builder)
         {
-            throw new NotImplementedException();
+            // первичный ключ
+
+            builder.HasKey(p => p.UID)
+                   .HasName("id_uuid_pk");
+
+            // имя таблицы
+
+            builder.ToTable("product_units");
+
+            // индексы
+
+            builder.HasIndex(x => x.UID)
+                   .IsUnique();
+
+            // имена свойств
+
+            builder.Property(x => x.UID)
+                   .HasColumnType("uuid")
+                   .HasDefaultValueSql("uuid_generate_v4()")
+                   .HasColumnName("UID");
+
+            builder.Property(x => x.ProductionPlace)
+                   .IsRequired()
+                   .HasMaxLength(255)
+                   .HasColumnName("production_place");
+
+            builder.Property(x => x.ProductionDate)
+                   .HasColumnName("production_date");
+
+            builder.Property(x => x.ProductTypeId)
+                   .HasColumnName("product_type_id");
+
+            builder.Property(x => x.SupplierId)
+                   .HasColumnName("supplier_id");
+
+            // внешние ключи, связи 1 к 1
+
+            builder.HasOne(p => p.ProductType)
+                   .WithMany(p => p.ProductUnits)
+                   .HasForeignKey(p => p.ProductTypeId)
+                   .HasConstraintName("product_type_id_to_product_units_fk");
+
+            builder.HasOne(p => p.Supplier)
+                   .WithMany(p => p.ProductUnits)
+                   .HasForeignKey(p => p.SupplierId)
+                   .HasConstraintName("supplier_id_to_product_units_fk");
+
+            // внешние ключи, связи 1 ко многим
+
+            builder.HasMany(p => p.ProductsForReceipt)
+                   .WithOne(p => p.ProductUnit)
+                   .HasForeignKey(p => p.ProductUnitUID)
+                   .HasConstraintName("product_units_to_product_types_fk");
         }
     }
 }

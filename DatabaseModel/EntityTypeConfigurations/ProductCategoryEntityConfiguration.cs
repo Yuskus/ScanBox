@@ -7,7 +7,41 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<ProductCategoryEntity> builder)
         {
-            throw new NotImplementedException();
+            // первичный ключ
+
+            builder.HasKey(p => p.Id)
+                   .HasName("id_product_category_pk");
+
+            // имя таблицы
+
+            builder.ToTable("product_category");
+
+            // индексы
+
+            builder.HasIndex(p => p.CategoryName)
+                   .IsUnique();
+
+            // имена свойств
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.CategoryName)
+                   .IsRequired()
+                   .HasMaxLength(128)
+                   .HasColumnName("category_name");
+
+            builder.Property(p => p.Description)
+                   .IsRequired()
+                   .HasMaxLength(255)
+                   .HasColumnName("category_description");
+
+            // внешние ключи, связи 1 ко многим
+
+            builder.HasMany(p => p.ProductTypes)
+                   .WithOne(p => p.Category)
+                   .HasForeignKey(p => p.CategoryId)
+                   .HasConstraintName("product_types_to_product_category_fk");
         }
     }
 }
