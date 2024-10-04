@@ -30,3 +30,4 @@ D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\ScanBoxWebApi\obj\Debug\net8.0\ref
 D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\ScanBoxWebApi\obj\Debug\net8.0\ScanBoxWebApi.pdb
 D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\ScanBoxWebApi\obj\Debug\net8.0\ScanBoxWebApi.genruntimeconfig.cache
 D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\ScanBoxWebApi\obj\Debug\net8.0\ref\ScanBoxWebApi.dll
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\ScanBoxWebApi\obj\Debug\net8.0\ScanBoxWebApi.sourcelink.json

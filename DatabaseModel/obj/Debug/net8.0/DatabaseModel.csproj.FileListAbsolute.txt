@@ -12,3 +12,4 @@ D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\ref
 D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.pdb
 D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.genruntimeconfig.cache
 D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\ref\DatabaseModel.dll
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.sourcelink.json
