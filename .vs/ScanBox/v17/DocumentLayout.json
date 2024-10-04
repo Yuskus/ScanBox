@@ -1,0 +1,691 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yuskus_TODO.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|solutionrelative:yuskus_TODO.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yuskus_DONE.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|solutionrelative:yuskus_DONE.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yurgen_vm_TODO.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|solutionrelative:yurgen_vm_TODO.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yurgen_vm_DONE.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|solutionrelative:yurgen_vm_DONE.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{529983A7-829C-42CB-ACA0-15170B4E0AD2}|\u042D\u043B\u0435\u043C\u0435\u043D\u0442\u044B \u0440\u0435\u0448\u0435\u043D\u0438\u044F{529983A7-829C-42CB-ACA0-15170B4E0AD2}|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\salesinvoiceentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\salesinvoiceentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\consignmentnoteentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\consignmentnoteentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\buyerentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\buyerentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\context\\scanboxdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\context\\scanboxdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\warehouseemployeeentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\warehouseemployeeentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\suppilerentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\suppilerentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\productunitentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\productunitentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\producttypeentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\producttypeentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\productforsalesentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\productforsalesentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\productforreceiptentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\productforreceiptentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\productcategoryentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\productcategoryentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\pricesentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\pricesentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\markdownentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\markdownentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\manufacturerentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\manufacturerentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\legalformentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\legalformentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\legalentityentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\legalentityentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\jobtitleentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\jobtitleentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\entitytypeconfigurations\\consignmentnoteentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\entitytypeconfigurations\\consignmentnoteentityconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\salesinvoiceentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\salesinvoiceentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB43944-C74E-4CD6-B4D9-4BE7AD62CA84}|ScanBoxWebApi\\ScanBoxWebApi.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\scanboxwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AB43944-C74E-4CD6-B4D9-4BE7AD62CA84}|ScanBoxWebApi\\ScanBoxWebApi.csproj|solutionrelative:scanboxwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\suppilerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\suppilerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\buyerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\buyerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\warehouseemployeeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\warehouseemployeeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\productunitentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\productunitentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\producttypeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\producttypeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\productforsalesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\productforsalesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\productforreceiptentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\productforreceiptentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\productcategoryentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\productcategoryentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\pricesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\pricesentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\markdownentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\markdownentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\manufacturerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\manufacturerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\legalformentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\legalformentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\legalentityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\legalentityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|d:\\yulia\\geekbrains\\homeworks\\scanbox\\scanbox\\databasemodel\\jobtitleentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A9FBA07-8928-40C1-82EE-F44B0FEBC310}|DatabaseModel\\DatabaseModel.csproj|solutionrelative:databasemodel\\jobtitleentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "yuskus_TODO.txt",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yuskus_TODO.txt",
+              "RelativeDocumentMoniker": "yuskus_TODO.txt",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yuskus_TODO.txt",
+              "RelativeToolTip": "yuskus_TODO.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-10-04T13:28:08.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "yuskus_DONE.txt",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yuskus_DONE.txt",
+              "RelativeDocumentMoniker": "yuskus_DONE.txt",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yuskus_DONE.txt",
+              "RelativeToolTip": "yuskus_DONE.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-10-04T13:27:53.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "yurgen_vm_TODO.txt",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yurgen_vm_TODO.txt",
+              "RelativeDocumentMoniker": "yurgen_vm_TODO.txt",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yurgen_vm_TODO.txt",
+              "RelativeToolTip": "yurgen_vm_TODO.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-10-04T13:27:43.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "yurgen_vm_DONE.txt",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yurgen_vm_DONE.txt",
+              "RelativeDocumentMoniker": "yurgen_vm_DONE.txt",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\yurgen_vm_DONE.txt",
+              "RelativeToolTip": "yurgen_vm_DONE.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-10-04T13:27:33.314Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "README.md",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2024-10-04T13:27:06.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ScanBoxDbContext.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\Context\\ScanBoxDbContext.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\Context\\ScanBoxDbContext.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\Context\\ScanBoxDbContext.cs",
+              "RelativeToolTip": "DatabaseModel\\Context\\ScanBoxDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:50.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WarehouseEmployeeEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\WarehouseEmployeeEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\WarehouseEmployeeEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\WarehouseEmployeeEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\WarehouseEmployeeEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:43.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SuppilerEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\SuppilerEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\SuppilerEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\SuppilerEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\SuppilerEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:40.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SalesInvoiceEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\SalesInvoiceEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\SalesInvoiceEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\SalesInvoiceEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\SalesInvoiceEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:38.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BuyerEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\BuyerEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\BuyerEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\BuyerEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\BuyerEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:20:47.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ConsignmentNoteEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ConsignmentNoteEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ConsignmentNoteEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ConsignmentNoteEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ConsignmentNoteEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:18.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductUnitEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductUnitEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ProductUnitEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductUnitEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ProductUnitEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:36.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProductTypeEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductTypeEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ProductTypeEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductTypeEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ProductTypeEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:28.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProductForSalesEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductForSalesEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ProductForSalesEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductForSalesEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ProductForSalesEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:26.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ProductForReceiptEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductForReceiptEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ProductForReceiptEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductForReceiptEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ProductForReceiptEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:23.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ProductCategoryEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductCategoryEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ProductCategoryEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ProductCategoryEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ProductCategoryEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:20.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PricesEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\PricesEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\PricesEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\PricesEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\PricesEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:18.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MarkdownEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\MarkdownEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\MarkdownEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\MarkdownEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\MarkdownEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:15.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ManufacturerEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ManufacturerEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ManufacturerEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ManufacturerEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ManufacturerEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:13.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "LegalFormEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\LegalFormEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\LegalFormEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\LegalFormEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\LegalFormEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:11.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LegalEntityEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\LegalEntityEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\LegalEntityEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\LegalEntityEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\LegalEntityEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:09.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "JobTitleEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\JobTitleEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\JobTitleEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\JobTitleEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\JobTitleEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:07.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ConsignmentNoteEntityConfiguration.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ConsignmentNoteEntityConfiguration.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\EntityTypeConfigurations\\ConsignmentNoteEntityConfiguration.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\EntityTypeConfigurations\\ConsignmentNoteEntityConfiguration.cs",
+              "RelativeToolTip": "DatabaseModel\\EntityTypeConfigurations\\ConsignmentNoteEntityConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:21:05.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\ScanBoxWebApi\\Program.cs",
+              "RelativeDocumentMoniker": "ScanBoxWebApi\\Program.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\ScanBoxWebApi\\Program.cs",
+              "RelativeToolTip": "ScanBoxWebApi\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:19:00.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "WarehouseEmployeeEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\WarehouseEmployeeEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\WarehouseEmployeeEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\WarehouseEmployeeEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\WarehouseEmployeeEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:56.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "SuppilerEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\SuppilerEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\SuppilerEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\SuppilerEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\SuppilerEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:54.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "SalesInvoiceEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\SalesInvoiceEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\SalesInvoiceEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\SalesInvoiceEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\SalesInvoiceEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:51.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ProductUnitEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductUnitEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ProductUnitEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductUnitEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ProductUnitEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:49.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ProductTypeEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductTypeEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ProductTypeEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductTypeEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ProductTypeEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:46.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ProductForSalesEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductForSalesEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ProductForSalesEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductForSalesEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ProductForSalesEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:43.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "BuyerEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\BuyerEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\BuyerEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\BuyerEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\BuyerEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:08:15.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ProductForReceiptEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductForReceiptEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ProductForReceiptEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductForReceiptEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ProductForReceiptEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:41.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ProductCategoryEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductCategoryEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ProductCategoryEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ProductCategoryEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ProductCategoryEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:38.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "PricesEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\PricesEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\PricesEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\PricesEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\PricesEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:36.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "MarkdownEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\MarkdownEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\MarkdownEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\MarkdownEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\MarkdownEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:33.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ManufacturerEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ManufacturerEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\ManufacturerEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\ManufacturerEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\ManufacturerEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:30.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LegalFormEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\LegalFormEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\LegalFormEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\LegalFormEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\LegalFormEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:27.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "LegalEntityEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\LegalEntityEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\LegalEntityEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\LegalEntityEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\LegalEntityEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:24.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "JobTitleEntity.cs",
+              "DocumentMoniker": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\JobTitleEntity.cs",
+              "RelativeDocumentMoniker": "DatabaseModel\\JobTitleEntity.cs",
+              "ToolTip": "D:\\Yulia\\Geekbrains\\Homeworks\\ScanBox\\ScanBox\\DatabaseModel\\JobTitleEntity.cs",
+              "RelativeToolTip": "DatabaseModel\\JobTitleEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T13:09:22.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
