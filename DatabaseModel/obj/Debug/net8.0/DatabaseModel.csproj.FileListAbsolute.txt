@@ -1,0 +1,14 @@
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\bin\Debug\net8.0\DatabaseModel.deps.json
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\bin\Debug\net8.0\DatabaseModel.runtimeconfig.json
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\bin\Debug\net8.0\DatabaseModel.dll
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\bin\Debug\net8.0\DatabaseModel.pdb
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.csproj.AssemblyReference.cache
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.AssemblyInfoInputs.cache
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.AssemblyInfo.cs
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.csproj.CoreCompileInputs.cache
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.dll
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\refint\DatabaseModel.dll
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.pdb
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\DatabaseModel.genruntimeconfig.cache
+D:\Yulia\Geekbrains\Homeworks\ScanBox\ScanBox\DatabaseModel\obj\Debug\net8.0\ref\DatabaseModel.dll
