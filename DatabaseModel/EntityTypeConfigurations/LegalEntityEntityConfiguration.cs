@@ -7,7 +7,12 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<LegalEntityEntity> builder)
         {
-            throw new NotImplementedException();
+            // первичный ключ
+            // имя таблицы
+            // индексы
+            // имена свойств
+            // внешние ключи, связи 1 к 1
+            // внешние ключи, связи 1 ко многим
         }
     }
 }

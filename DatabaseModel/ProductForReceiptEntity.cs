@@ -3,7 +3,7 @@
     public class ProductForReceiptEntity
     {
         public int Id { get; set; }
-        public int ArrivalReceiptId { get; set; }
+        public int ConsignmentNoteId { get; set; }
         public virtual ConsignmentNoteEntity? ConsignmentNote { get; set; }
         public Guid ProductUnitUID { get; set; }
         public virtual ProductUnitEntity? ProductUnit { get; set; }

@@ -7,7 +7,35 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<LegalFormEntity> builder)
         {
-            throw new NotImplementedException();
+            // первичный ключ
+
+            builder.HasKey(p => p.Id)
+                   .HasName("id_legal_form_pk");
+
+            // имя таблицы
+
+            builder.ToTable("legal_forms");
+
+            // имена свойств
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.LegalFormName)
+                   .IsRequired()
+                   .HasMaxLength(64)
+                   .HasColumnName("legal_form_name");
+
+            builder.Property(p => p.Description)
+                   .HasMaxLength(500)
+                   .HasColumnName("product_name");
+
+            // внешние ключи, связи 1 ко многим
+
+            builder.HasMany(p => p.LegalEntities)
+                   .WithOne(p => p.LegalForm)
+                   .HasForeignKey(p => p.LegalFormId)
+                   .HasConstraintName("legal_entities_to_legal_forms_fk");
         }
     }
 }
