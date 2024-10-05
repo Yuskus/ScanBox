@@ -14,6 +14,7 @@
         public required string OGRN { get; set; }
         public required string LegalAddress { get; set; }
         public required string Phone { get; set; }
+        public string? ContactPerson { get; set; }
         public virtual ICollection<ManufacturerEntity> Manufacturers { get; set; } = [];
         public virtual ICollection<SuppilerEntity> Suppliers { get; set; } = [];
         public virtual ICollection<BuyerEntity> Buyers { get; set; } = [];
