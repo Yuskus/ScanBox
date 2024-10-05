@@ -10,6 +10,6 @@
         public virtual ProductTypeEntity? ProductType { get; set; }
         public int SupplierId { get; set; }
         public virtual SuppilerEntity? Supplier { get; set; }
-        public virtual ICollection<MovementHistoryEntity> MovementHistory { get; set; } = [];
+        public virtual ICollection<MovementHistoryEntity> MovementsHistory { get; set; } = [];
     }
 }

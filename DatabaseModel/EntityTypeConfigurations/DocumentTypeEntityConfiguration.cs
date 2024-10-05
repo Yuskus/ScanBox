@@ -16,10 +16,27 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             builder.ToTable("document_types_table");
 
-            // индексы
             // имена свойств
-            // внешние ключи, связи 1 ко многим
-            // внешние ключи, связи многие к одному
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.DoctypeName)
+                   .HasMaxLength(128)
+                   .IsRequired()
+                   .HasColumnName("doctype_name");
+
+            builder.Property(p => p.Description)
+                   .HasMaxLength(255)
+                   .IsRequired()
+                   .HasColumnName("description");
+
+            // внешние ключи
+
+            builder.HasMany(p => p.Documents)
+                   .WithOne(p => p.DocumentType)
+                   .HasForeignKey(p => p.DocumentTypeId)
+                   .HasConstraintName("manyto1_document_to_doctype_fk");
         }
     }
 }

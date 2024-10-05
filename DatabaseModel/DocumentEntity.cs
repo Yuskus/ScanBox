@@ -10,6 +10,6 @@
         public virtual DocumentTypeEntity? DocumentType { get; set; }
         public int CounterpartyId { get; set; }
         public virtual CounterpartyEntity? Counterparty { get; set; }
-        public virtual ICollection<MovementHistoryEntity> Movements { get; set; } = [];
+        public virtual ICollection<MovementHistoryEntity> MovementsHistory { get; set; } = [];
     }
 }

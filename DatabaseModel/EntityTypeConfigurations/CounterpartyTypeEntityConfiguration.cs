@@ -14,12 +14,24 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // имя таблицы
 
-            builder.ToTable("counterpartys_types_table");
+            builder.ToTable("counterparties_types_table");
 
-            // индексы
             // имена свойств
-            // внешние ключи, связи 1 ко многим
-            // внешние ключи, связи многие к одному
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.TypeName)
+                   .HasMaxLength(128)
+                   .IsRequired()
+                   .HasColumnName("type_name");
+
+            // внешние ключи
+
+            builder.HasMany(p => p.Counterparties)
+                   .WithOne(p => p.CounterpartyType)
+                   .HasForeignKey(p => p.CounterpartyTypeId)
+                   .HasConstraintName("manyto1_counterparty_to_counterparty_type_fk");
         }
     }
 }

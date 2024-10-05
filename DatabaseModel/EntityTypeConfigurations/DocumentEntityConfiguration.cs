@@ -16,10 +16,47 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             builder.ToTable("documents_table");
 
-            // индексы
             // имена свойств
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.CreationTime)
+                   .HasColumnType("timestamp")
+                   .HasColumnName("creation_time");
+
+            builder.Property(p => p.WarehouseEmployeeId)
+                   .HasColumnName("warehouse_employee_id");
+
+            builder.Property(p => p.DocumentTypeId)
+                   .HasColumnName("document_type_id");
+
+            builder.Property(p => p.CounterpartyId)
+                   .HasColumnName("counterparty_id");
+
             // внешние ключи, связи 1 ко многим
-            // внешние ключи, связи многие к одному
+
+            builder.HasOne(p => p.WarehouseEmployee)
+                   .WithMany(p => p.Documents)
+                   .HasForeignKey(p => p.WarehouseEmployeeId)
+                   .HasConstraintName("1tomany_warehouse_employee_to_documents_fk");
+
+            builder.HasOne(p => p.DocumentType)
+                   .WithMany(p => p.Documents)
+                   .HasForeignKey(p => p.DocumentTypeId)
+                   .HasConstraintName("1tomany_document_type_to_documents_fk");
+
+            builder.HasOne(p => p.Counterparty)
+                   .WithMany(p => p.Documents)
+                   .HasForeignKey(p => p.CounterpartyId)
+                   .HasConstraintName("1tomany_counterparty_to_documents_fk");
+
+            // внешние ключи
+
+            builder.HasMany(p => p.MovementsHistory)
+                   .WithOne(p => p.Document)
+                   .HasForeignKey(p => p.DocumentId)
+                   .HasConstraintName("manyto1_movements_to_documents_fk");
         }
     }
 }

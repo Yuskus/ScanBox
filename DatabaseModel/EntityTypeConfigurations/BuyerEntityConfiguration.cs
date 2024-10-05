@@ -16,10 +16,20 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             builder.ToTable("buyers_table");
 
-            // индексы
             // имена свойств
-            // внешние ключи, связи 1 ко многим
-            // внешние ключи, связи многие к одному
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.CounterpartyId)
+                   .HasColumnName("counterparty_id");
+
+            // внешние ключи
+
+            builder.HasOne(p => p.Counterparty)
+                   .WithOne(p => p.Buyer)
+                   .HasForeignKey<BuyerEntity>(p => p.CounterpartyId)
+                   .HasConstraintName("1to1_counterparty_to_buyer_fk");
         }
     }
 }
