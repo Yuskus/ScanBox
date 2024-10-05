@@ -16,6 +16,5 @@
         public int ProductPriceId { get; set; }
         public virtual PricesEntity? ProductPrice { get; set; }
         public virtual ICollection<ProductUnitEntity> ProductUnits { get; set; } = [];
-        public virtual ICollection<MarkdownEntity> Markdowns { get; set; } = [];
     }
 }

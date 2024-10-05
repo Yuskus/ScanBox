@@ -12,7 +12,6 @@
         public DateOnly HireDate { get; set; }
         public required string Address { get; set; }
         public required string Phone { get; set; }
-        public virtual ICollection<ConsignmentNoteEntity> ConsignmentNotes { get; set; } = [];
-        public virtual ICollection<SalesInvoiceEntity> SalesInvoices { get; set; } = [];
+        public virtual ICollection<DocumentEntity> Documents { get; set; } = [];
     }
 }

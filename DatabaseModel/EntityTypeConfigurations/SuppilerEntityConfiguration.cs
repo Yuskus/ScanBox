@@ -38,10 +38,10 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasForeignKey(p => p.SupplierId)
                    .HasConstraintName("product_units_to_suppiler_fk");
 
-            builder.HasMany(p => p.ConsignmentNotes)
+            /*builder.HasMany(p => p.ConsignmentNotes)
                    .WithOne(p => p.Suppiler)
                    .HasForeignKey(p => p.SuppilerId)
-                   .HasConstraintName("consignment_notes_to_suppiler_fk");
+                   .HasConstraintName("consignment_notes_to_suppiler_fk");*/
         }
     }
 }
