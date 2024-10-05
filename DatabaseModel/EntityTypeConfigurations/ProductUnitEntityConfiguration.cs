@@ -9,8 +9,8 @@ namespace DatabaseModel.EntityTypeConfigurations
         {
             // первичный ключ
 
-            builder.HasKey(p => p.UID)
-                   .HasName("id_uuid_pk");
+            /*builder.HasKey(p => p.UID)
+                   .HasName("id_uuid_pk");*/
 
             // имя таблицы
 
@@ -18,20 +18,20 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // индексы
 
-            builder.HasIndex(x => x.UID)
-                   .IsUnique();
+            /*builder.HasIndex(x => x.UID)
+                   .IsUnique();*/
 
             // имена свойств
 
-            builder.Property(x => x.UID)
+            /*builder.Property(x => x.UID)
                    .HasColumnType("uuid")
                    .HasDefaultValueSql("uuid_generate_v4()")
-                   .HasColumnName("UID");
+                   .HasColumnName("UID");*/
 
-            builder.Property(x => x.ProductionPlace)
+            /*builder.Property(x => x.ProductionPlace)
                    .IsRequired()
                    .HasMaxLength(255)
-                   .HasColumnName("production_place");
+                   .HasColumnName("production_place");*/
 
             builder.Property(x => x.ProductionDate)
                    .HasColumnName("production_date");
@@ -53,13 +53,6 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .WithMany(p => p.ProductUnits)
                    .HasForeignKey(p => p.SupplierId)
                    .HasConstraintName("supplier_id_to_product_units_fk");
-
-            // внешние ключи, связи 1 ко многим
-
-            builder.HasMany(p => p.ProductsForReceipt)
-                   .WithOne(p => p.ProductUnit)
-                   .HasForeignKey(p => p.ProductUnitUID)
-                   .HasConstraintName("product_units_to_product_types_fk");
         }
     }
 }

@@ -11,7 +11,6 @@
         public required string Address { get; set; }
         public required string Phone { get; set; }
         public string? Email { get; set; }
-        public virtual ICollection<ConsignmentNoteEntity> ConsignmentNotes { get; set; } = [];
-        public virtual ICollection<SalesInvoiceEntity> SalesInvoices { get; set; } = [];
+        public virtual ICollection<RealizationEntity> Realizations { get; set; } = [];
     }
 }
