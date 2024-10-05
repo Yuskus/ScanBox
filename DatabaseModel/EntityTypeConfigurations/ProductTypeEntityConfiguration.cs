@@ -84,11 +84,6 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .WithOne(p => p.ProductType)
                    .HasForeignKey(p => p.ProductTypeId)
                    .HasConstraintName("product_units_to_product_types_fk");
-
-            /*builder.HasMany(p => p.Markdowns)
-                   .WithOne(p => p.ProductType)
-                   .HasForeignKey(p => p.ProductTypeId)
-                   .HasConstraintName("markdowns_to_product_types_fk");*/
         }
     }
 }
