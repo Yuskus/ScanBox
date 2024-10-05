@@ -8,11 +8,18 @@ namespace DatabaseModel.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<JobTitleEntity> builder)
         {
             // первичный ключ
+
+            builder.HasKey(p => p.Id)
+                   .HasName("id_job_title_pk");
+
             // имя таблицы
+
+            builder.ToTable("job_titles_table");
+
             // индексы
             // имена свойств
-            // внешние ключи, связи 1 к 1
             // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
         }
     }
 }

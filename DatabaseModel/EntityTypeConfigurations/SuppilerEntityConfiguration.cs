@@ -14,7 +14,7 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // имя таблицы
 
-            builder.ToTable("suppilers");
+            builder.ToTable("suppilers_table");
 
             // имена свойств
 
@@ -24,14 +24,14 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.LegalEntityId)
                    .HasColumnName("legal_entity_id");
 
-            // внешние ключи, связи 1 к 1
+            // внешние ключи, связи 1 ко многим
 
             builder.HasOne(p => p.LegalEntity)
                    .WithMany(p => p.Suppliers)
                    .HasForeignKey(p => p.LegalEntityId)
                    .HasConstraintName("legal_entity_id_to_suppiler_fk");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.ProductUnits)
                    .WithOne(p => p.Supplier)

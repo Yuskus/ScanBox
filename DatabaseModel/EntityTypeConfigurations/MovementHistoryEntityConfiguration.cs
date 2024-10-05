@@ -7,7 +7,19 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<MovementHistoryEntity> builder)
         {
-            throw new NotImplementedException();
+            // первичный ключ
+
+            builder.HasKey(p => p.Id)
+                   .HasName("id_movement_history_pk");
+
+            // имя таблицы
+
+            builder.ToTable("movements_history_table");
+
+            // индексы
+            // имена свойств
+            // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
         }
     }
 }

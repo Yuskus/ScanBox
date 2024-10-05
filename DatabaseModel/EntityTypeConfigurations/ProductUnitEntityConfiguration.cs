@@ -9,17 +9,17 @@ namespace DatabaseModel.EntityTypeConfigurations
         {
             // первичный ключ
 
-            /*builder.HasKey(p => p.UID)
-                   .HasName("id_uuid_pk");*/
+            builder.HasKey(p => p.Id)
+                   .HasName("id_product_unit_pk");
 
             // имя таблицы
 
-            builder.ToTable("product_units");
+            builder.ToTable("product_units_table");
 
             // индексы
 
-            /*builder.HasIndex(x => x.UID)
-                   .IsUnique();*/
+            builder.HasIndex(x => x.UniqueBarcode)
+                   .IsUnique();
 
             // имена свойств
 
@@ -42,7 +42,7 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(x => x.SupplierId)
                    .HasColumnName("supplier_id");
 
-            // внешние ключи, связи 1 к 1
+            // внешние ключи, связи 1 ко многим
 
             builder.HasOne(p => p.ProductType)
                    .WithMany(p => p.ProductUnits)

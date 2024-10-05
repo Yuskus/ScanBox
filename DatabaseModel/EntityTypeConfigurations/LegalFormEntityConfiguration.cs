@@ -14,7 +14,7 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // имя таблицы
 
-            builder.ToTable("legal_forms");
+            builder.ToTable("legal_forms_table");
 
             // имена свойств
 
@@ -30,7 +30,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasMaxLength(500)
                    .HasColumnName("product_name");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.LegalEntities)
                    .WithOne(p => p.LegalForm)
