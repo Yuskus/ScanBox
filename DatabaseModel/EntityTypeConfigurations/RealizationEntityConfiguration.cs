@@ -7,7 +7,19 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<RealizationEntity> builder)
         {
-            throw new NotImplementedException();
+            // первичный ключ
+
+            builder.HasKey(p => p.Id)
+                   .HasName("id_realization_pk");
+
+            // имя таблицы
+
+            builder.ToTable("realizations_table");
+
+            // индексы
+            // имена свойств
+            // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
         }
     }
 }

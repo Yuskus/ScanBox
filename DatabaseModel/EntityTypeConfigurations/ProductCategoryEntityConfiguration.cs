@@ -14,7 +14,7 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // имя таблицы
 
-            builder.ToTable("product_category");
+            builder.ToTable("product_category_table");
 
             // индексы
 
@@ -36,7 +36,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasMaxLength(255)
                    .HasColumnName("category_description");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.ProductTypes)
                    .WithOne(p => p.Category)

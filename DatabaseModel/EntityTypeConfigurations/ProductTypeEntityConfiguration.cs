@@ -14,7 +14,7 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // имя таблицы
 
-            builder.ToTable("product_types");
+            builder.ToTable("product_types_table");
 
             // индексы
 
@@ -61,7 +61,7 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.ProductPriceId)
                    .HasColumnName("product_price_id");
 
-            // внешние ключи, связи 1 к 1
+            // внешние ключи, связи 1 ко многим
 
             builder.HasOne(p => p.Category)
                    .WithMany(p => p.ProductTypes)
@@ -78,7 +78,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasForeignKey(p => p.ProductPriceId)
                    .HasConstraintName("product_price_id_to_product_types_fk");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.ProductUnits)
                    .WithOne(p => p.ProductType)

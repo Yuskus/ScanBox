@@ -8,11 +8,18 @@ namespace DatabaseModel.EntityTypeConfigurations
         public void Configure(EntityTypeBuilder<LegalEntityEntity> builder)
         {
             // первичный ключ
+
+            builder.HasKey(p => p.Id)
+                   .HasName("id_legal_entity_pk");
+
             // имя таблицы
+
+            builder.ToTable("legal_entities_table");
+
             // индексы
             // имена свойств
-            // внешние ключи, связи 1 к 1
             // внешние ключи, связи 1 ко многим
+            // внешние ключи, связи многие к одному
         }
     }
 }
