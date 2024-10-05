@@ -13,7 +13,7 @@
         public virtual ProductCategoryEntity? Category { get; set; }
         public int ManufacturerId { get; set; }
         public virtual ManufacturerEntity? Manufacturer { get; set; }
-        public int ProductPriceId { get; set; }
+        public int ProductPriceId { get; set; } //FK to ProductTypeId in PriceEntity table
         public virtual PricesEntity? ProductPrice { get; set; }
         public virtual ICollection<ProductUnitEntity> ProductUnits { get; set; } = [];
     }

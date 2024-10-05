@@ -3,8 +3,8 @@
     public class ManufacturerEntity
     {
         public int Id { get; set; }
-        public int LegalEntityId { get; set; }
-        public virtual LegalEntityEntity? LegalEntity { get; set; }
+        public int CounterpartyId { get; set; }
+        public virtual CounterpartyEntity? Counterparty { get; set; }
         public virtual ICollection<ProductTypeEntity> ProductTypes { get; set; } = [];
     }
 }

@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
 {
-    internal class RealizationEntityConfiguration : IEntityTypeConfiguration<RealizationEntity>
+    internal class IndividualEntityConfiguration : IEntityTypeConfiguration<IndividualEntity>
     {
-        public void Configure(EntityTypeBuilder<RealizationEntity> builder)
+        public void Configure(EntityTypeBuilder<IndividualEntity> builder)
         {
             // первичный ключ
 
             builder.HasKey(p => p.Id)
-                   .HasName("id_realization_pk");
+                   .HasName("id_individual_pk");
 
             // имя таблицы
 
-            builder.ToTable("realizations_table");
+            builder.ToTable("individuals_table");
 
             // индексы
             // имена свойств

@@ -7,8 +7,11 @@ namespace DatabaseModel.Context
     {
         private readonly string? _connectionString;
         public virtual DbSet<BuyerEntity> Buyers { get; set; }
+        public virtual DbSet<CounterpartyEntity> Counterparties { get; set; }
+        public virtual DbSet<CounterpartyTypeEntity> CounterpartiesTypes { get; set; }
         public virtual DbSet<DocumentEntity> Document { get; set; }
         public virtual DbSet<DocumentTypeEntity> DocumentType { get; set; }
+        public virtual DbSet<IndividualEntity> Individuals { get; set; }
         public virtual DbSet<JobTitleEntity> JobTitles { get; set; }
         public virtual DbSet<LegalEntityEntity> LegalEntities { get; set; }
         public virtual DbSet<LegalFormEntity> LegalForms { get; set; }
@@ -18,8 +21,6 @@ namespace DatabaseModel.Context
         public virtual DbSet<ProductCategoryEntity> ProductCategories { get; set; }
         public virtual DbSet<ProductTypeEntity> ProductTypes { get; set; }
         public virtual DbSet<ProductUnitEntity> ProductUnits { get; set; }
-        public virtual DbSet<RealizationEntity> Realizations { get; set; }
-        public virtual DbSet<ReceiptEntity> Receipts { get; set; }
         public virtual DbSet<SuppilerEntity> Suppilers { get; set; }
         public virtual DbSet<WarehouseEmployeeEntity> WarehouseEmployees { get; set; }
         public ScanBoxDbContext() { }
@@ -35,8 +36,11 @@ namespace DatabaseModel.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BuyerEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CounterpartyEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CounterpartyTypeEntityConfiguration());
             modelBuilder.ApplyConfiguration(new DocumentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new DocumentTypeEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new IndividualEntityConfiguration());
             modelBuilder.ApplyConfiguration(new JobTitleEntityConfiguration());
             modelBuilder.ApplyConfiguration(new LegalEntityEntityConfiguration());
             modelBuilder.ApplyConfiguration(new LegalFormEntityConfiguration());
@@ -46,8 +50,6 @@ namespace DatabaseModel.Context
             modelBuilder.ApplyConfiguration(new ProductCategoryEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTypeEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ProductUnitEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new RealizationEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new ReceiptEntityConfiguration());
             modelBuilder.ApplyConfiguration(new SuppilerEntityConfiguration());
             modelBuilder.ApplyConfiguration(new WarehouseEmployeeEntityConfiguration());
 

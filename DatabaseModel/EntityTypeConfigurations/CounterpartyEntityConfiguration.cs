@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
 {
-    internal class ReceiptEntityConfiguration : IEntityTypeConfiguration<ReceiptEntity>
+    internal class CounterpartyEntityConfiguration : IEntityTypeConfiguration<CounterpartyEntity>
     {
-        public void Configure(EntityTypeBuilder<ReceiptEntity> builder)
+        public void Configure(EntityTypeBuilder<CounterpartyEntity> builder)
         {
             // первичный ключ
 
             builder.HasKey(p => p.Id)
-                   .HasName("id_receipt_pk");
+                   .HasName("id_counterparty_pk");
 
             // имя таблицы
 
-            builder.ToTable("receipts_table");
+            builder.ToTable("counterpartys_table");
 
             // индексы
             // имена свойств
