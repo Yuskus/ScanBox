@@ -17,4 +17,8 @@
     <Folder Include="Repository\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseModel\DatabaseModel.csproj" />
+  </ItemGroup>
+
 </Project>

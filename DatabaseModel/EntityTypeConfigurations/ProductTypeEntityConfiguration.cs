@@ -61,24 +61,22 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.ProductPriceId)
                    .HasColumnName("product_price_id");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи
+
+            builder.HasOne(p => p.ProductPrice)
+                   .WithOne(p => p.ProductType)
+                   .HasForeignKey<ProductTypeEntity>(p => p.ProductPriceId)
+                   .HasConstraintName("1to1_product_price_id_to_product_types_fk");
 
             builder.HasOne(p => p.Category)
                    .WithMany(p => p.ProductTypes)
                    .HasForeignKey(p => p.CategoryId)
-                   .HasConstraintName("category_id_to_product_types_fk");
+                   .HasConstraintName("1tomany_category_id_to_product_types_fk");
 
             builder.HasOne(p => p.Manufacturer)
                    .WithMany(p => p.ProductTypes)
                    .HasForeignKey(p => p.ManufacturerId)
-                   .HasConstraintName("manufacturer_id_to_product_types_fk");
-
-            builder.HasOne(p => p.ProductPrice)
-                   .WithMany(p => p.ProductTypes)
-                   .HasForeignKey(p => p.ProductPriceId)
-                   .HasConstraintName("product_price_id_to_product_types_fk");
-
-            // внешние ключи, связи многие к одному
+                   .HasConstraintName("1tomany_manufacturer_id_to_product_types_fk");
 
             builder.HasMany(p => p.ProductUnits)
                    .WithOne(p => p.ProductType)

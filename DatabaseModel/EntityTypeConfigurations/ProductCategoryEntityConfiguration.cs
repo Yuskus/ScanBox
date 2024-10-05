@@ -36,12 +36,12 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasMaxLength(255)
                    .HasColumnName("category_description");
 
-            // внешние ключи, связи многие к одному
+            // внешние ключи
 
             builder.HasMany(p => p.ProductTypes)
                    .WithOne(p => p.Category)
                    .HasForeignKey(p => p.CategoryId)
-                   .HasConstraintName("product_types_to_product_category_fk");
+                   .HasConstraintName("manyto1_product_types_to_product_category_fk");
         }
     }
 }

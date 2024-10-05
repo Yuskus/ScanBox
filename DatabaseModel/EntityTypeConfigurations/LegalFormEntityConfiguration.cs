@@ -30,12 +30,12 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasMaxLength(500)
                    .HasColumnName("product_name");
 
-            // внешние ключи, связи многие к одному
+            // внешние ключи
 
             builder.HasMany(p => p.LegalEntities)
                    .WithOne(p => p.LegalForm)
                    .HasForeignKey(p => p.LegalFormId)
-                   .HasConstraintName("legal_entities_to_legal_forms_fk");
+                   .HasConstraintName("manyto1_legal_entities_to_legal_forms_fk");
         }
     }
 }

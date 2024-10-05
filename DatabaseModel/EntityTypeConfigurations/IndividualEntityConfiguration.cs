@@ -16,10 +16,32 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             builder.ToTable("individuals_table");
 
-            // индексы
             // имена свойств
-            // внешние ключи, связи 1 ко многим
-            // внешние ключи, связи многие к одному
+
+            builder.Property(p => p.Id)
+                   .HasColumnName("id");
+
+            builder.Property(p => p.CounterpartyId)
+                   .HasColumnName("counterparty_id");
+
+            builder.Property(p => p.Surname)
+                   .HasMaxLength(255)
+                   .HasColumnName("surname");
+
+            builder.Property(p => p.Name)
+                   .HasMaxLength(128)
+                   .HasColumnName("name");
+
+            builder.Property(p => p.Patronymic)
+                   .HasMaxLength(255)
+                   .HasColumnName("patronymic");
+
+            // внешние ключи
+
+            builder.HasOne(p => p.Counterparty)
+                   .WithOne(p => p.Individual)
+                   .HasForeignKey<IndividualEntity>(p => p.CounterpartyId)
+                   .HasConstraintName("1to1_counterparty_to_individual_fk");
         }
     }
 }

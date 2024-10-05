@@ -21,27 +21,22 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.Id)
                    .HasColumnName("id");
 
-            builder.Property(p => p.LegalEntityId)
-                   .HasColumnName("legal_entity_id");
+            builder.Property(p => p.CounterpartyId)
+                   .HasColumnName("counterparty_id");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи
 
-            builder.HasOne(p => p.LegalEntity)
-                   .WithMany(p => p.Suppliers)
-                   .HasForeignKey(p => p.LegalEntityId)
-                   .HasConstraintName("legal_entity_id_to_suppiler_fk");
+            builder.HasOne(p => p.Counterparty)
+                   .WithOne(p => p.Suppiler)
+                   .HasForeignKey<SuppilerEntity>(p => p.CounterpartyId)
+                   .HasConstraintName("1to1_counterparty_to_suppiler_fk");
 
             // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.ProductUnits)
                    .WithOne(p => p.Supplier)
                    .HasForeignKey(p => p.SupplierId)
-                   .HasConstraintName("product_units_to_suppiler_fk");
-
-            /*builder.HasMany(p => p.ConsignmentNotes)
-                   .WithOne(p => p.Suppiler)
-                   .HasForeignKey(p => p.SuppilerId)
-                   .HasConstraintName("consignment_notes_to_suppiler_fk");*/
+                   .HasConstraintName("manyto1_product_units_to_suppiler_fk");
         }
     }
 }

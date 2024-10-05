@@ -23,18 +23,20 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             // имена свойств
 
-            /*builder.Property(x => x.UID)
-                   .HasColumnType("uuid")
-                   .HasDefaultValueSql("uuid_generate_v4()")
-                   .HasColumnName("UID");*/
+            builder.Property(x => x.Id)
+                   .HasColumnName("id");
 
-            /*builder.Property(x => x.ProductionPlace)
+            builder.Property(p => p.UniqueBarcode)
                    .IsRequired()
-                   .HasMaxLength(255)
-                   .HasColumnName("production_place");*/
+                   .HasMaxLength(128)
+                   .HasColumnName("unique_barcode");
 
             builder.Property(x => x.ProductionDate)
                    .HasColumnName("production_date");
+
+            builder.Property(x => x.RealizationPrice)
+                   .HasColumnType("decimal(10, 2)")
+                   .HasColumnName("realization_price");
 
             builder.Property(x => x.ProductTypeId)
                    .HasColumnName("product_type_id");
@@ -42,17 +44,22 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(x => x.SupplierId)
                    .HasColumnName("supplier_id");
 
-            // внешние ключи, связи 1 ко многим
+            // внешние ключи
 
             builder.HasOne(p => p.ProductType)
                    .WithMany(p => p.ProductUnits)
                    .HasForeignKey(p => p.ProductTypeId)
-                   .HasConstraintName("product_type_id_to_product_units_fk");
+                   .HasConstraintName("1tomany_product_type_id_to_product_units_fk");
 
             builder.HasOne(p => p.Supplier)
                    .WithMany(p => p.ProductUnits)
                    .HasForeignKey(p => p.SupplierId)
-                   .HasConstraintName("supplier_id_to_product_units_fk");
+                   .HasConstraintName("1tomany_suppiler_to_product_units_fk");
+
+            builder.HasMany(p => p.MovementsHistory)
+                   .WithOne(p => p.ProductUnit)
+                   .HasForeignKey(p => p.ProductUnitId)
+                   .HasConstraintName("manyto1_movements_history_to_product_unit_fk");
         }
     }
 }

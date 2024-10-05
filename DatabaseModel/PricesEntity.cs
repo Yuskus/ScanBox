@@ -7,6 +7,5 @@
         public double MinPrice { get; set; }
         public double RetailPrice { get; set; }
         public double WholesalePrice { get; set; }
-        public virtual ICollection<ProductTypeEntity> ProductTypes { get; set; } = [];
     }
 }

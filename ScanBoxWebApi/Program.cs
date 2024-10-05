@@ -1,4 +1,8 @@
 
+
+using DatabaseModel.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace ScanBoxWebApi
 {
     public class Program
@@ -10,6 +14,12 @@ namespace ScanBoxWebApi
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //проверить, изменить строку подключения
+            builder.Services.AddDbContext<ScanBoxDbContext>(options =>
+            {
+                options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("ScanBoxDb"));
+            });
 
             var app = builder.Build();
 
