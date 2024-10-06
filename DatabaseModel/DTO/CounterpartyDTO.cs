@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class Class1
+    public class CounterpartyDTO
     {
+        public int Id { get; set; }
+        public int CounterpartyTypeId { get; set; }
+        public required string Address { get; set; }
+        public required string Phone { get; set; }
+        public string? Email { get; set; }       
     }
 }

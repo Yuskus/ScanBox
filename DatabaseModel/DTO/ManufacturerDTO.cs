@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class Class1
+    internal class ManufacturerDTO
     {
     }
 }

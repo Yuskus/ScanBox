@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class Class1
+    public class BuyerDTO
     {
+        public int Id { get; set; }
+        public int CounterpartyId { get; set; }
     }
 }
