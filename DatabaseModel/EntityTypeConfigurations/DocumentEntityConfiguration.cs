@@ -57,6 +57,11 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .WithOne(p => p.Document)
                    .HasForeignKey(p => p.DocumentId)
                    .HasConstraintName("manyto1_movements_to_documents_fk");
+
+            builder.HasMany(p => p.Shipments)
+                   .WithOne(p => p.Document)
+                   .HasForeignKey(p => p.DocumentId)
+                   .HasConstraintName("manyto1_shipments_to_documents_fk");
         }
     }
 }

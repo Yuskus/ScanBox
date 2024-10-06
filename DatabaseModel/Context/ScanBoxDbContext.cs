@@ -21,6 +21,7 @@ namespace DatabaseModel.Context
         public virtual DbSet<ProductCategoryEntity> ProductCategories { get; set; }
         public virtual DbSet<ProductTypeEntity> ProductTypes { get; set; }
         public virtual DbSet<ProductUnitEntity> ProductUnits { get; set; }
+        public virtual DbSet<ShipmentEntity> Shipments { get; set; }
         public virtual DbSet<SuppilerEntity> Suppilers { get; set; }
         public virtual DbSet<WarehouseEmployeeEntity> WarehouseEmployees { get; set; }
         public ScanBoxDbContext() { }
@@ -50,6 +51,7 @@ namespace DatabaseModel.Context
             modelBuilder.ApplyConfiguration(new ProductCategoryEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTypeEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ProductUnitEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ShipmentEntityConfiguration());
             modelBuilder.ApplyConfiguration(new SuppilerEntityConfiguration());
             modelBuilder.ApplyConfiguration(new WarehouseEmployeeEntityConfiguration());
 

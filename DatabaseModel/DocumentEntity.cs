@@ -11,5 +11,6 @@
         public int CounterpartyId { get; set; }
         public virtual CounterpartyEntity? Counterparty { get; set; }
         public virtual ICollection<MovementHistoryEntity> MovementsHistory { get; set; } = [];
+        public virtual ICollection<ShipmentEntity> Shipments { get; set; } = [];
     }
 }

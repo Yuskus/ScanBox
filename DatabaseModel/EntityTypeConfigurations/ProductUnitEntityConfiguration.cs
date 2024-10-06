@@ -60,6 +60,11 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .WithOne(p => p.ProductUnit)
                    .HasForeignKey(p => p.ProductUnitId)
                    .HasConstraintName("manyto1_movements_history_to_product_unit_fk");
+
+            builder.HasMany(p => p.Shipments)
+                   .WithOne(p => p.ProductUnit)
+                   .HasForeignKey(p => p.ProductUnitId)
+                   .HasConstraintName("manyto1_shipments_to_product_unit_fk");
         }
     }
 }
