@@ -12,6 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanBoxWebApi", "ScanBoxWeb
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{529983A7-829C-42CB-ACA0-15170B4E0AD2}"
 	ProjectSection(SolutionItems) = preProject
+		database strings.txt = database strings.txt
 		README.md = README.md
 		yurgen_vm_DONE.txt = yurgen_vm_DONE.txt
 		yurgen_vm_TODO.txt = yurgen_vm_TODO.txt
