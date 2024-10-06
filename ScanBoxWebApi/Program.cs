@@ -1,5 +1,3 @@
-
-
 using DatabaseModel.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +8,8 @@ namespace ScanBoxWebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Configuration.AddJsonFile("appsettings.json");
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

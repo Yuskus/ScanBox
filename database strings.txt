@@ -1,0 +1,11 @@
+in:
+
+dotnet ef migrations add InitialCreate --project ..\DatabaseModel --context ScanBoxDbContext
+
+dotnet ef database update --connection "Host=localhost;Username=postgres;Password=example;Database=ScanBoxDb"
+
+out:
+
+dotnet ef database update 0 (или имя миграции) (нужен ли коннект?)
+
+dotnet ef migrations remove --project ..\DatabaseModel --context ScanBoxDbContext
