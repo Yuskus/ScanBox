@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class Class1
+    public class MovementHistoryDTO
     {
+        public int Id { get; set; }
+        public int DocumentId { get; set; }        
+        public int ProductUnitId { get; set; }       
     }
 }

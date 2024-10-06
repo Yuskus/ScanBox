@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class Class1
+    public class ProductCategoryDTO
     {
+        public int Id { get; set; }
+        public required string CategoryName { get; set; }
+        public string? Description { get; set; }
     }
 }
