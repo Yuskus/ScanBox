@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class DocumentTypeDTO
+    public class DocumentTypeGetDTO
     {
         public int Id { get; set; }
         public required string DoctypeName { get; set; }

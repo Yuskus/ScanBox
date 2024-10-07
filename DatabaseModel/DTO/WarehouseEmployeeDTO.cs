@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class WarehouseEmployeeDTO
+    internal class WarehouseEmployeeGetDTO
     {
         public int Id { get; set; }
         public int JobTitleId { get; set; }       
