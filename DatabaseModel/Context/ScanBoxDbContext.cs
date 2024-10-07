@@ -22,7 +22,7 @@ namespace DatabaseModel.Context
         public virtual DbSet<ProductTypeEntity> ProductTypes { get; set; }
         public virtual DbSet<ProductUnitEntity> ProductUnits { get; set; }
         public virtual DbSet<ShipmentEntity> Shipments { get; set; }
-        public virtual DbSet<SuppilerEntity> Suppilers { get; set; }
+        public virtual DbSet<SupplierEntity> Suppilers { get; set; }
         public virtual DbSet<WarehouseEmployeeEntity> WarehouseEmployees { get; set; }
         public ScanBoxDbContext() { }
         public ScanBoxDbContext(string connectionString)

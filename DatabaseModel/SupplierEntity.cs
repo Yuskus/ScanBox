@@ -1,6 +1,6 @@
 ﻿namespace DatabaseModel
 {
-    public class SuppilerEntity
+    public class SupplierEntity
     {
         public int Id { get; set; }
         public int CounterpartyId { get; set; }

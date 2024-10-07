@@ -9,7 +9,7 @@
         public int ProductTypeId { get; set; }
         public virtual ProductTypeEntity? ProductType { get; set; }
         public int SupplierId { get; set; }
-        public virtual SuppilerEntity? Supplier { get; set; }
+        public virtual SupplierEntity? Supplier { get; set; }
         public virtual ICollection<MovementHistoryEntity> MovementsHistory { get; set; } = [];
         public virtual ICollection<ShipmentEntity> Shipments { get; set; } = [];
     }
