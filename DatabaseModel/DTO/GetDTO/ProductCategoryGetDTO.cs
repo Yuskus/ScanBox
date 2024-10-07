@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class LegalFormGetDTO
+    public class ProductCategoryDTO
     {
         public int Id { get; set; }
-        public required string LegalFormName { get; set; }
+        public required string CategoryName { get; set; }
         public string? Description { get; set; }
     }
 }

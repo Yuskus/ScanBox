@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class IndividualDTO
+    public class IndividualGetDTO
     {
         public int Id { get; set; }
         public int CounterpartyId { get; set; }      

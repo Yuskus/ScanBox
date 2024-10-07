@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class DocumentGetDTO
+    public class DocumentDTO
     {
         public int Id { get; set; }
         public DateTime CreationTime { get; set; }

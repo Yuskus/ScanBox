@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class LegalFormGetDTO
+    public class MovementHistoryDTO
     {
         public int Id { get; set; }
-        public required string LegalFormName { get; set; }
-        public string? Description { get; set; }
+        public int DocumentId { get; set; }        
+        public int ProductUnitId { get; set; }       
     }
 }
