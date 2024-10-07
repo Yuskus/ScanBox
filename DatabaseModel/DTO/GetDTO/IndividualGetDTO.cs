@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    internal class WarehouseEmployeeGetDTO
+    public class IndividualDTO
     {
         public int Id { get; set; }
-        public int JobTitleId { get; set; }       
+        public int CounterpartyId { get; set; }      
         public required string Surname { get; set; }
         public required string Name { get; set; }
         public string? Patronymic { get; set; }
-        public DateOnly Birthday { get; set; }
-        public DateOnly HireDate { get; set; }
-        public required string Address { get; set; }
-        public required string Phone { get; set; }        
     }
 }

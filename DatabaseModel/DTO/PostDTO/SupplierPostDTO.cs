@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class DocumentGetDTO
+    internal class SupplierDTO //AutoMapper может не сопоставить модель с сущностью Suppiler
     {
         public int Id { get; set; }
-        public DateTime CreationTime { get; set; }
-        public int WarehouseEmployeeId { get; set; }        
-        public int DocumentTypeId { get; set; }       
         public int CounterpartyId { get; set; }       
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class JobTitelDTO
+    public class JobTitelGetDTO
     {
         public int Id { get; set; }
         public required string Name { get; set; }

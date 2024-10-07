@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.PostDTO
 {
-    public class LegalEntityGetDTO
+    public class LegalEntityPostDTO
     {
-        public int Id { get; set; }
-        public int CounterpartyId { get; set; }       
-        public int LegalFormId { get; set; }       
+        public int CounterpartyId { get; set; }
+        public int LegalFormId { get; set; }
         public required string NameOfLegalEntity { get; set; }
         public required string DirectorsSurname { get; set; }
         public required string DirectorsName { get; set; }

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.GetDTO
 {
-    public class LegalFormGetDTO
+    public class BuyerGetDTO
     {
         public int Id { get; set; }
-        public required string LegalFormName { get; set; }
-        public string? Description { get; set; }
+        public int CounterpartyId { get; set; }
     }
 }
