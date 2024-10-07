@@ -16,9 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Abstractions\" />
     <Folder Include="Implementations\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
   <ItemGroup>
