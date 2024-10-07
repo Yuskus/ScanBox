@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
 {
-    internal class SuppilerEntityConfiguration : IEntityTypeConfiguration<SuppilerEntity>
+    internal class SuppilerEntityConfiguration : IEntityTypeConfiguration<SupplierEntity>
     {
-        public void Configure(EntityTypeBuilder<SuppilerEntity> builder)
+        public void Configure(EntityTypeBuilder<SupplierEntity> builder)
         {
             // первичный ключ
 
@@ -28,7 +28,7 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             builder.HasOne(p => p.Counterparty)
                    .WithOne(p => p.Suppiler)
-                   .HasForeignKey<SuppilerEntity>(p => p.CounterpartyId)
+                   .HasForeignKey<SupplierEntity>(p => p.CounterpartyId)
                    .HasConstraintName("1to1_counterparty_to_suppiler_fk");
 
             // внешние ключи, связи многие к одному

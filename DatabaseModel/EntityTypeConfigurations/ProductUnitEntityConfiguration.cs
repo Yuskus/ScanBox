@@ -54,7 +54,7 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.HasOne(p => p.Supplier)
                    .WithMany(p => p.ProductUnits)
                    .HasForeignKey(p => p.SupplierId)
-                   .HasConstraintName("1tomany_suppiler_to_product_units_fk");
+                   .HasConstraintName("1tomany_supplier_to_product_units_fk");
 
             builder.HasMany(p => p.MovementsHistory)
                    .WithOne(p => p.ProductUnit)
