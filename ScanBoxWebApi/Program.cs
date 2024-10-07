@@ -1,5 +1,7 @@
 using DatabaseModel.Context;
 using Microsoft.EntityFrameworkCore;
+using ScanBoxWebApi.Abstractions;
+using ScanBoxWebApi.Repository;
 
 namespace ScanBoxWebApi
 {
@@ -15,7 +17,28 @@ namespace ScanBoxWebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //проверить, изменить строку подключения
+            //раскомментировать
+
+            /*builder.Services.AddScoped<IBuyerRepository, BuyerRepository>();
+            builder.Services.AddScoped<ICounterpartyRepository, CounterpartyRepository>();
+            builder.Services.AddScoped<ICounterpartyTypeRepository, CounterpartyTypeRepository>();
+            builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
+            builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+            builder.Services.AddScoped<IIndividualRepositoty, IndividualRepositoty>();
+            builder.Services.AddScoped<IJobTitelRepository, JobTitelRepository>();
+            builder.Services.AddScoped<ILegalEntityRepository, LegalEntityRepository>();
+            builder.Services.AddScoped<ILegalFormRepository, LegalFormRepository>();
+            builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
+            builder.Services.AddScoped<IMovementHistoryRepository, MovementHistoryRepository>();
+            builder.Services.AddScoped<IPricesRepository, PricesRepository>();
+            builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+            builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+            builder.Services.AddScoped<IProductUnitRepository, ProductUnitRepository>();
+            builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
+            builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+            builder.Services.AddScoped<IWarehouseEmployeeRepository, WarehouseEmployeeRepository>();*/
+
+            //проверить строку подключения и миграции
             builder.Services.AddDbContext<ScanBoxDbContext>(options =>
             {
                 options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("ScanBoxDb"));
@@ -32,6 +55,7 @@ namespace ScanBoxWebApi
 
             app.UseHttpsRedirection();
 
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
