@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class PricesDTO
+    public class PricesGetDTO
     {
         public int ProductTypeId { get; set; }         
         public double MinPrice { get; set; }
