@@ -52,7 +52,7 @@ namespace DatabaseModel.EntityTypeConfigurations
 
             builder.HasOne(p => p.Suppiler)
                    .WithOne(p => p.Counterparty)
-                   .HasForeignKey<SuppilerEntity>(p => p.CounterpartyId)
+                   .HasForeignKey<SupplierEntity>(p => p.CounterpartyId)
                    .HasConstraintName("1to1_suppiler_to_counterparty_fk");
 
             builder.HasOne(p => p.Individual)

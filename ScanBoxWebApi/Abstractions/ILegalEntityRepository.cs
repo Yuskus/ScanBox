@@ -1,6 +1,6 @@
 ﻿namespace ScanBoxWebApi.Abstractions
 {
-    public interface Interface
+    public interface ILegalEntityRepository : IRepository
     {
     }
 }
