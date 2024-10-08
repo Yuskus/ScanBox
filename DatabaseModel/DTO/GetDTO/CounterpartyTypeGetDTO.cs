@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.GetDTO
 {
-    internal class ManufacturerDTO
+    public class CounterpartyTypeGetDTO
     {
         public int Id { get; set; }
-        public int CounterpartyId { get; set; }
+        public required string TypeName { get; set; }
     }
 }
