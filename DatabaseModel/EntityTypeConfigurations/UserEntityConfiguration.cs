@@ -31,9 +31,13 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasMaxLength(100)
                    .HasColumnName("username");
 
-            builder.Property(p => p.PasswordHash)
+            builder.Property(p => p.Password)
                    .IsRequired()
-                   .HasColumnName("password_hash");
+                   .HasColumnName("password");
+
+            builder.Property(p => p.Salt)
+                   .IsRequired()
+                   .HasColumnName("salt");
 
             builder.Property(p => p.CreatedAt)
                    .HasColumnType("timestamp")
