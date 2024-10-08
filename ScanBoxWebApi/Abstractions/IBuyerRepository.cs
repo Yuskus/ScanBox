@@ -1,5 +1,4 @@
-﻿using DatabaseModel;
-using DatabaseModel.DTO.GetDTO;
+﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions
@@ -9,7 +8,7 @@ namespace ScanBoxWebApi.Abstractions
         public int AddBuyer(BuyerPostDTO buyerPostDTO);
         public int PutBuyer(BuyerPostDTO buyerPutDTO);
         public int DelBuyer(int buyerId);
-        public IEnumerable <BuyerGetDTO> GetBuyers();
-        
+        public IEnumerable<BuyerGetDTO> GetBuyers();
+
     }
 }
