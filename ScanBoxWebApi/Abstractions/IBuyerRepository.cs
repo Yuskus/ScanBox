@@ -3,7 +3,7 @@ using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions
 {
-    public interface IBuyerRepository : IRepository
+    public interface IBuyerRepository : IDeleteRepository
     {
         public int AddBuyer(BuyerPostDTO buyerPostDTO);
         public int PutBuyer(BuyerPostDTO buyerPutDTO);

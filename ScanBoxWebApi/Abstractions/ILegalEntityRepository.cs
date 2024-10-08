@@ -3,7 +3,7 @@ using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions
 {
-    public interface ILegalEntityRepository : IRepository
+    public interface ILegalEntityRepository : IDeleteRepository
     {
         public int AddLegalEntity(LegalEntityPostDTO legalEntityPostDTO);
         public int PutLegalEntity(LegalEntityPostDTO legalEntityPutDTO);

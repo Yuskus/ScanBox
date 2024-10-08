@@ -3,7 +3,7 @@ using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions
 {
-    public interface IProductCategoryRepository : IRepository
+    public interface IProductCategoryRepository : IDeleteRepository
     {
         public int AddProductCategory(ProductCategoryPostDTO productCategoryPostDTO);
         public int PutProductCategory(ProductCategoryPostDTO productCategoryPutDTO);

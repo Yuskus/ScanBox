@@ -3,7 +3,7 @@ using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions
 {
-    public interface IIndividualRepositoty : IRepository
+    public interface IIndividualRepositoty : IDeleteRepository
     {
         public int AddIndividual(IndividualPostDTO individualPostDTO);
         public int PutIndividual(IndividualPostDTO individualPutDTO);
