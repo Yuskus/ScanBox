@@ -3,7 +3,7 @@ using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions
 {
-    public interface ILegalFormRepository : IRepository
+    public interface ILegalFormRepository : IDeleteRepository
     {
         public int AddLegalForm(LegalFormPostDTO legalFormPostDTO);
         public int PutLegalForm(LegalFormPostDTO legalFormPutDTO);

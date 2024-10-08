@@ -1,6 +1,6 @@
 ﻿namespace ScanBoxWebApi.Abstractions
 {
-    public interface IShipmentRepository : IRepository
+    public interface IShipmentRepository : IDeleteRepository
     {
     }
 }
