@@ -50,7 +50,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasForeignKey<ManufacturerEntity>(p => p.CounterpartyId)
                    .HasConstraintName("1to1_manufacturer_to_counterparty_fk");
 
-            builder.HasOne(p => p.Suppiler)
+            builder.HasOne(p => p.Supplier)
                    .WithOne(p => p.Counterparty)
                    .HasForeignKey<SupplierEntity>(p => p.CounterpartyId)
                    .HasConstraintName("1to1_suppiler_to_counterparty_fk");
