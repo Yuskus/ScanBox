@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class LegalFormGetDTO
+    public class LegalFormDTO
     {
         public int Id { get; set; }
         public required string LegalFormName { get; set; }
