@@ -7,7 +7,7 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddCounterparty(CounterpartyPostDTO counterpartyPostDTO);
         public int PutCounterparty(CounterpartyPostDTO counterpartyPutDTO);
-        public int DeleteCounterparty(int counterpartyId);
+        public int DelCounterparty(int counterpartyId);
         public IEnumerable<CounterpartyGetDTO> GetCounterparties();
 
     }

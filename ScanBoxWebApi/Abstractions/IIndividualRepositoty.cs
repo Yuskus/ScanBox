@@ -8,6 +8,6 @@ namespace ScanBoxWebApi.Abstractions
         public int AddIndividual(IndividualPostDTO individualPostDTO);
         public int PutIndividual(IndividualPostDTO individualPutDTO);
         public int DelIndividual(int individualId);
-        public IEnumerable<IndividualGetDTO> GetIndividual();
+        public IEnumerable<IndividualGetDTO> GetIndividuals();
     }
 }
