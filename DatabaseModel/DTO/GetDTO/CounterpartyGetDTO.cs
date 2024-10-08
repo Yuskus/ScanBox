@@ -1,6 +1,6 @@
 ﻿namespace DatabaseModel.DTO.GetDTO
 {
-    public class CounterpartyPostDTO
+    public class CounterpartyGetDTO
     {
         public int Id { get; set; }
         public int CounterpartyTypeId { get; set; }
