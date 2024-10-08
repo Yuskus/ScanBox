@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddDocumentType(DocumentTypePostDTO documentTypePostDTO);
         public int PutDocumentType(DocumentTypePostDTO documentTypePutDTO);
-        public int DelDocumentType(int documentTypeId);
         public IEnumerable<DocumentTypeGetDTO> GetDocumentTypes();
     }
 }

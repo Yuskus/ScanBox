@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO.PostDTO
 {
-    internal class ShipmentPostDTO
+    public class ShipmentPostDTO
     {
         public int DocumentId { get; set; }
         public int ProductUnitId { get; set; }

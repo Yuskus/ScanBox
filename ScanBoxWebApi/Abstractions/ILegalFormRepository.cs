@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddLegalForm(LegalFormPostDTO legalFormPostDTO);
         public int PutLegalForm(LegalFormPostDTO legalFormPutDTO);
-        public int DelLegalForm(int legalFormId);
         public IEnumerable<LegalEntityGetDTO> GetLegalEntity();
     }
 }
