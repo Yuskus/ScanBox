@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddManufacturer(ManufacturerPostDTO manufacturerPostDTO);
         public int PutManufacturer(ManufacturerPostDTO manufacturerPutDTO);
-        public int DelManufacturer(int manufacturerId);
         public IEnumerable<ManufacturerGetDTO> GetManufacturers();
     }
 }

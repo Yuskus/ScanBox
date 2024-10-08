@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddJobTitel(JobTitelPostDTO jobTitelPostDTO);
         public int PutJobTitel(JobTitelPostDTO jobTitelPutDTO);
-        public int DelJobTitel(int jobTitelId);
         public IEnumerable<JobTitelGetDTO> GetJobTitels();  
     }
 }

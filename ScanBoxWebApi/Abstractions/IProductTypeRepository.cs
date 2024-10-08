@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddProductType(ProductTypePostDTO productTypePostDTO);
         public int PutProductType(ProductTypePostDTO productTypePutDTO);
-        public int DelProductType(int productTypeId);
         public IEnumerable<ProductTypeGetDTO> GetProductTypes();
     }
 }

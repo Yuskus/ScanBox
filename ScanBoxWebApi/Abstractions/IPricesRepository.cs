@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddPrices(PricesPostDTO pricesPostDTO);
         public int PutPrices(PricesPostDTO pricesPutDTO);
-        public int DelPrices(int pricesId);
         public IEnumerable<PricesGetDTO> GetPrices();
     }
 }

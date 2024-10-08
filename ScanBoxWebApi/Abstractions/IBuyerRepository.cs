@@ -7,8 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddBuyer(BuyerPostDTO buyerPostDTO);
         public int PutBuyer(BuyerPostDTO buyerPutDTO);
-        public int DelBuyer(int buyerId);
         public IEnumerable<BuyerGetDTO> GetBuyers();
-
     }
 }

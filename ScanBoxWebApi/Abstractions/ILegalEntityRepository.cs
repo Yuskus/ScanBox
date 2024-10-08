@@ -7,7 +7,6 @@ namespace ScanBoxWebApi.Abstractions
     {
         public int AddLegalEntity(LegalEntityPostDTO legalEntityPostDTO);
         public int PutLegalEntity(LegalEntityPostDTO legalEntityPutDTO);
-        public int DelLegalEntity(int legalEntityId);
         public IEnumerable<LegalEntityGetDTO> GetLegalEntities();
     }
 }
