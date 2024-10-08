@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.PostDTO
 {
-    public class JobTitelDTO
+    public class JobTitelPostDTO
     {
-        public int Id { get; set; }
         public required string Name { get; set; }
         public string? DutiesDescription { get; set; }
         public double BaseSalary { get; set; }
