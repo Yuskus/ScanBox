@@ -53,7 +53,7 @@ namespace DatabaseModel.Context
             modelBuilder.ApplyConfiguration(new ProductTypeEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ProductUnitEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ShipmentEntityConfiguration());
-            modelBuilder.ApplyConfiguration(new SuppilerEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new SupplierEntityConfiguration());
             modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
             modelBuilder.ApplyConfiguration(new WarehouseEmployeeEntityConfiguration());
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseModel.DTO.GetDTO
+﻿namespace DatabaseModel.DTO.GetDTO
 {
-    internal class ProductUnitGetDTO
+    public class ProductUnitGetDTO
     {
         public int Id { get; set; }
         public required string UniqueBarcode { get; set; }
