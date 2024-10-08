@@ -1,13 +1,13 @@
 using DatabaseModel.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ScanBoxWebApi.Abstractions;
 using ScanBoxWebApi.Implementations;
+using ScanBoxWebApi.Mapper;
 using ScanBoxWebApi.Repository;
-using System.Text;
+using ScanBoxWebApi.Utilities;
 
 namespace ScanBoxWebApi
 {
@@ -55,6 +55,8 @@ namespace ScanBoxWebApi
                 });
             });
 
+            // для аутентификации и авторизации
+            builder.Services.AddAuthorization();
             builder.Services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -70,18 +72,20 @@ namespace ScanBoxWebApi
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
                     ValidAudience = builder.Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+                    IssuerSigningKey = new RsaSecurityKey(RSATool.GetKey("public_key.pem"))
                 };
             });
 
-            builder.Services.AddAuthorization();
-
-            //проверить строку подключения и миграции
+            // контекст бд (проверить строку подключения и миграции)
             builder.Services.AddDbContext<ScanBoxDbContext>(options =>
             {
                 options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("ScanBoxDb"));
             });
 
+            // маппинг
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+            // для работы с бд
             builder.Services.AddScoped<IBuyerRepository, BuyerRepository>();
             builder.Services.AddScoped<ICounterpartyRepository, CounterpartyRepository>();
             builder.Services.AddScoped<ICounterpartyTypeRepository, CounterpartyTypeRepository>();
@@ -101,6 +105,7 @@ namespace ScanBoxWebApi
             builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IWarehouseEmployeeRepository, WarehouseEmployeeRepository>();
 
+            // для аутентификации и авторизации
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<ITokenGenerator, TokenGenerator>();
 
