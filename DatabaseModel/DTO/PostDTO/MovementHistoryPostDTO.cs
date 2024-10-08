@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.PostDTO
 {
-    public class MovementHistoryDTO
+    public class MovementHistoryPostDTO
     {
-        public int Id { get; set; }
-        public int DocumentId { get; set; }        
-        public int ProductUnitId { get; set; }       
+        public int DocumentId { get; set; }
+        public int ProductUnitId { get; set; }
     }
 }
