@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.GetDTO
 {
-    internal class ManufacturerDTO
+    public class MovementHistoryGetDTO
     {
         public int Id { get; set; }
-        public int CounterpartyId { get; set; }
+        public int DocumentId { get; set; }
+        public int ProductUnitId { get; set; }
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.PostDTO
 {
-    internal class ManufacturerDTO
+    internal class SupplierPostDTO //AutoMapper может не сопоставить модель с сущностью Suppiler
     {
-        public int Id { get; set; }
         public int CounterpartyId { get; set; }
     }
 }
