@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.GetDTO
 {
-    public class LegalFormDTO
+    public class LegalFormGetDTO
     {
         public int Id { get; set; }
         public required string LegalFormName { get; set; }

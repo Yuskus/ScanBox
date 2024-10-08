@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.GetDTO
 {
-    public class ProductCategoryDTO
+    public class ProductCategoryGetDTO
     {
         public int Id { get; set; }
         public required string CategoryName { get; set; }

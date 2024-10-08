@@ -8,5 +8,7 @@ namespace DatabaseModel.DTO
 {
     internal class ManufacturerGetDTO
     {
+        public int Id { get; set; }
+        public int CounterpartyId { get; set; }
     }
 }

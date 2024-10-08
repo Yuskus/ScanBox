@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseModel.DTO
+namespace DatabaseModel.DTO.GetDTO
 {
-    public class DocumentTypeDTO
+    public class DocumentTypeGetDTO
     {
         public int Id { get; set; }
         public required string DoctypeName { get; set; }
-        public required string Description { get; set; }        
+        public required string Description { get; set; }
     }
 }
