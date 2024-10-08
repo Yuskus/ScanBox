@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseModel.DTO
 {
-    public class ProductCategoryGetDTO
+    public class ProductCategoryDTO
     {
         public int Id { get; set; }
         public required string CategoryName { get; set; }
