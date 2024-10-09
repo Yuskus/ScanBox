@@ -1,6 +1,12 @@
-﻿namespace ScanBoxWebApi.Abstractions
+﻿using DatabaseModel.DTO.GetDTO;
+using DatabaseModel.DTO.PostDTO;
+
+namespace ScanBoxWebApi.Abstractions
 {
-    public interface ICounterpartyRepository : IRepository
+    public interface ICounterpartyRepository : IDeleteRepository
     {
+        public int AddCounterparty(CounterpartyPostDTO counterpartyPostDTO);
+        public int PutCounterparty(CounterpartyPostDTO counterpartyPutDTO);
+        public IEnumerable<CounterpartyGetDTO> GetCounterparties();
     }
 }
