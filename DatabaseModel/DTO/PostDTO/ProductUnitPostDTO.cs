@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseModel.DTO.PostDTO
+﻿namespace DatabaseModel.DTO.PostDTO
 {
-    internal class ProductUnitPostDTO
+    public class ProductUnitPostDTO
     {
         public required string UniqueBarcode { get; set; }
         public DateOnly ProductionDate { get; set; }
