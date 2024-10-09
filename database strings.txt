@@ -1,6 +1,6 @@
 in:
 
-dotnet ef migrations add InitialCreate --project ..\DatabaseModel --context ScanBoxDbContext
+dotnet ef migrations add UpdSuppliers --project ..\DatabaseModel --context ScanBoxDbContext
 
 dotnet ef database update --connection "Host=localhost;Username=postgres;Password=example;Database=ScanBoxDb"
 
