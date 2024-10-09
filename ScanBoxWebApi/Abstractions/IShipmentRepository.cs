@@ -1,6 +1,12 @@
-﻿namespace ScanBoxWebApi.Abstractions
+﻿using DatabaseModel.DTO.GetDTO;
+using DatabaseModel.DTO.PostDTO;
+
+namespace ScanBoxWebApi.Abstractions
 {
-    public interface IShipmentRepository : IRepository
+    public interface IShipmentRepository : IDeleteRepository
     {
+        public int AddShipment(ShipmentPostDTO shipmentPostDTO);
+        public int PutShipment(ShipmentPostDTO shipmentPutDTO);
+        public IEnumerable<ShipmentGetDTO> GetShipment();
     }
 }

@@ -3,18 +3,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
 {
-    internal class SuppilerEntityConfiguration : IEntityTypeConfiguration<SupplierEntity>
+    internal class SupplierEntityConfiguration : IEntityTypeConfiguration<SupplierEntity>
     {
         public void Configure(EntityTypeBuilder<SupplierEntity> builder)
         {
             // первичный ключ
 
             builder.HasKey(p => p.Id)
-                   .HasName("id_suppiler_pk");
+                   .HasName("id_supplier_pk");
 
             // имя таблицы
 
-            builder.ToTable("suppilers_table");
+            builder.ToTable("suppliers_table");
 
             // имена свойств
 
@@ -27,16 +27,16 @@ namespace DatabaseModel.EntityTypeConfigurations
             // внешние ключи
 
             builder.HasOne(p => p.Counterparty)
-                   .WithOne(p => p.Suppiler)
+                   .WithOne(p => p.Supplier)
                    .HasForeignKey<SupplierEntity>(p => p.CounterpartyId)
-                   .HasConstraintName("1to1_counterparty_to_suppiler_fk");
+                   .HasConstraintName("1to1_counterparty_to_supplier_fk");
 
             // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.ProductUnits)
                    .WithOne(p => p.Supplier)
                    .HasForeignKey(p => p.SupplierId)
-                   .HasConstraintName("manyto1_product_units_to_suppiler_fk");
+                   .HasConstraintName("manyto1_product_units_to_supplier_fk");
         }
     }
 }

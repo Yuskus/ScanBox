@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DatabaseModel.DTO.PostDTO
+﻿namespace DatabaseModel.DTO.PostDTO
 {
-    internal class WarehouseEmployeePostDTO
+    public class WarehouseEmployeePostDTO
     {
         public int JobTitleId { get; set; }
         public required string Surname { get; set; }
