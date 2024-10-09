@@ -1,6 +1,12 @@
-﻿namespace ScanBoxWebApi.Abstractions
+﻿using DatabaseModel.DTO.GetDTO;
+using DatabaseModel.DTO.PostDTO;
+
+namespace ScanBoxWebApi.Abstractions
 {
-    public interface IMovementHistoryRepository : IRepository
+    public interface IMovementHistoryRepository : IDeleteRepository
     {
+        public int AddMovementHistory(MovementHistoryPostDTO movementHistoryPostDTO);
+        public int PutMovementHistory(MovementHistoryPostDTO movementHistoryPuttDTO);
+        public IEnumerable<MovementHistoryGetDTO> GetMovementHistory();
     }
 }
