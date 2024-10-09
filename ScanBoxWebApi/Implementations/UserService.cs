@@ -1,14 +1,22 @@
-﻿using DatabaseModel.DTO;
+﻿using AutoMapper;
+using DatabaseModel.Context;
+using DatabaseModel.DTO;
 using ScanBoxWebApi.Abstractions;
+using ScanBoxWebApi.Utilities;
 
 namespace ScanBoxWebApi.Implementations
 {
-    public class UserService : IUserService
+    public class UserService(ScanBoxDbContext context, IMapper mapper) : IUserService
     {
-        //здесь будет проверка базы данных и поиск юзеров
+        private readonly ScanBoxDbContext _context = context; // работают ли подстановки вне системных классов ASP?
+        private readonly IMapper _mapper = mapper; // работают ли подстановки вне системных классов ASP?
+
+        // здесь будет проверка базы данных и поиск юзеров
+        // пока что тут заглушка
         public UserDTO? Authenticate(LoginFormDTO loginForm)
         {
-            //пока что тут заглушка
+            // временный вход по указанным ниже паролям и логинам
+
             if (loginForm.Username.Equals("Admin") && loginForm.Password.Equals("1234567"))
             {
                 return new UserDTO() { Username = "Admin", Role = UserRole.Admin };
@@ -17,6 +25,16 @@ namespace ScanBoxWebApi.Implementations
             {
                 return new UserDTO() { Username = "User", Role = UserRole.User };
             }
+
+            // реальный код
+            var user = _context.Users.FirstOrDefault(x => x.Username.Equals(loginForm.Username));
+
+            if (user is not null)
+            {
+                bool isValid = Hasher.IsPasswordValid(loginForm.Password, user.Password, user.Salt);
+                return _mapper.Map<UserDTO>(user);
+            }
+
             return null;
         }
     }
