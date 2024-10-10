@@ -1,4 +1,4 @@
-in:
+qin:
 
 dotnet ef migrations add UpdSuppliers --project ..\DatabaseModel --context ScanBoxDbContext
 
