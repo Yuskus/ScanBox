@@ -47,7 +47,8 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<CounterpartyTypeGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var counterpartyTypeEntity = _context.CounterpartiesTypes.Select(x => _mapper.Map<CounterpartyTypeGetDTO>(x));
+            return counterpartyTypeEntity;
         }
 
         public int Update(CounterpartyTypeGetDTO dto)
