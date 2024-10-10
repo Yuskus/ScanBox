@@ -45,7 +45,8 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<BuyerGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var buyerEntities = _context.Buyers.Select(x => _mapper.Map<BuyerGetDTO>(x));
+            return buyerEntities;            
         }
 
         public int Update(BuyerPostDTO dto)
