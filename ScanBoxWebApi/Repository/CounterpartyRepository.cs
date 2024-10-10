@@ -45,9 +45,21 @@ namespace ScanBoxWebApi.Repository
             return counterpartyEntity;
         }
 
-        public int Update(CounterpartyPostDTO counterpartyDto)
+        public int Update(CounterpartyGetDTO counterpartyDto)
         {
-            throw new NotImplementedException();
+            var counterpartyEntity = _context.Counterparties.FirstOrDefault(x => x.Id == counterpartyDto.Id);
+
+            if (counterpartyEntity != null)
+            {
+                counterpartyEntity.CounterpartyTypeId = counterpartyDto.CounterpartyTypeId;
+                counterpartyEntity.Address = counterpartyDto.Address;
+                counterpartyEntity.Phone = counterpartyDto.Phone;
+                counterpartyEntity.Email = counterpartyDto.Email;
+
+                _context.SaveChanges();
+                return counterpartyEntity.Id;
+            }
+            return -1;
         }
     }
 }
