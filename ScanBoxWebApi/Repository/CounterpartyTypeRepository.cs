@@ -32,10 +32,18 @@ namespace ScanBoxWebApi.Repository
             return -1;
         }
 
-        public int Delete(int Id)
+        public int Delete(int counterpartyTypeId)
         {
-            throw new NotImplementedException();
+            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x =>x.Id == counterpartyTypeId);
+            if (counterpartyTypeEntity != null)
+            {
+                _context.Remove(counterpartyTypeEntity);
+                _context.SaveChanges();
+                return counterpartyTypeEntity.Id;
+            }
+            return -1;
         }
+
 
         public IEnumerable<CounterpartyTypeGetDTO> GetElemetsList()
         {
