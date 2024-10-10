@@ -1,29 +1,68 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class BuyerRepository : IBuyerRepository
+    public class BuyerRepository : ICrudMethodRepository<BuyerGetDTO, BuyerPostDTO>
     {
-        public int AddBuyer(BuyerPostDTO buyerPostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public BuyerRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public int Delete(int Id)
+        public int Create(BuyerPostDTO buyerDTO)
         {
-            throw new NotImplementedException();
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.CounterpartyId == buyerDTO.CounterpartyId);
+
+            if (buyerEntity == null)
+            {
+                buyerEntity = _mapper.Map<BuyerEntity>(buyerDTO);
+                _context.Add(buyerEntity);
+                _context.SaveChanges();
+            }
+            return buyerEntity.Id;
         }
 
-        public IEnumerable<BuyerGetDTO> GetBuyers()
+        public int Delete(int buyerId)
         {
-            throw new NotImplementedException();
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerId);
+            if (buyerEntity != null)
+            {
+                _context.Remove(buyerEntity);
+                _context.SaveChanges();
+                return buyerEntity.Id;
+            }
+            return -1;
         }
 
-        public int PutBuyer(BuyerPostDTO buyerPutDTO)
+        public IEnumerable<BuyerGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var buyerEntities = _context.Buyers.Select(x => _mapper.Map<BuyerGetDTO>(x));
+            return buyerEntities;
+        }
+
+        public int Update(BuyerPostDTO buyerDto)
+        {
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.CounterpartyId == buyerDto.CounterpartyId);
+            if (buyerEntity == null)
+            {
+                buyerEntity = _mapper.Map<BuyerEntity>(buyerDto);
+                _context.Add(buyerEntity);
+            }
+            else
+            {
+               buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
+            }
+            _context.SaveChanges();
+            return buyerEntity.Id;
         }
     }
 }
