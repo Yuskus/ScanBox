@@ -1,4 +1,4 @@
-п»їnamespace DatabaseModel
+﻿namespace DatabaseModel
 {
     public class BuyerEntity
     {

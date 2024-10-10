@@ -1,4 +1,4 @@
-п»їnamespace DatabaseModel.DTO.PostDTO
+﻿namespace DatabaseModel.DTO.PostDTO
 {
     public class IndividualPostDTO
     {

@@ -1,4 +1,4 @@
-п»їusing Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,16 +7,16 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<DocumentTypeEntity> builder)
         {
-            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
+            // первичный ключ
 
             builder.HasKey(p => p.Id)
                    .HasName("id_document_type_pk");
 
-            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
+            // имя таблицы
 
             builder.ToTable("document_types_table");
 
-            // РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ
+            // имена свойств
 
             builder.Property(p => p.Id)
                    .HasColumnName("id");
@@ -31,7 +31,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .IsRequired()
                    .HasColumnName("description");
 
-            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё
+            // внешние ключи
 
             builder.HasMany(p => p.Documents)
                    .WithOne(p => p.DocumentType)

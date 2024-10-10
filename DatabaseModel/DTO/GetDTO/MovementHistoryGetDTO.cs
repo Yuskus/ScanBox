@@ -1,4 +1,4 @@
-п»їnamespace DatabaseModel.DTO.GetDTO
+﻿namespace DatabaseModel.DTO.GetDTO
 {
     public class MovementHistoryGetDTO
     {

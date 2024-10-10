@@ -1,4 +1,4 @@
-п»їnamespace ScanBoxWebApi.Abstractions
+﻿namespace ScanBoxWebApi.Abstractions
 {
     public interface ICRUDRepository<T> where T : class
     {

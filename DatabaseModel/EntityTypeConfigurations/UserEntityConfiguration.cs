@@ -1,4 +1,4 @@
-п»їusing Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,21 +7,21 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
-            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
+            // первичный ключ
 
             builder.HasKey(p => p.Id)
                    .HasName("id_user_entity_pk");
 
-            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
+            // имя таблицы
 
             builder.ToTable("user_entities_table");
 
-            // РёРЅРґРµРєСЃС‹
+            // индексы
 
             builder.HasIndex(p => p.Username)
                    .IsUnique();
 
-            // СЃРІРѕР№СЃС‚РІР°
+            // свойства
 
             builder.Property(p => p.Id)
                    .HasColumnName("id");

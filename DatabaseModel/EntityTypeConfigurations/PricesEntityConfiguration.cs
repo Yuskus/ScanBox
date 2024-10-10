@@ -1,4 +1,4 @@
-п»їusing Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,16 +7,16 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<PricesEntity> builder)
         {
-            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
+            // первичный ключ
 
             builder.HasKey(p => p.ProductTypeId)
                    .HasName("id_prices_pk");
 
-            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
+            // имя таблицы
 
             builder.ToTable("prices_table");
 
-            // РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ
+            // имена свойств
 
             builder.Property(p => p.ProductTypeId)
                    .HasColumnName("product_type_id");
@@ -33,7 +33,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasColumnType("decimal(10, 2)")
                    .HasColumnName("wholesale_price");
 
-            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё
+            // внешние ключи
 
             builder.HasOne(p => p.ProductType)
                    .WithOne(p => p.ProductPrice)

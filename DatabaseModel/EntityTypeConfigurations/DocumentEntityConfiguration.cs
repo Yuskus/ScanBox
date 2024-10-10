@@ -1,4 +1,4 @@
-п»їusing Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,16 +7,16 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<DocumentEntity> builder)
         {
-            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
+            // первичный ключ
 
             builder.HasKey(p => p.Id)
                    .HasName("id_document_pk");
 
-            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
+            // имя таблицы
 
             builder.ToTable("documents_table");
 
-            // РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ
+            // имена свойств
 
             builder.Property(p => p.Id)
                    .HasColumnName("id");
@@ -34,7 +34,7 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.CounterpartyId)
                    .HasColumnName("counterparty_id");
 
-            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё, СЃРІСЏР·Рё 1 РєРѕ РјРЅРѕРіРёРј
+            // внешние ключи, связи 1 ко многим
 
             builder.HasOne(p => p.WarehouseEmployee)
                    .WithMany(p => p.Documents)
@@ -51,7 +51,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .HasForeignKey(p => p.CounterpartyId)
                    .HasConstraintName("1tomany_counterparty_to_documents_fk");
 
-            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё
+            // внешние ключи
 
             builder.HasMany(p => p.MovementsHistory)
                    .WithOne(p => p.Document)
