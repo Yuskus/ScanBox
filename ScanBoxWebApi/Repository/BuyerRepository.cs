@@ -31,9 +31,16 @@ namespace ScanBoxWebApi.Repository
             return buyerEntity.Id;            
         }
 
-        public int Delete(int Id)
+        public int Delete(int buyerId)
         {
-            throw new NotImplementedException();
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id==buyerId);
+            if (buyerEntity != null)
+            {
+                _context.Remove(buyerEntity);
+                _context.SaveChanges();
+                return buyerEntity.Id;
+            }
+            return -1;
         }
 
         public IEnumerable<BuyerGetDTO> GetElemetsList()
