@@ -1,29 +1,67 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using System.Reflection.Metadata;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class IndividualRepositoty : IIndividualRepositoty
+    public class IndividualRepositoty : ICrudMethodRepository<IndividualGetDTO, IndividualPostDTO>
     {
-        public int AddIndividual(IndividualPostDTO individualPostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public IndividualRepositoty (ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
+        }
+        public int Create(IndividualPostDTO individualDto)
+        {
+            var individualEntity = _context.Individuals.FirstOrDefault(x => x.CounterpartyId == individualDto.CounterpartyId);
+            if (individualEntity == null)
+            {
+                individualEntity = _mapper.Map<IndividualEntity>(individualDto);
+                _context.Add(individualEntity);
+                _context.SaveChanges();
+            }
+            return individualEntity.Id;
         }
 
-        public int Delete(int Id)
+        public int Delete(int individualId)
         {
-            throw new NotImplementedException();
+            var individualEntity = _context.Individuals.FirstOrDefault(x => x.Id == individualId);
+            if (individualEntity != null)
+            {
+                _context.Remove(individualEntity);
+                _context.SaveChanges();
+                return individualEntity.Id;
+            }
+            return -1;
         }
 
-        public IEnumerable<IndividualGetDTO> GetIndividuals()
+        public IEnumerable<IndividualGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var individualEntity = _context.Individuals.Select(x => _mapper.Map<IndividualGetDTO>(x));
+            return individualEntity;
         }
 
-        public int PutIndividual(IndividualPostDTO individualPutDTO)
+        public int Update(IndividualGetDTO individualDto)
         {
-            throw new NotImplementedException();
+            var individualEntity = _context.Individuals.FirstOrDefault(x => x.Id == individualDto.Id);
+            if (individualEntity != null)
+            {
+                individualEntity.CounterpartyId = individualDto.CounterpartyId;
+                individualEntity.Surname = individualDto.Surname;
+                individualEntity.Name = individualDto.Name;
+                individualEntity.Patronymic = individualDto.Patronymic;
+
+                _context.SaveChanges();
+                return individualEntity.Id;
+            }
+            return -1;
         }
     }
 }
