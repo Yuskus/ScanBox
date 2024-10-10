@@ -52,17 +52,13 @@ namespace ScanBoxWebApi.Repository
         public int Update(BuyerGetDTO buyerDto)
         {
             var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerDto.Id);
-            if (buyerEntity == null)
+            if (buyerEntity != null)
             {
-                buyerEntity = _mapper.Map<BuyerEntity>(buyerDto);
-                _context.Add(buyerEntity);
+                buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
+                _context.SaveChanges();
+                return buyerEntity.Id;
             }
-            else
-            {
-               buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
-            }
-            _context.SaveChanges();
-            return buyerEntity.Id;
+            return -1;
         }
     }
 }
