@@ -1,29 +1,67 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class CounterpartyTypeRepository : ICounterpartyTypeRepository
+    public class CounterpartyTypeRepository : ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO>
     {
-        public int AddCounterpartyType(CounterpartyTypePostDTO counterpartyTypePostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public CounterpartyTypeRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public int Delete(int Id)
+        public int Create(CounterpartyTypePostDTO counterpartyTypeDto)
         {
-            throw new NotImplementedException();
+            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x => x.TypeName.Equals(counterpartyTypeDto.TypeName));
+
+            if (counterpartyTypeEntity == null)
+            {
+                counterpartyTypeEntity = _mapper.Map<CounterpartyTypeEntity>(counterpartyTypeDto);
+                _context.Add(counterpartyTypeEntity);
+                _context.SaveChanges();
+                return counterpartyTypeEntity.Id;
+            }
+            return -1;
         }
 
-        public IEnumerable<CounterpartyTypeGetDTO> GetCounterpartiesType()
+        public int Delete(int counterpartyTypeId)
         {
-            throw new NotImplementedException();
+            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x =>x.Id == counterpartyTypeId);
+            if (counterpartyTypeEntity != null)
+            {
+                _context.Remove(counterpartyTypeEntity);
+                _context.SaveChanges();
+                return counterpartyTypeEntity.Id;
+            }
+            return -1;
         }
 
-        public int PutCounterpartyType(CounterpartyTypePostDTO counterpartyTypePutDTO)
+
+        public IEnumerable<CounterpartyTypeGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var counterpartyTypeEntity = _context.CounterpartiesTypes.Select(x => _mapper.Map<CounterpartyTypeGetDTO>(x));
+            return counterpartyTypeEntity;
+        }
+
+        public int Update(CounterpartyTypeGetDTO counterpartyTypeDto)
+        {
+            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x => x.Id == counterpartyTypeDto.Id);
+            if (counterpartyTypeEntity != null)
+            {
+                counterpartyTypeEntity.TypeName = counterpartyTypeDto.TypeName;
+
+                _context.SaveChanges();
+                return counterpartyTypeEntity.Id;
+            }
+            return -1;
         }
     }
 }
