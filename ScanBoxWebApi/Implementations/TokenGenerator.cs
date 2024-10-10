@@ -1,4 +1,4 @@
-п»їusing DatabaseModel.DTO;
+﻿using DatabaseModel.DTO;
 using Microsoft.IdentityModel.Tokens;
 using ScanBoxWebApi.Abstractions;
 using ScanBoxWebApi.Utilities;

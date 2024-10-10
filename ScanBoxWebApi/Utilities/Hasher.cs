@@ -1,4 +1,4 @@
-п»їusing System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace ScanBoxWebApi.Utilities

@@ -1,4 +1,4 @@
-п»їusing AutoMapper;
+﻿using AutoMapper;
 using DatabaseModel;
 using DatabaseModel.DTO;
 
@@ -8,10 +8,10 @@ namespace ScanBoxWebApi.Mapper
     {
         public MappingProfile()
         {
-            // С‡С‚РѕР±С‹ РёР· СЃСѓС‰РЅРѕСЃС‚Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃРѕР·РґР°С‚СЊ РѕР±СЉРµРєС‚ РїСЂР°РІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+            // чтобы из сущности пользователя создать объект прав пользователя
             CreateMap<UserEntity, UserDTO>();
 
-            // С‡С‚РѕР±С‹ Р·Р°РїРѕР»РЅРёС‚СЊ 
+            // чтобы заполнить 
             CreateMap<LoginFormDTO, UserEntity>();
         }
     }

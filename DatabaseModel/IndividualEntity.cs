@@ -1,4 +1,4 @@
-п»їnamespace DatabaseModel
+﻿namespace DatabaseModel
 {
     public class IndividualEntity
     {
@@ -7,6 +7,6 @@
         public virtual CounterpartyEntity? Counterparty { get; set; }
         public required string Surname { get; set; }
         public required string Name { get; set; }
-        public string? Patronymic { get; set; }
+        public string? Patronymic { get; set; }        
     }
 }

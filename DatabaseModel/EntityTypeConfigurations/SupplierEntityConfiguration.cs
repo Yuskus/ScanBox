@@ -1,4 +1,4 @@
-п»їusing Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,16 +7,16 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<SupplierEntity> builder)
         {
-            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
+            // первичный ключ
 
             builder.HasKey(p => p.Id)
                    .HasName("id_supplier_pk");
 
-            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
+            // имя таблицы
 
             builder.ToTable("suppliers_table");
 
-            // РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ
+            // имена свойств
 
             builder.Property(p => p.Id)
                    .HasColumnName("id");
@@ -24,14 +24,14 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.CounterpartyId)
                    .HasColumnName("counterparty_id");
 
-            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё
+            // внешние ключи
 
             builder.HasOne(p => p.Counterparty)
                    .WithOne(p => p.Supplier)
                    .HasForeignKey<SupplierEntity>(p => p.CounterpartyId)
                    .HasConstraintName("1to1_counterparty_to_supplier_fk");
 
-            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё, СЃРІСЏР·Рё РјРЅРѕРіРёРµ Рє РѕРґРЅРѕРјСѓ
+            // внешние ключи, связи многие к одному
 
             builder.HasMany(p => p.ProductUnits)
                    .WithOne(p => p.Supplier)

@@ -1,4 +1,4 @@
-п»їusing DatabaseModel.DTO;
+﻿using DatabaseModel.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
