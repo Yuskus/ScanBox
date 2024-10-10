@@ -49,9 +49,9 @@ namespace ScanBoxWebApi.Repository
             return buyerEntities;
         }
 
-        public int Update(BuyerPostDTO buyerDto)
+        public int Update(BuyerGetDTO buyerDto)
         {
-            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.CounterpartyId == buyerDto.CounterpartyId);
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerDto.Id);
             if (buyerEntity == null)
             {
                 buyerEntity = _mapper.Map<BuyerEntity>(buyerDto);
