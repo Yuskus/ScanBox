@@ -15,7 +15,7 @@ namespace ScanBoxWebApi.Repository
         public BuyerRepository(ScanBoxDbContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
         }
 
         public int Create(BuyerPostDTO buyerDTO)
@@ -28,22 +28,41 @@ namespace ScanBoxWebApi.Repository
                 _context.Add(buyerEntity);
                 _context.SaveChanges();
             }
-            return buyerEntity.Id;            
+            return buyerEntity.Id;
         }
 
-        public int Delete(int Id)
+        public int Delete(int buyerId)
         {
-            throw new NotImplementedException();
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerId);
+            if (buyerEntity != null)
+            {
+                _context.Remove(buyerEntity);
+                _context.SaveChanges();
+                return buyerEntity.Id;
+            }
+            return -1;
         }
 
         public IEnumerable<BuyerGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var buyerEntities = _context.Buyers.Select(x => _mapper.Map<BuyerGetDTO>(x));
+            return buyerEntities;
         }
 
-        public int Update(BuyerPostDTO dto)
+        public int Update(BuyerPostDTO buyerDto)
         {
-            throw new NotImplementedException();
+            var buyerEntity = _context.Buyers.FirstOrDefault(x => x.CounterpartyId == buyerDto.CounterpartyId);
+            if (buyerEntity == null)
+            {
+                buyerEntity = _mapper.Map<BuyerEntity>(buyerDto);
+                _context.Add(buyerEntity);
+            }
+            else
+            {
+               buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
+            }
+            _context.SaveChanges();
+            return buyerEntity.Id;
         }
     }
 }
