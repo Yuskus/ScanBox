@@ -58,8 +58,7 @@ namespace ScanBoxWebApi.Repository
                _context.SaveChanges();
                return buyerEntity.Id;
             }
-            return -1;
-            
+            return -1;            
         }
     }
 }
