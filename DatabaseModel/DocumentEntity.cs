@@ -3,6 +3,7 @@
     public class DocumentEntity
     {
         public int Id { get; set; }
+        public int Number { get; set; }
         public DateTime CreationTime { get; set; }
         public int WarehouseEmployeeId { get; set; }
         public virtual WarehouseEmployeeEntity? WarehouseEmployee { get; set; }
