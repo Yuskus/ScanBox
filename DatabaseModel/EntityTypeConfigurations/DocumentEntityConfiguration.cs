@@ -21,6 +21,9 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.Id)
                    .HasColumnName("id");
 
+            builder.Property(p => p.Number)
+                   .HasColumnName("number");
+
             builder.Property(p => p.CreationTime)
                    .HasColumnType("timestamp")
                    .HasColumnName("creation_time");
