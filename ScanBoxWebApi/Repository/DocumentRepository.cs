@@ -28,7 +28,6 @@ namespace ScanBoxWebApi.Repository
                 _context.SaveChanges();                
             }
             return documentEntity.Id;
-
         }
 
         public int Delete(int documentId)
