@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+п»їusing Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,16 +7,16 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<MovementHistoryEntity> builder)
         {
-            // первичный ключ
+            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
 
             builder.HasKey(p => p.Id)
                    .HasName("id_movement_history_pk");
 
-            // имя таблицы
+            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
 
             builder.ToTable("movements_history_table");
 
-            // имена свойств
+            // РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ
 
             builder.Property(p => p.Id)
                    .HasColumnName("id");
@@ -27,7 +27,7 @@ namespace DatabaseModel.EntityTypeConfigurations
             builder.Property(p => p.ProductUnitId)
                    .HasColumnName("product_unit_id");
 
-            // внешние ключи
+            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё
 
             builder.HasOne(p => p.Document)
                    .WithMany(p => p.MovementsHistory)

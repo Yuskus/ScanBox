@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+п»їusing AutoMapper;
 using DatabaseModel.Context;
 using DatabaseModel.DTO;
 using ScanBoxWebApi.Abstractions;
@@ -8,14 +8,14 @@ namespace ScanBoxWebApi.Implementations
 {
     public class UserService(ScanBoxDbContext context, IMapper mapper) : IUserService
     {
-        private readonly ScanBoxDbContext _context = context; // работают ли подстановки вне системных классов ASP?
-        private readonly IMapper _mapper = mapper; // работают ли подстановки вне системных классов ASP?
+        private readonly ScanBoxDbContext _context = context; // СЂР°Р±РѕС‚Р°СЋС‚ Р»Рё РїРѕРґСЃС‚Р°РЅРѕРІРєРё РІРЅРµ СЃРёСЃС‚РµРјРЅС‹С… РєР»Р°СЃСЃРѕРІ ASP?
+        private readonly IMapper _mapper = mapper; // СЂР°Р±РѕС‚Р°СЋС‚ Р»Рё РїРѕРґСЃС‚Р°РЅРѕРІРєРё РІРЅРµ СЃРёСЃС‚РµРјРЅС‹С… РєР»Р°СЃСЃРѕРІ ASP?
 
-        // здесь будет проверка базы данных и поиск юзеров
-        // пока что тут заглушка
+        // Р·РґРµСЃСЊ Р±СѓРґРµС‚ РїСЂРѕРІРµСЂРєР° Р±Р°Р·С‹ РґР°РЅРЅС‹С… Рё РїРѕРёСЃРє СЋР·РµСЂРѕРІ
+        // РїРѕРєР° С‡С‚Рѕ С‚СѓС‚ Р·Р°РіР»СѓС€РєР°
         public UserDTO? Authenticate(LoginFormDTO loginForm)
         {
-            // временный вход по указанным ниже паролям и логинам
+            // РІСЂРµРјРµРЅРЅС‹Р№ РІС…РѕРґ РїРѕ СѓРєР°Р·Р°РЅРЅС‹Рј РЅРёР¶Рµ РїР°СЂРѕР»СЏРј Рё Р»РѕРіРёРЅР°Рј
 
             if (loginForm.Username.Equals("Admin") && loginForm.Password.Equals("1234567"))
             {
@@ -26,7 +26,7 @@ namespace ScanBoxWebApi.Implementations
                 return new UserDTO() { Username = "User", Role = UserRole.User };
             }
 
-            // реальный код
+            // СЂРµР°Р»СЊРЅС‹Р№ РєРѕРґ
             var user = _context.Users.FirstOrDefault(x => x.Username.Equals(loginForm.Username));
 
             if (user is not null)

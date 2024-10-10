@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+п»їusing Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DatabaseModel.EntityTypeConfigurations
@@ -7,16 +7,16 @@ namespace DatabaseModel.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<WarehouseEmployeeEntity> builder)
         {
-            // первичный ключ
+            // РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡
 
             builder.HasKey(p => p.Id)
                    .HasName("id_warehouse_employee_pk");
 
-            // имя таблицы
+            // РёРјСЏ С‚Р°Р±Р»РёС†С‹
 
             builder.ToTable("warehouse_employees_table");
 
-            // имена свойств
+            // РёРјРµРЅР° СЃРІРѕР№СЃС‚РІ
 
             builder.Property(p => p.Id)
                    .HasColumnName("id");
@@ -54,7 +54,7 @@ namespace DatabaseModel.EntityTypeConfigurations
                    .IsRequired()
                    .HasColumnName("phone");
 
-            // внешние ключи
+            // РІРЅРµС€РЅРёРµ РєР»СЋС‡Рё
 
             builder.HasOne(p => p.JobTitle)
                    .WithMany(p => p.WarehouseEmployees)

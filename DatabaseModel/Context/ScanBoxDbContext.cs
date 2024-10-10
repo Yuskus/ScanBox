@@ -1,4 +1,4 @@
-﻿using DatabaseModel.EntityTypeConfigurations;
+п»їusing DatabaseModel.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseModel.Context

@@ -1,4 +1,4 @@
-﻿namespace DatabaseModel
+п»їnamespace DatabaseModel
 {
     public class UserEntity
     {
