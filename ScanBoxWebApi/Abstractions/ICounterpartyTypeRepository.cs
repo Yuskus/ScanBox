@@ -1,4 +1,4 @@
-﻿using DatabaseModel.DTO.GetDTO;
+п»їusing DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 
 namespace ScanBoxWebApi.Abstractions

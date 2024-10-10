@@ -6,6 +6,6 @@ dotnet ef database update --connection "Host=localhost;Username=postgres;Passwor
 
 out:
 
-dotnet ef database update 0 (или имя миграции) (нужен ли коннект?)
+dotnet ef database update 0 (РёР»Рё РёРјСЏ РјРёРіСЂР°С†РёРё) (РЅСѓР¶РµРЅ Р»Рё РєРѕРЅРЅРµРєС‚?)
 
 dotnet ef migrations remove --project ..\DatabaseModel --context ScanBoxDbContext

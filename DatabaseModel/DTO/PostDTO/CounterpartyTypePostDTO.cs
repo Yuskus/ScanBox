@@ -1,4 +1,4 @@
-﻿namespace DatabaseModel.DTO.PostDTO
+п»їnamespace DatabaseModel.DTO.PostDTO
 {
     public class CounterpartyTypePostDTO
     {

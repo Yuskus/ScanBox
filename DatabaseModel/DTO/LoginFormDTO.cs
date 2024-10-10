@@ -1,4 +1,4 @@
-﻿namespace DatabaseModel.DTO
+п»їnamespace DatabaseModel.DTO
 {
     public class LoginFormDTO
     {

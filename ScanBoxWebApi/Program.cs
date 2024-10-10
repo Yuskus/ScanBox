@@ -55,7 +55,7 @@ namespace ScanBoxWebApi
                 });
             });
 
-            // для аутентификации и авторизации
+            // РґР»СЏ Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёРё Рё Р°РІС‚РѕСЂРёР·Р°С†РёРё
             builder.Services.AddAuthorization();
             builder.Services.AddAuthentication(option =>
             {
@@ -76,16 +76,16 @@ namespace ScanBoxWebApi
                 };
             });
 
-            // контекст бд (проверить строку подключения и миграции)
+            // РєРѕРЅС‚РµРєСЃС‚ Р±Рґ (РїСЂРѕРІРµСЂРёС‚СЊ СЃС‚СЂРѕРєСѓ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рё РјРёРіСЂР°С†РёРё)
             builder.Services.AddDbContext<ScanBoxDbContext>(options =>
             {
                 options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("ScanBoxDb"));
             });
 
-            // маппинг
+            // РјР°РїРїРёРЅРі
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-            // для работы с бд
+            // РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р±Рґ
             builder.Services.AddScoped<IBuyerRepository, BuyerRepository>();
             builder.Services.AddScoped<ICounterpartyRepository, CounterpartyRepository>();
             builder.Services.AddScoped<ICounterpartyTypeRepository, CounterpartyTypeRepository>();
@@ -105,7 +105,7 @@ namespace ScanBoxWebApi
             builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IWarehouseEmployeeRepository, WarehouseEmployeeRepository>();
 
-            // для аутентификации и авторизации
+            // РґР»СЏ Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёРё Рё Р°РІС‚РѕСЂРёР·Р°С†РёРё
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<ITokenGenerator, TokenGenerator>();
 

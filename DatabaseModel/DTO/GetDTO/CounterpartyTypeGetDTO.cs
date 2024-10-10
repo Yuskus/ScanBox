@@ -1,4 +1,4 @@
-﻿namespace DatabaseModel.DTO.GetDTO
+п»їnamespace DatabaseModel.DTO.GetDTO
 {
     public class CounterpartyTypeGetDTO
     {

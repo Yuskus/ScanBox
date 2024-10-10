@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+п»їusing AutoMapper;
 using DatabaseModel;
 using DatabaseModel.Context;
 using DatabaseModel.DTO.GetDTO;
