@@ -54,11 +54,11 @@ namespace ScanBoxWebApi.Repository
             var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerDto.Id);
             if (buyerEntity != null)
             {
-                buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
-                _context.SaveChanges();
-                return buyerEntity.Id;
+               buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
+               _context.SaveChanges();
+               return buyerEntity.Id;
             }
-            return -1;
+            return -1;            
         }
     }
 }
