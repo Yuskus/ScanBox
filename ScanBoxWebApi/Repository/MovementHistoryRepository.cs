@@ -53,6 +53,7 @@ namespace ScanBoxWebApi.Repository
         public int Update(MovementHistoryGetDTO movementHistoryDto)
         {
             var movementHistoryEntity = _context.MovementHistory.FirstOrDefault(x => x.Id == movementHistoryDto.Id);
+
             if (movementHistoryEntity is not null)
             {
                 movementHistoryEntity.DocumentId = movementHistoryDto.DocumentId;

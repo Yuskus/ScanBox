@@ -1,0 +1,69 @@
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
+using DatabaseModel.DTO.PostDTO;
+using ScanBoxWebApi.Abstractions;
+
+namespace ScanBoxWebApi.Repository
+{
+    public class JobTitleRepository : ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>
+    {
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public JobTitleRepository(ScanBoxDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
+        public int Create(JobTitlePostDTO jobTitelDto)
+        {
+            var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Name == jobTitelDto.Name);
+            if (jobTitelEntity == null)
+            {
+                jobTitelEntity = _mapper.Map<JobTitleEntity>(jobTitelDto);
+                _context.Add(jobTitelEntity);
+                _context.SaveChanges();
+            }
+            return jobTitelEntity.Id;
+        }
+
+        public int Delete(int jobTitelId)
+        {
+            var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Id == jobTitelId);
+
+            int result = -1;
+            if (jobTitelEntity is not null)
+            {
+                result = jobTitelEntity.Id;
+                _context.Remove(jobTitelEntity);
+                _context.SaveChanges();
+            }
+            return result;
+        }
+
+        public IEnumerable<JobTitleGetDTO> GetElemetsList()
+        {
+            var jobTitelEntity = _context.JobTitles.Select(x => _mapper.Map<JobTitleGetDTO>(x));
+            return jobTitelEntity;
+        }
+
+        public int Update(JobTitleGetDTO jobTitelDto)
+        {
+            var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Id == jobTitelDto.Id);
+            
+            if (jobTitelEntity != null)
+            {
+                jobTitelEntity.Name = jobTitelDto.Name;
+                jobTitelEntity.DutiesDescription = jobTitelDto.DutiesDescription;
+                jobTitelEntity.BaseSalary = jobTitelDto.BaseSalary;
+
+                _context.SaveChanges();
+                return jobTitelEntity.Id;
+            }
+            return -1;
+        }
+    }
+}

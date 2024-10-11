@@ -86,7 +86,7 @@ namespace ScanBoxWebApi
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // הכÿ נאבמעû ס בה
-            builder.Services.AddScoped<IBuyerRepository, BuyerRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository, BuyerRepository>();
             builder.Services.AddScoped<ICounterpartyRepository, CounterpartyRepository>();
             builder.Services.AddScoped<ICounterpartyTypeRepository, CounterpartyTypeRepository>();
             builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
