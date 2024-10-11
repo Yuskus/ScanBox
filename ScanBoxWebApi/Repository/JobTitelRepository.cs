@@ -7,7 +7,7 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class JobTitelRepository : ICrudMethodRepository<JobTitelGetDTO, JobTitelPostDTO>
+    public class JobTitelRepository : ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>
     {
         public readonly ScanBoxDbContext _context;
         public readonly IMapper _mapper;
@@ -18,9 +18,9 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
         }
 
-        public int Create(JobTitelPostDTO jobTitelDto)
+        public int Create(JobTitlePostDTO jobTitelDto)
         {
-            var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Name == jobTitelDto.Name);
+            var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Name.Equals(jobTitelDto.Name, StringComparison.InvariantCultureIgnoreCase));
             if (jobTitelEntity == null)
             {
                 jobTitelEntity = _mapper.Map<JobTitleEntity>(jobTitelDto);
@@ -33,25 +33,26 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int jobTitelId)
         {
             var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Id == jobTitelId);
-            if (jobTitelEntity != null)
+            int result = -1;
+            if (jobTitelEntity is not null)
             {
+                result = jobTitelEntity.Id;
                 _context.Remove(jobTitelEntity);
                 _context.SaveChanges();
-                return jobTitelEntity.Id;
             }
-            return -1;
+            return result;
         }
 
-        public IEnumerable<JobTitelGetDTO> GetElemetsList()
+        public IEnumerable<JobTitleGetDTO> GetElemetsList()
         {
-            var jobTitelEntity = _context.JobTitles.Select(x => _mapper.Map<JobTitelGetDTO>(x));
+            var jobTitelEntity = _context.JobTitles.Select(x => _mapper.Map<JobTitleGetDTO>(x));
             return jobTitelEntity;
         }
 
-        public int Update(JobTitelGetDTO jobTitelDto)
+        public int Update(JobTitleGetDTO jobTitelDto)
         {
             var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Id == jobTitelDto.Id);
-            if (jobTitelEntity != null)
+            if (jobTitelEntity is not null)
             {
                 jobTitelEntity.Name = jobTitelDto.Name;
                 jobTitelEntity.DutiesDescription = jobTitelDto.DutiesDescription;

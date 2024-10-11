@@ -1,4 +1,6 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
@@ -6,6 +8,14 @@ namespace ScanBoxWebApi.Repository
 {
     public class WarehouseEmployeeRepository : ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO>
     {
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public WarehouseEmployeeRepository(ScanBoxDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
         public int Create(WarehouseEmployeePostDTO dto)
         {
             throw new NotImplementedException();

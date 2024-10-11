@@ -20,7 +20,7 @@ namespace ScanBoxWebApi.Repository
 
         public int Create(LegalEntityPostDTO legalEntityDto)
         {
-            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.INN == legalEntityDto.INN);
+            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.INN.Equals(legalEntityDto.INN));
             if (legalEntityEntity == null)
             {
                 legalEntityEntity = _mapper.Map<LegalEntityEntity>(legalEntityDto);
@@ -33,13 +33,14 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int legalEntityId)
         {
             var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.Id == legalEntityId);
-            if (legalEntityEntity != null)
+            int result = -1;
+            if (legalEntityEntity is not null)
             {
+                result = legalEntityEntity.Id;
                 _context.Remove(legalEntityEntity);
                 _context.SaveChanges();
-                return legalEntityEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<LegalEntityGetDTO> GetElemetsList()
@@ -51,7 +52,7 @@ namespace ScanBoxWebApi.Repository
         public int Update(LegalEntityGetDTO legalEntityDto)
         {
             var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.Id == legalEntityDto.Id);
-            if (legalEntityEntity != null)
+            if (legalEntityEntity is not null)
             {
                 legalEntityEntity.CounterpartyId = legalEntityDto.CounterpartyId;
                 legalEntityEntity.LegalFormId = legalEntityDto.LegalFormId;

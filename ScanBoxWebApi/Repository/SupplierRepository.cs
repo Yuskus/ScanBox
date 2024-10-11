@@ -1,4 +1,7 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
@@ -6,24 +9,59 @@ namespace ScanBoxWebApi.Repository
 {
     public class SupplierRepository : ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO>
     {
-        public int Create(SupplierPostDTO dto)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public SupplierRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
+        }
+        public int Create(SupplierPostDTO supplierDto)
+        {
+            var supplierEntity = _context.Suppilers.FirstOrDefault(x => x.CounterpartyId == supplierDto.CounterpartyId);
+
+            if (supplierEntity is null)
+            {
+                supplierEntity = _mapper.Map<SupplierEntity>(supplierDto);
+                _context.Add(supplierEntity);
+                _context.SaveChanges();
+            }
+            return supplierEntity.Id;
         }
 
-        public int Delete(int Id)
+        public int Delete(int supplierId)
         {
-            throw new NotImplementedException();
+            var supplierEntity = _context.Suppilers.FirstOrDefault(x => x.Id == supplierId);
+
+            int result = -1;
+            if (supplierEntity is not null)
+            {
+                result = supplierEntity.Id;
+                _context.Remove(supplierEntity);
+                _context.SaveChanges();
+            }
+            return result;
         }
 
         public IEnumerable<SupplierGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var supplierEntity = _context.Suppilers.Select(x => _mapper.Map<SupplierGetDTO>(x));
+            return supplierEntity;
         }
 
-        public int Update(SupplierGetDTO dto)
+        public int Update(SupplierGetDTO supplierDto)
         {
-            throw new NotImplementedException();
+            var supplierEntity = _context.Suppilers.FirstOrDefault(x => x.Id == supplierDto.Id);
+
+            if (supplierEntity is not null)
+            {
+                supplierEntity.CounterpartyId = supplierDto.CounterpartyId;
+
+                _context.SaveChanges();
+                return supplierEntity.Id;
+            }
+            return -1;
         }
     }
 }
