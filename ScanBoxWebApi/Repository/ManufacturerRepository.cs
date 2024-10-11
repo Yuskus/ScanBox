@@ -1,29 +1,64 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class ManufacturerRepository : IManufacturerRepository
+    public class ManufacturerRepository : ICrudMethodRepository<ManufacturerGetDTO, ManufacturerPostDTO>
     {
-        public int AddManufacturer(ManufacturerPostDTO manufacturerPostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public ManufacturerRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public int Delete(int Id)
+        public int Create(ManufacturerPostDTO manufacturerDto)
         {
-            throw new NotImplementedException();
+            var manufacturerEntity = _context.Manufacturers.FirstOrDefault(x => x.CounterpartyId == manufacturerDto.CounterpartyId);
+            if (manufacturerEntity == null)
+            {
+                manufacturerEntity = _mapper.Map<ManufacturerEntity>(manufacturerDto);
+                _context.Add(manufacturerEntity);
+                _context.SaveChanges();
+            }
+            return manufacturerEntity.Id;
         }
 
-        public IEnumerable<ManufacturerGetDTO> GetManufacturers()
+        public int Delete(int manufacturerId)
         {
-            throw new NotImplementedException();
+            var manufacturerEntity = _context.Manufacturers.FirstOrDefault(x => x.Id == manufacturerId);
+            if (manufacturerEntity != null)
+            {
+                _context.Remove(manufacturerEntity);
+                _context.SaveChanges();
+                return manufacturerEntity.Id;
+            }
+            return -1;
         }
 
-        public int PutManufacturer(ManufacturerPostDTO manufacturerPutDTO)
+        public IEnumerable<ManufacturerGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var manufacturerEntity = _context.Manufacturers.Select(x => _mapper.Map<ManufacturerGetDTO>(x));
+            return manufacturerEntity;
+        }
+
+        public int Update(ManufacturerGetDTO manufacturerDto)
+        {
+            var manufacturerEntity = _context.Manufacturers.FirstOrDefault(x => x.Id == manufacturerDto.Id);
+            if (manufacturerEntity != null)
+            {
+                manufacturerEntity.CounterpartyId= manufacturerDto.CounterpartyId;
+                
+                _context.SaveChanges();
+                return manufacturerEntity.Id;
+            }
+            return -1;
         }
     }
 }
