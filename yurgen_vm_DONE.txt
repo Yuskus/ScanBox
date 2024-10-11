@@ -4,4 +4,9 @@
 - разделены модели DTO для Get и Post запросов
 - Добавлен обобщенный интерфейс ICurdMethodsRepository
 - Реализован метод Create в BuyerRepo
-- Добавлены все методы CRUD для BuyerRepo
+- Добавлены методы CRUD для BuyerRepo
+- Добавлены методы CRUD для CounterpartyRepository
+- Добавлены методы CRUD для CounterpartyTypeRepository
+- Добавил Number в DocumentEntity
+- Добавил Number в EntityTypeConfiguration
+- Исправил DocumentGetDTO и DocumentPostDTO

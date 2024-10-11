@@ -1,29 +1,65 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class CounterpartyRepository : ICounterpartyRepository
+    public class CounterpartyRepository : ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO>
     {
-        public int AddCounterparty(CounterpartyPostDTO counterpartyPostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public CounterpartyRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;            
         }
 
-        public int Delete(int Id)
+        public int Create(CounterpartyPostDTO counterpartyDto)
         {
-            throw new NotImplementedException();
+            var counterpartyEntity = _mapper.Map<CounterpartyEntity>(counterpartyDto);
+            _context.Add(counterpartyEntity);
+            _context.SaveChanges();
+            return counterpartyEntity.Id;
         }
 
-        public IEnumerable<CounterpartyGetDTO> GetCounterparties()
+        public int Delete(int counterpartyId)
         {
-            throw new NotImplementedException();
+            var counterpartyEntity = _context.Counterparties.FirstOrDefault(x => x.Id == counterpartyId);
+
+            if (counterpartyEntity != null)
+            {
+                _context.Remove(counterpartyEntity);
+                _context.SaveChanges();
+                return counterpartyEntity.Id;
+            }
+            return -1;
         }
 
-        public int PutCounterparty(CounterpartyPostDTO counterpartyPutDTO)
+        public IEnumerable<CounterpartyGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var counterpartyEntity = _context.Counterparties.Select(x => _mapper.Map<CounterpartyGetDTO>(x));
+            return counterpartyEntity;
+        }
+
+        public int Update(CounterpartyGetDTO counterpartyDto)
+        {
+            var counterpartyEntity = _context.Counterparties.FirstOrDefault(x => x.Id == counterpartyDto.Id);
+
+            if (counterpartyEntity != null)
+            {
+                counterpartyEntity.CounterpartyTypeId = counterpartyDto.CounterpartyTypeId;
+                counterpartyEntity.Address = counterpartyDto.Address;
+                counterpartyEntity.Phone = counterpartyDto.Phone;
+                counterpartyEntity.Email = counterpartyDto.Email;
+
+                _context.SaveChanges();
+                return counterpartyEntity.Id;
+            }
+            return -1;
         }
     }
 }
