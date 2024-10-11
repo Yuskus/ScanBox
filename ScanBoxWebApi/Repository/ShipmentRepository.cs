@@ -1,29 +1,69 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class ShipmentRepository : IShipmentRepository
+    public class ShipmentRepository : ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO>
     {
-        public int AddShipment(ShipmentPostDTO shipmentPostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public ShipmentRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public int Delete(int Id)
+        public int Create(ShipmentPostDTO shipmentDto)
         {
-            throw new NotImplementedException();
+            var shipmentEntity = _context.Shipments.FirstOrDefault(x => x.DocumentId == shipmentDto.DocumentId);
+
+            if (shipmentEntity is null)
+            {
+                shipmentEntity = _mapper.Map<ShipmentEntity>(shipmentDto);
+                _context.Add(shipmentEntity);
+                _context.SaveChanges();
+            }
+            return shipmentEntity.Id;
         }
 
-        public IEnumerable<ShipmentGetDTO> GetShipment()
+        public int Delete(int shipmentId)
         {
-            throw new NotImplementedException();
+            var shipmentEntity = _context.Shipments.FirstOrDefault(x => x.Id == shipmentId);
+
+            int result = -1;
+            if (shipmentEntity is not null)
+            {
+                result = shipmentEntity.Id;
+                _context.Remove(shipmentEntity);
+                _context.SaveChanges();
+            }
+            return result;
         }
 
-        public int PutShipment(ShipmentPostDTO shipmentPutDTO)
+        public IEnumerable<ShipmentGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var shipmentEntity = _context.Shipments.Select(x => _mapper.Map<ShipmentGetDTO>(x));
+            return shipmentEntity;
+        }
+
+        public int Update(ShipmentGetDTO shipmentDto)
+        {
+            var shipmentEntity = _context.Shipments.FirstOrDefault(x => x.Id == shipmentDto.Id);
+
+            if (shipmentEntity is not null)
+            {
+                shipmentEntity.DocumentId = shipmentDto.DocumentId;
+                shipmentEntity.ProductUnitId = shipmentDto.ProductUnitId;
+
+                _context.SaveChanges();
+                return shipmentEntity.Id;
+            }
+            return -1;
         }
     }
 }
