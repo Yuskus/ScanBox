@@ -33,13 +33,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int manufacturerId)
         {
             var manufacturerEntity = _context.Manufacturers.FirstOrDefault(x => x.Id == manufacturerId);
-            if (manufacturerEntity != null)
+
+            int result = -1;
+            if (manufacturerEntity is not null)
             {
+                result = manufacturerEntity.Id;
                 _context.Remove(manufacturerEntity);
                 _context.SaveChanges();
-                return manufacturerEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<ManufacturerGetDTO> GetElemetsList()

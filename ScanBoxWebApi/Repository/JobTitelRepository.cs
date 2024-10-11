@@ -33,13 +33,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int jobTitelId)
         {
             var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Id == jobTitelId);
-            if (jobTitelEntity != null)
+
+            int result = -1;
+            if (jobTitelEntity is not null)
             {
+                result = jobTitelEntity.Id;
                 _context.Remove(jobTitelEntity);
                 _context.SaveChanges();
-                return jobTitelEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<JobTitelGetDTO> GetElemetsList()
@@ -51,11 +53,12 @@ namespace ScanBoxWebApi.Repository
         public int Update(JobTitelGetDTO jobTitelDto)
         {
             var jobTitelEntity = _context.JobTitles.FirstOrDefault(x => x.Id == jobTitelDto.Id);
+            
             if (jobTitelEntity != null)
             {
                 jobTitelEntity.Name = jobTitelDto.Name;
                 jobTitelEntity.DutiesDescription = jobTitelDto.DutiesDescription;
-                jobTitelEntity.BaseSalary = jobTitelDto.BaseSalary;                
+                jobTitelEntity.BaseSalary = jobTitelDto.BaseSalary;
 
                 _context.SaveChanges();
                 return jobTitelEntity.Id;

@@ -4,7 +4,6 @@ using DatabaseModel.Context;
 using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
-using System.Reflection.Metadata;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -13,7 +12,7 @@ namespace ScanBoxWebApi.Repository
         public readonly ScanBoxDbContext _context;
         public readonly IMapper _mapper;
 
-        public IndividualRepositoty (ScanBoxDbContext context, IMapper mapper)
+        public IndividualRepositoty(ScanBoxDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -33,13 +32,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int individualId)
         {
             var individualEntity = _context.Individuals.FirstOrDefault(x => x.Id == individualId);
-            if (individualEntity != null)
+
+            int result = -1;
+            if (individualEntity is not null)
             {
+                result = individualEntity.Id;
                 _context.Remove(individualEntity);
                 _context.SaveChanges();
-                return individualEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<IndividualGetDTO> GetElemetsList()
@@ -51,6 +52,7 @@ namespace ScanBoxWebApi.Repository
         public int Update(IndividualGetDTO individualDto)
         {
             var individualEntity = _context.Individuals.FirstOrDefault(x => x.Id == individualDto.Id);
+            
             if (individualEntity != null)
             {
                 individualEntity.CounterpartyId = individualDto.CounterpartyId;

@@ -34,13 +34,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int buyerId)
         {
             var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerId);
-            if (buyerEntity != null)
+
+            int result = -1;
+            if (buyerEntity is not null)
             {
+                result = buyerEntity.Id;
                 _context.Remove(buyerEntity);
                 _context.SaveChanges();
-                return buyerEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<BuyerGetDTO> GetElemetsList()
@@ -52,13 +54,15 @@ namespace ScanBoxWebApi.Repository
         public int Update(BuyerGetDTO buyerDto)
         {
             var buyerEntity = _context.Buyers.FirstOrDefault(x => x.Id == buyerDto.Id);
-            if (buyerEntity != null)
+                        
+            if (buyerEntity is not null)
             {
-               buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
-               _context.SaveChanges();
-               return buyerEntity.Id;
+                buyerEntity.CounterpartyId = buyerDto.CounterpartyId;
+                
+                _context.SaveChanges();
+                return buyerEntity.Id;
             }
-            return -1;            
+            return -1;
         }
     }
 }

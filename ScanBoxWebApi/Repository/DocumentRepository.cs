@@ -33,13 +33,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int documentId)
         {
             var documentEntity = _context.Document.FirstOrDefault(x => x.Id == documentId);
-            if (documentEntity != null)
+
+            int result = -1;
+            if (documentEntity is not null)
             {
+                result = documentEntity.Id;
                 _context.Remove(documentEntity);
-                _context.SaveChanges();
-                return documentEntity.Id;
+                _context.SaveChanges();                
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<DocumentGetDTO> GetElemetsList()
@@ -51,6 +53,7 @@ namespace ScanBoxWebApi.Repository
         public int Update(DocumentGetDTO documentDto)
         {
             var documentEntity = _context.Document.FirstOrDefault(x => x.Id == documentDto.Id);
+            
             if (documentEntity != null)
             {
                 documentEntity.Number = documentDto.Number;

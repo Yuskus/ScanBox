@@ -33,13 +33,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int legalFormId)
         {
             var legalFormEntity = _context.LegalForms.FirstOrDefault(x => x.Id == legalFormId);
-            if (legalFormEntity != null)
+
+            int result = -1;
+            if (legalFormEntity is not null)
             {
+                result = legalFormEntity.Id;
                 _context.Remove(legalFormEntity);
                 _context.SaveChanges();
-                return legalFormEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<LegalFormGetDTO> GetElemetsList()

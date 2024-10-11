@@ -15,7 +15,7 @@ namespace ScanBoxWebApi.Repository
         public CounterpartyRepository(ScanBoxDbContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper;            
+            _mapper = mapper;
         }
 
         public int Create(CounterpartyPostDTO counterpartyDto)
@@ -30,13 +30,14 @@ namespace ScanBoxWebApi.Repository
         {
             var counterpartyEntity = _context.Counterparties.FirstOrDefault(x => x.Id == counterpartyId);
 
-            if (counterpartyEntity != null)
+            int result = -1;
+            if (counterpartyEntity is not null)
             {
+                result = counterpartyEntity.Id;
                 _context.Remove(counterpartyEntity);
                 _context.SaveChanges();
-                return counterpartyEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<CounterpartyGetDTO> GetElemetsList()
@@ -49,7 +50,7 @@ namespace ScanBoxWebApi.Repository
         {
             var counterpartyEntity = _context.Counterparties.FirstOrDefault(x => x.Id == counterpartyDto.Id);
 
-            if (counterpartyEntity != null)
+            if (counterpartyEntity is not null)
             {
                 counterpartyEntity.CounterpartyTypeId = counterpartyDto.CounterpartyTypeId;
                 counterpartyEntity.Address = counterpartyDto.Address;

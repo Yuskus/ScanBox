@@ -35,13 +35,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int counterpartyTypeId)
         {
             var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x =>x.Id == counterpartyTypeId);
-            if (counterpartyTypeEntity != null)
+
+            int result = -1;
+            if (counterpartyTypeEntity is not null)
             {
+                result = counterpartyTypeEntity.Id;
                 _context.Remove(counterpartyTypeEntity);
-                _context.SaveChanges();
-                return counterpartyTypeEntity.Id;
+                _context.SaveChanges();                
             }
-            return -1;
+            return result;
         }
 
 
@@ -54,6 +56,7 @@ namespace ScanBoxWebApi.Repository
         public int Update(CounterpartyTypeGetDTO counterpartyTypeDto)
         {
             var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x => x.Id == counterpartyTypeDto.Id);
+            
             if (counterpartyTypeEntity != null)
             {
                 counterpartyTypeEntity.TypeName = counterpartyTypeDto.TypeName;

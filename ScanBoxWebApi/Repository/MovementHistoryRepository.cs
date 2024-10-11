@@ -33,13 +33,15 @@ namespace ScanBoxWebApi.Repository
         public int Delete(int movementHistoryId)
         {
             var movementHistoryEntity = _context.MovementHistory.FirstOrDefault(x => x.Id == movementHistoryId);
+
+            int result = -1;
             if (movementHistoryEntity is not null)
             {
+                result = movementHistoryEntity.Id;
                 _context.Remove(movementHistoryEntity);
                 _context.SaveChanges();
-                return movementHistoryEntity.Id;
             }
-            return -1;
+            return result;
         }
 
         public IEnumerable<MovementHistoryGetDTO> GetElemetsList()
