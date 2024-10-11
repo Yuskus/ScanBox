@@ -4,9 +4,9 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class MovementHistoryRepository : IMovementHistoryRepository
+    public class MovementHistoryRepository : ICrudMethodRepository<MovementHistoryGetDTO, MovementHistoryPostDTO>
     {
-        public int AddMovementHistory(MovementHistoryPostDTO movementHistoryPostDTO)
+        public int Create(MovementHistoryPostDTO dto)
         {
             throw new NotImplementedException();
         }
@@ -16,12 +16,12 @@ namespace ScanBoxWebApi.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<MovementHistoryGetDTO> GetMovementHistory()
+        public IEnumerable<MovementHistoryGetDTO> GetElemetsList()
         {
             throw new NotImplementedException();
         }
 
-        public int PutMovementHistory(MovementHistoryPostDTO movementHistoryPuttDTO)
+        public int Update(MovementHistoryGetDTO dto)
         {
             throw new NotImplementedException();
         }

@@ -7,10 +7,10 @@ namespace ScanBoxWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(ITokenGenerator tokenGenerator, IUserService userService) : ControllerBase
+    public class AuthController(ITokenGenerator tokenGenerator, IUserRightsService userService) : ControllerBase
     {
         private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
-        private readonly IUserService _userService = userService;
+        private readonly IUserRightsService _userService = userService;
 
         [AllowAnonymous]
         [HttpPost("login")]

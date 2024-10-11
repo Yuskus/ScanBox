@@ -1,6 +1,6 @@
 ﻿namespace DatabaseModel.DTO
 {
-    public class UserDTO
+    public class UserRightsDTO
     {
         public required string Username { get; set; }
         public UserRole Role { get; set; }

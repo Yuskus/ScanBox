@@ -11,12 +11,12 @@ namespace ScanBoxWebApi.Implementations
     {
         private readonly IConfiguration _configuration = configuration;
 
-        public string GetToken(UserDTO userDTO)
+        public string GetToken(UserRightsDTO userDTO)
         {
             return GenerateJwtToken(userDTO);
         }
 
-        private string GenerateJwtToken(UserDTO userDTO)
+        private string GenerateJwtToken(UserRightsDTO userDTO)
         {
             var key         = new RsaSecurityKey(RSATool.GetKey("private_key.pem"));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);

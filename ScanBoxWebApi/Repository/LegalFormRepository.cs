@@ -4,9 +4,9 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class LegalFormRepository : ILegalFormRepository
+    public class LegalFormRepository : ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO>
     {
-        public int AddLegalForm(LegalFormPostDTO legalFormPostDTO)
+        public int Create(LegalFormPostDTO dto)
         {
             throw new NotImplementedException();
         }
@@ -16,12 +16,12 @@ namespace ScanBoxWebApi.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<LegalEntityGetDTO> GetLegalEntity()
+        public IEnumerable<LegalFormGetDTO> GetElemetsList()
         {
             throw new NotImplementedException();
         }
 
-        public int PutLegalForm(LegalFormPostDTO legalFormPutDTO)
+        public int Update(LegalFormGetDTO dto)
         {
             throw new NotImplementedException();
         }

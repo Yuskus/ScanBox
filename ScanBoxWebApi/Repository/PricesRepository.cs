@@ -4,9 +4,9 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class PricesRepository : IPricesRepository
+    public class PricesRepository : ICrudMethodRepository<PricesGetDTO, PricesPostDTO>
     {
-        public int AddPrices(PricesPostDTO pricesPostDTO)
+        public int Create(PricesPostDTO dto)
         {
             throw new NotImplementedException();
         }
@@ -16,12 +16,12 @@ namespace ScanBoxWebApi.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<PricesGetDTO> GetPrices()
+        public IEnumerable<PricesGetDTO> GetElemetsList()
         {
             throw new NotImplementedException();
         }
 
-        public int PutPrices(PricesPostDTO pricesPutDTO)
+        public int Update(PricesGetDTO dto)
         {
             throw new NotImplementedException();
         }
