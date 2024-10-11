@@ -1,29 +1,74 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using AutoMapper;
+using DatabaseModel;
+using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class LegalEntityRepository : ILegalEntityRepository
+    public class LegalEntityRepository : ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO>
     {
-        public int AddLegalEntity(LegalEntityPostDTO legalEntityPostDTO)
+        public readonly ScanBoxDbContext _context;
+        public readonly IMapper _mapper;
+
+        public LegalEntityRepository(ScanBoxDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public int Delete(int Id)
+        public int Create(LegalEntityPostDTO legalEntityDto)
         {
-            throw new NotImplementedException();
+            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.INN == legalEntityDto.INN);
+            if (legalEntityEntity == null)
+            {
+                legalEntityEntity = _mapper.Map<LegalEntityEntity>(legalEntityDto);
+                _context.Add(legalEntityEntity);
+                _context.SaveChanges();
+            }
+            return legalEntityEntity.Id;
         }
 
-        public IEnumerable<LegalEntityGetDTO> GetLegalEntities()
+        public int Delete(int legalEntityId)
         {
-            throw new NotImplementedException();
+            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.Id == legalEntityId);
+            if (legalEntityEntity != null)
+            {
+                _context.Remove(legalEntityEntity);
+                _context.SaveChanges();
+                return legalEntityEntity.Id;
+            }
+            return -1;
         }
 
-        public int PutLegalEntity(LegalEntityPostDTO legalEntityPutDTO)
+        public IEnumerable<LegalEntityGetDTO> GetElemetsList()
         {
-            throw new NotImplementedException();
+            var legalEntityEntity = _context.LegalEntities.Select(x => _mapper.Map<LegalEntityGetDTO>(x));
+            return legalEntityEntity;
+        }
+
+        public int Update(LegalEntityGetDTO legalEntityDto)
+        {
+            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.Id == legalEntityDto.Id);
+            if (legalEntityEntity != null)
+            {
+                legalEntityEntity.CounterpartyId = legalEntityDto.CounterpartyId;
+                legalEntityEntity.LegalFormId = legalEntityDto.LegalFormId;
+                legalEntityEntity.NameOfLegalEntity = legalEntityDto.NameOfLegalEntity;
+                legalEntityEntity.DirectorsSurname = legalEntityDto.DirectorsSurname;
+                legalEntityEntity.DirectorsName = legalEntityDto.DirectorsName;
+                legalEntityEntity.DirectorsPatronymic = legalEntityDto.DirectorsPatronymic;
+                legalEntityEntity.INN = legalEntityDto.INN;
+                legalEntityEntity.KPP = legalEntityDto.KPP;
+                legalEntityEntity.OGRN = legalEntityDto.OGRN;
+                legalEntityEntity.LegalAddress = legalEntityDto.LegalAddress;
+                legalEntityEntity.ContactPerson = legalEntityDto.ContactPerson;
+
+                _context.SaveChanges();
+                return legalEntityEntity.Id;
+            }
+            return -1;
         }
     }
 }
