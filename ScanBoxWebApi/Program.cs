@@ -92,7 +92,7 @@ namespace ScanBoxWebApi
             builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
             builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
             builder.Services.AddScoped<IIndividualRepositoty, IndividualRepositoty>();
-            builder.Services.AddScoped<IJobTitelRepository, JobTitelRepository>();
+            builder.Services.AddScoped<IJobTitleRepository, JobTitleRepository>();
             builder.Services.AddScoped<ILegalEntityRepository, LegalEntityRepository>();
             builder.Services.AddScoped<ILegalFormRepository, LegalFormRepository>();
             builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
