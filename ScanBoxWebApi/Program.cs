@@ -1,4 +1,6 @@
 using DatabaseModel.Context;
+using DatabaseModel.DTO.GetDTO;
+using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -86,28 +88,29 @@ namespace ScanBoxWebApi
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             // для работы с бд
-            builder.Services.AddScoped<IBuyerRepository, BuyerRepository>();
-            builder.Services.AddScoped<ICounterpartyRepository, CounterpartyRepository>();
-            builder.Services.AddScoped<ICounterpartyTypeRepository, CounterpartyTypeRepository>();
-            builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
-            builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
-            builder.Services.AddScoped<IIndividualRepositoty, IndividualRepositoty>();
-            builder.Services.AddScoped<IJobTitelRepository, JobTitelRepository>();
-            builder.Services.AddScoped<ILegalEntityRepository, LegalEntityRepository>();
-            builder.Services.AddScoped<ILegalFormRepository, LegalFormRepository>();
-            builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
-            builder.Services.AddScoped<IMovementHistoryRepository, MovementHistoryRepository>();
-            builder.Services.AddScoped<IPricesRepository, PricesRepository>();
-            builder.Services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
-            builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
-            builder.Services.AddScoped<IProductUnitRepository, ProductUnitRepository>();
-            builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
-            builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
-            builder.Services.AddScoped<IWarehouseEmployeeRepository, WarehouseEmployeeRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<BuyerGetDTO, BuyerPostDTO>, BuyerRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO>, CounterpartyRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO>, CounterpartyTypeRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO>, DocumentRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<DocumentTypeGetDTO, DocumentTypePostDTO>, DocumentTypeRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<IndividualGetDTO, IndividualPostDTO>, IndividualRepositoty>();
+            builder.Services.AddScoped<ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>, JobTitelRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO>, LegalEntityRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO>, LegalFormRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<ManufacturerGetDTO, ManufacturerPostDTO>, ManufacturerRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<MovementHistoryGetDTO, MovementHistoryPostDTO>, MovementHistoryRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<PricesGetDTO, PricesPostDTO>, PricesRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<ProductCategoryGetDTO, ProductCategoryPostDTO>, ProductCategoryRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<ProductTypeGetDTO, ProductTypePostDTO>, ProductTypeRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<ProductUnitGetDTO, ProductUnitPostDTO>, ProductUnitRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO>, ShipmentRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO>, SupplierRepository>();
+            builder.Services.AddScoped<ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO>, WarehouseEmployeeRepository>();
 
             // для аутентификации и авторизации
-            builder.Services.AddTransient<IUserService, UserService>();
+            builder.Services.AddTransient<IUserRightsService, UserService>();
             builder.Services.AddTransient<ITokenGenerator, TokenGenerator>();
+            builder.Services.AddTransient<IRegister, Register>();
 
             var app = builder.Build();
 

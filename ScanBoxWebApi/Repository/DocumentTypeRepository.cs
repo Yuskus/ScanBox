@@ -4,7 +4,6 @@ using DatabaseModel.Context;
 using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
-using System.Reflection.Metadata;
 
 namespace ScanBoxWebApi.Repository
 {

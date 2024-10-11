@@ -20,10 +20,4 @@
     <ProjectReference Include="..\DatabaseModel\DatabaseModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Abstractions\IMovementHistoryRepository.cs">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
-
 </Project>

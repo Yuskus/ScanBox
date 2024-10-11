@@ -4,9 +4,9 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class ShipmentRepository : IShipmentRepository
+    public class ShipmentRepository : ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO>
     {
-        public int AddShipment(ShipmentPostDTO shipmentPostDTO)
+        public int Create(ShipmentPostDTO dto)
         {
             throw new NotImplementedException();
         }
@@ -16,12 +16,12 @@ namespace ScanBoxWebApi.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ShipmentGetDTO> GetShipment()
+        public IEnumerable<ShipmentGetDTO> GetElemetsList()
         {
             throw new NotImplementedException();
         }
 
-        public int PutShipment(ShipmentPostDTO shipmentPutDTO)
+        public int Update(ShipmentGetDTO dto)
         {
             throw new NotImplementedException();
         }

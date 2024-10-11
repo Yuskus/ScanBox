@@ -13,6 +13,7 @@ namespace ScanBoxWebApi.Utilities
             byte[] hash = GenHash(combined);
             return (hash, salt);
         }
+
         public static bool IsPasswordValid(string password, byte[] existingPasswordHash, byte[] salt)
         {
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
@@ -20,10 +21,12 @@ namespace ScanBoxWebApi.Utilities
             byte[] supposedHash = GenHash(combined);
             return supposedHash.SequenceEqual(existingPasswordHash);
         }
+
         private static byte[] GenHash(byte[] data)
         {
             return SHA512.HashData(data);
         }
+
         private static byte[] GenSalt()
         {
             using var a = RandomNumberGenerator.Create();
@@ -31,6 +34,7 @@ namespace ScanBoxWebApi.Utilities
             a.GetNonZeroBytes(salt);
             return salt;
         }
+
         private static byte[] FillingArray(byte[] passwordBytes, byte[] salt)
         {
             byte[] combined = new byte[salt.Length + passwordBytes.Length];

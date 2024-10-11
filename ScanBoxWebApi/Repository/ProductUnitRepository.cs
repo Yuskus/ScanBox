@@ -4,9 +4,9 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository
 {
-    public class ProductUnitRepository : IProductUnitRepository
+    public class ProductUnitRepository : ICrudMethodRepository<ProductUnitGetDTO, ProductUnitPostDTO>
     {
-        public int AddProductUnit(ProductUnitPostDTO productUnitPostDTO)
+        public int Create(ProductUnitPostDTO dto)
         {
             throw new NotImplementedException();
         }
@@ -16,12 +16,12 @@ namespace ScanBoxWebApi.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ProductUnitGetDTO> GetProductUnits()
+        public IEnumerable<ProductUnitGetDTO> GetElemetsList()
         {
             throw new NotImplementedException();
         }
 
-        public int PutProductUnit(ProductUnitPostDTO productUnitPutDTO)
+        public int Update(ProductUnitGetDTO dto)
         {
             throw new NotImplementedException();
         }

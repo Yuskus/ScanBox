@@ -4,6 +4,6 @@ namespace ScanBoxWebApi.Abstractions
 {
     public interface ITokenGenerator
     {
-        string GetToken(UserDTO userDTO);
+        string GetToken(UserRightsDTO userDTO);
     }
 }
