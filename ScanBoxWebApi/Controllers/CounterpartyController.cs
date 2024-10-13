@@ -1,4 +1,5 @@
-﻿using DatabaseModel.DTO.GetDTO;
+﻿using DatabaseModel;
+using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
@@ -7,12 +8,12 @@ namespace ScanBoxWebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CounntepartyController : ControllerBase
+    public class CountepartyController : ControllerBase
     {
         public readonly ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> _counterpartyRepository;
-        public readonly ILogger _logger;
+        public readonly ILogger<CounterpartyController> _logger;
 
-        public CounntepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger logger)
+        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger logger)
         {
             _counterpartyRepository = counterpartyRepository;
             _logger = logger;
