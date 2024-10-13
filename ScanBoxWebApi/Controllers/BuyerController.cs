@@ -21,7 +21,6 @@ namespace ScanBoxWebApi.Controllers
         [HttpPost(template: "add_buyer")]
         public ActionResult<int> AddBueyr([FromBody] BuyerPostDTO buyerDTO)
         {
-
             try
             {
                 var result = _buyerRepository.Create(buyerDTO);
