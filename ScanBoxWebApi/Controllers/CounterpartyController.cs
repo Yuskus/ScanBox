@@ -81,7 +81,7 @@ namespace ScanBoxWebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error when requesting a list of buyers: {Message}", ex.Message);
+                _logger.LogError(ex, "Error when requesting a list of counterparty: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }
