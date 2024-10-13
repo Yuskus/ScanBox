@@ -2,7 +2,6 @@
 using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
-using ScanBoxWebApi.Repository;
 
 namespace ScanBoxWebApi.Controllers
 {
