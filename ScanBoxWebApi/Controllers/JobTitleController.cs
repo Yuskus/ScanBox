@@ -5,6 +5,8 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class JobTitleController : ControllerBase
     {
         public readonly ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO> _jobTitleRepository;
