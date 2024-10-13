@@ -11,9 +11,9 @@ namespace ScanBoxWebApi.Controllers
     public class CountepartyController : ControllerBase
     {
         public readonly ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> _counterpartyRepository;
-        public readonly ILogger<CounterpartyController> _logger;
+        public readonly ILogger<CountepartyController> _logger;
 
-        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger logger)
+        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger<CountepartyController> logger)
         {
             _counterpartyRepository = counterpartyRepository;
             _logger = logger;

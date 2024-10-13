@@ -11,9 +11,9 @@ namespace ScanBoxWebApi.Controllers
     public class CounterpartyTypeController: ControllerBase
     {
         public readonly ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> _counterpartyTypeRepository;
-        public readonly ILogger _logger;
+        public readonly ILogger<CounterpartyTypeController> _logger;
 
-        public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, ILogger logger)
+        public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, ILogger<CounterpartyTypeController> logger)
         {
             _counterpartyTypeRepository = counterpartyTypeRepository;
             _logger = logger;
@@ -72,7 +72,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "delete_counterparty_type")]
+        [HttpGet(template: "get_counterparty_type")]
         public ActionResult<IEnumerable<CounterpartyTypeGetDTO>> GetCounterpartyType()
         {
             try
