@@ -2,7 +2,6 @@
 using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
-using ScanBoxWebApi.Repository;
 
 namespace ScanBoxWebApi.Controllers
 {
@@ -11,8 +10,8 @@ namespace ScanBoxWebApi.Controllers
     [Route("api/[controller]")]
     public class LegalFormController : ControllerBase
     {
-        public readonly ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO> _legalFormRepository;
-        public readonly ILogger<LegalFormController> _logger;
+        private readonly ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO> _legalFormRepository;
+        private readonly ILogger<LegalFormController> _logger;
 
         public LegalFormController(ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO> legalFormRepository, ILogger<LegalFormController> logger)
         {
@@ -73,7 +72,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "get_legal_form")]
+        [HttpGet(template: "get_legal_forms")]
         public ActionResult<IEnumerable<LegalFormGetDTO>> GetLegalForms()
         {
             try
@@ -83,7 +82,7 @@ namespace ScanBoxWebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error when requesting a list of LegalForms: {Message}", ex.Message);
+                _logger.LogError(ex, "Error when requesting a list of LegalForm: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

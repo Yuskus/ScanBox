@@ -2,16 +2,15 @@
 using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
-using ScanBoxWebApi.Repository;
 
 namespace ScanBoxWebApi.Controllers
 {
     [ApiController]
-    [Route ("api/[controller]")]
+    [Route("api/[controller]")]
     public class CounterpartyTypeController: ControllerBase
     {
-        public readonly ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> _counterpartyTypeRepository;
-        public readonly ILogger<CounterpartyTypeController> _logger;
+        private readonly ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> _counterpartyTypeRepository;
+        private readonly ILogger<CounterpartyTypeController> _logger;
 
         public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, ILogger<CounterpartyTypeController> logger)
         {
@@ -20,11 +19,11 @@ namespace ScanBoxWebApi.Controllers
         }
 
         [HttpPost(template:"add_counterparty_type" )]
-        public ActionResult<int> AddCounterpartyType (CounterpartyTypePostDTO counterpartyTypeDTO)
+        public ActionResult<int> AddCounterpartyType (CounterpartyTypePostDTO counterpartyTypePostDTO)
         {
             try
             {
-                var result = _counterpartyTypeRepository.Create(counterpartyTypeDTO);
+                var result = _counterpartyTypeRepository.Create(counterpartyTypePostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -72,8 +71,8 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "get_counterparty_type")]
-        public ActionResult<IEnumerable<CounterpartyTypeGetDTO>> GetCounterpartyType()
+        [HttpGet(template: "get_counterparty_types")]
+        public ActionResult<IEnumerable<CounterpartyTypeGetDTO>> GetCounterpartyTypes()
         {
             try
             {

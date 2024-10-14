@@ -5,14 +5,16 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
-    public class RegisterController(IRegister register) : ControllerBase
+    public class RegisterController(IRegister register, ILogger logger) : ControllerBase
     {
         private readonly IRegister _register = register;
+        private readonly ILogger _logger = logger;
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("register_user")]
+        [HttpPost(template: "register_user")]
         public ActionResult RegisterUser([FromBody] RegisterFormDTO registerForm)
         {
             try
@@ -23,12 +25,13 @@ namespace ScanBoxWebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.InnerException?.Message ?? ex.Message);
+                _logger.LogError(ex, "Error when trying to register an user: {Message}", ex.Message);
+                return StatusCode(500);
             }
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("update_user_role")]
+        [HttpPut(template: "update_user_role")]
         public ActionResult UpdateUserRole([FromBody] UserRightsDTO UserDTO)
         {
             try
@@ -39,12 +42,13 @@ namespace ScanBoxWebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.InnerException?.Message ?? ex.Message);
+                _logger.LogError(ex, "Error when trying to update an user: {Message}", ex.Message);
+                return StatusCode(500);
             }
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("delete_user")]
+        [HttpDelete(template: "delete_user")]
         public ActionResult DeleteUser([FromBody] string name)
         {
             try
@@ -55,7 +59,8 @@ namespace ScanBoxWebApi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.InnerException?.Message ?? ex.Message);
+                _logger.LogError(ex, "Error when trying to delete an user: {Message}", ex.Message);
+                return StatusCode(500);
             }
         }
     }

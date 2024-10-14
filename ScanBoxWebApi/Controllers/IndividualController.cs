@@ -5,10 +5,12 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class IndividualController : ControllerBase
     {
-        public readonly ICrudMethodRepository<IndividualGetDTO, IndividualPostDTO> _individualRepository;
-        public readonly ILogger<IndividualController> _logger;
+        private readonly ICrudMethodRepository<IndividualGetDTO, IndividualPostDTO> _individualRepository;
+        private readonly ILogger<IndividualController> _logger;
         public IndividualController(ICrudMethodRepository<IndividualGetDTO, IndividualPostDTO> individualRepository, ILogger<IndividualController> logger)
         {
             _individualRepository = individualRepository;
@@ -68,7 +70,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "get_individual")]
+        [HttpGet(template: "get_individuals")]
         public ActionResult<IEnumerable<IndividualGetDTO>> GetIndividuals()
         {
             try
