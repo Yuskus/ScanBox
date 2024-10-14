@@ -10,3 +10,4 @@
 - Добавил Number в DocumentEntity
 - Добавил Number в EntityTypeConfiguration
 - Исправил DocumentGetDTO и DocumentPostDTO
+- Добавлены методы CRUD для всех классов Repository
