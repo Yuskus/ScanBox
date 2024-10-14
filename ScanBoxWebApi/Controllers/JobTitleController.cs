@@ -9,8 +9,8 @@ namespace ScanBoxWebApi.Controllers
     [Route("api/[controller]")]
     public class JobTitleController : ControllerBase
     {
-        public readonly ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO> _jobTitleRepository;
-        public readonly ILogger<JobTitleController> _logger;
+        private readonly ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO> _jobTitleRepository;
+        private readonly ILogger<JobTitleController> _logger;
         public JobTitleController(ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>  jobtiTleRepository, ILogger<JobTitleController> logger)
         {
             _jobTitleRepository = jobtiTleRepository;
@@ -70,7 +70,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "get_job_title")]
+        [HttpGet(template: "get_job_titles")]
         public ActionResult<IEnumerable<JobTitleGetDTO>> GetJobTitles()
         {
             try

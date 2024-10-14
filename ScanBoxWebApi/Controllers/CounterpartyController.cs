@@ -1,5 +1,4 @@
-﻿using DatabaseModel;
-using DatabaseModel.DTO.GetDTO;
+﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
@@ -10,8 +9,8 @@ namespace ScanBoxWebApi.Controllers
     [Route("api/[controller]")]
     public class CountepartyController : ControllerBase
     {
-        public readonly ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> _counterpartyRepository;
-        public readonly ILogger<CountepartyController> _logger;
+        private readonly ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> _counterpartyRepository;
+        private readonly ILogger<CountepartyController> _logger;
 
         public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger<CountepartyController> logger)
         {
@@ -20,11 +19,11 @@ namespace ScanBoxWebApi.Controllers
         }
 
         [HttpPost(template: "add_counterparty")]
-        public ActionResult<int> AddCounterparty(CounterpartyPostDTO counterpartyDTO)
+        public ActionResult<int> AddCounterparty(CounterpartyPostDTO counterpartyPostDTO)
         {
             try
             {
-                var result = _counterpartyRepository.Create(counterpartyDTO);
+                var result = _counterpartyRepository.Create(counterpartyPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -72,8 +71,8 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "delete_counterparty")]
-        public ActionResult<IEnumerable<CounterpartyGetDTO>> GetCounterparty()
+        [HttpGet(template: "get_counterparties")]
+        public ActionResult<IEnumerable<CounterpartyGetDTO>> GetCounterparties()
         {
             try
             {

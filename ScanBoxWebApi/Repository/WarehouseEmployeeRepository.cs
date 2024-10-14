@@ -19,7 +19,7 @@ namespace ScanBoxWebApi.Repository
         }
         public int Create(WarehouseEmployeePostDTO warehouseEployeeDto)
         {
-            var warehouseEmployeeEntity = _context.WarehouseEmployees.FirstOrDefault(x => x.Phone == warehouseEployeeDto.Phone);
+            var warehouseEmployeeEntity = _context.WarehouseEmployees.FirstOrDefault(x => x.Phone.Equals(warehouseEployeeDto.Phone));
 
             if (warehouseEmployeeEntity is null)
             {

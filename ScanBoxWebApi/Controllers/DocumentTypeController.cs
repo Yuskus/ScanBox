@@ -5,10 +5,12 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class DocumentTypeController : ControllerBase
     {
-        public readonly ICrudMethodRepository<DocumentTypeGetDTO, DocumentTypePostDTO> _documentTypeRepository;
-        public readonly ILogger<DocumentTypeController> _logger;
+        private readonly ICrudMethodRepository<DocumentTypeGetDTO, DocumentTypePostDTO> _documentTypeRepository;
+        private readonly ILogger<DocumentTypeController> _logger;
         public DocumentTypeController(ICrudMethodRepository<DocumentTypeGetDTO, DocumentTypePostDTO> documentTypeRepository, ILogger<DocumentTypeController> logger)
         {
             _documentTypeRepository = documentTypeRepository;
@@ -68,8 +70,8 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "get_document_type")]
-        public ActionResult<IEnumerable<DocumentTypeGetDTO>> GetDocumentsType()
+        [HttpGet(template: "get_documents_types")]
+        public ActionResult<IEnumerable<DocumentTypeGetDTO>> GetDocumentsTypes()
         {
             try
             {

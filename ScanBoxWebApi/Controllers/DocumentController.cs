@@ -2,18 +2,15 @@
 using DatabaseModel.DTO.PostDTO;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
-using ScanBoxWebApi.Repository;
-using System.Data;
 
 namespace ScanBoxWebApi.Controllers
 {
-
     [ApiController]
-    [Route ("api/[controller]")]
+    [Route("api/[controller]")]
     public class DocumentController : ControllerBase
     {
-        public readonly ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> _documentRepository;
-        public readonly ILogger<DocumentController> _logger;
+        private readonly ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> _documentRepository;
+        private readonly ILogger<DocumentController> _logger;
         public DocumentController(ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> documentRepository, ILogger<DocumentController> logger)
         {
             _documentRepository = documentRepository;
@@ -21,7 +18,7 @@ namespace ScanBoxWebApi.Controllers
         }
 
         [HttpPost(template:"add_document")]
-        public ActionResult<int>AddDocument(DocumentPostDTO documentPostDTO)
+        public ActionResult<int> AddDocument(DocumentPostDTO documentPostDTO)
         {
             try
             {
@@ -73,7 +70,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
-        [HttpGet(template: "get_document")]
+        [HttpGet(template: "get_documents")]
         public ActionResult<IEnumerable<DocumentGetDTO>> GetDocuments()
         {
             try
