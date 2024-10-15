@@ -9,8 +9,8 @@ namespace ScanBoxWebApi.Repository
 {
     public class DocumentRepository : ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO>
     {
-        public readonly ScanBoxDbContext _context;
-        public readonly IMapper _mapper;
+        private readonly ScanBoxDbContext _context;
+        private readonly IMapper _mapper;
 
         public DocumentRepository(ScanBoxDbContext context, IMapper mapper)
         {

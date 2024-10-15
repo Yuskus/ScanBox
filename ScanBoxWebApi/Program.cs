@@ -107,10 +107,14 @@ namespace ScanBoxWebApi
             builder.Services.AddScoped<ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO>, SupplierRepository>();
             builder.Services.AddScoped<ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO>, WarehouseEmployeeRepository>();
 
-            // для аутентификации и авторизации
+            // для регистрации, аутентификации и авторизации
+            builder.Services.AddTransient<IRegister, Register>();
             builder.Services.AddTransient<IUserRightsService, UserService>();
             builder.Services.AddTransient<ITokenGenerator, TokenGenerator>();
-            builder.Services.AddTransient<IRegister, Register>();
+            
+            // прочие имплементации
+            builder.Services.AddTransient<IShipmentComparer<ShipmentGetDTO>, ShipmentComparer>();
+            builder.Services.AddTransient<ITableConverter, TableToCsvConverter>();
 
             var app = builder.Build();
 

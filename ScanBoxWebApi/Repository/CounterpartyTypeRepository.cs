@@ -9,8 +9,8 @@ namespace ScanBoxWebApi.Repository
 {
     public class CounterpartyTypeRepository : ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO>
     {
-        public readonly ScanBoxDbContext _context;
-        public readonly IMapper _mapper;
+        private readonly ScanBoxDbContext _context;
+        private readonly IMapper _mapper;
 
         public CounterpartyTypeRepository(ScanBoxDbContext context, IMapper mapper)
         {

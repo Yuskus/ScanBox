@@ -9,8 +9,8 @@ namespace ScanBoxWebApi.Repository
 {
     public class PricesRepository : ICrudMethodRepository<PricesGetDTO, PricesPostDTO>
     {
-        public readonly ScanBoxDbContext _context;
-        public readonly IMapper _mapper;
+        private readonly ScanBoxDbContext _context;
+        private readonly IMapper _mapper;
 
         public PricesRepository(ScanBoxDbContext context, IMapper mapper)
         {

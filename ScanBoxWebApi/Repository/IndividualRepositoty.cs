@@ -4,14 +4,13 @@ using DatabaseModel.Context;
 using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
-using System.Reflection.Metadata;
 
 namespace ScanBoxWebApi.Repository
 {
     public class IndividualRepositoty : ICrudMethodRepository<IndividualGetDTO, IndividualPostDTO>
     {
-        public readonly ScanBoxDbContext _context;
-        public readonly IMapper _mapper;
+        private readonly ScanBoxDbContext _context;
+        private readonly IMapper _mapper;
 
         public IndividualRepositoty (ScanBoxDbContext context, IMapper mapper)
         {
