@@ -56,6 +56,10 @@ namespace ScanBoxWebApi.Mapper
             CreateMap<SupplierEntity, SupplierPostDTO>();
             CreateMap<BuyerEntity, BuyerPostDTO>();
             CreateMap<WarehouseEmployeeEntity, WarehouseEmployeePostDTO>();
+
+            // для сверки отгрузок, на всякий
+            CreateMap<ShipmentPostDTO, MovementHistoryPostDTO>().ReverseMap();
+            CreateMap<ShipmentGetDTO, MovementHistoryGetDTO>().ReverseMap();
         }
     }
 }

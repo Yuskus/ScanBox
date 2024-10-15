@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_warehouse_employee")]
-        public ActionResult<int> AddWarehouseEmployee(WarehouseEmployeePostDTO warehouseEmployeePostDTO)
+        public ActionResult<int> AddWarehouseEmployee([FromBody] WarehouseEmployeePostDTO warehouseEmployeePostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_warehouse_employee")]
-        public ActionResult<int> PutWarehouseEmployee(WarehouseEmployeeGetDTO warehouseEmployeeDTO)
+        public ActionResult<int> PutWarehouseEmployee([FromBody] WarehouseEmployeeGetDTO warehouseEmployeeDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_warehouse_employee")]
-        public ActionResult<int> DeleteWarehouseEmployee(int warehouseEmployeeId)
+        public ActionResult<int> DeleteWarehouseEmployee([FromBody] int warehouseEmployeeId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_warehouse_employees")]
         public ActionResult<IEnumerable<WarehouseEmployeeGetDTO>> GetWarehouseEmployees()
         {

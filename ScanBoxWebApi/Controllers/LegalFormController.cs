@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -19,8 +20,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_legal_form")]
-        public ActionResult<int> AddLegalForm(LegalFormPostDTO legalFormPostDTO)
+        public ActionResult<int> AddLegalForm([FromBody] LegalFormPostDTO legalFormPostDTO)
         {
             try
             {
@@ -34,8 +36,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_legal_form")]
-        public ActionResult<int> PutLegalForm(LegalFormGetDTO legalFormDTO)
+        public ActionResult<int> PutLegalForm([FromBody] LegalFormGetDTO legalFormDTO)
         {
             try
             {
@@ -53,8 +56,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_legal_form")]
-        public ActionResult<int> DeleteLegalForm(int legalFormId)
+        public ActionResult<int> DeleteLegalForm([FromBody] int legalFormId)
         {
             try
             {
@@ -72,6 +76,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_legal_forms")]
         public ActionResult<IEnumerable<LegalFormGetDTO>> GetLegalForms()
         {

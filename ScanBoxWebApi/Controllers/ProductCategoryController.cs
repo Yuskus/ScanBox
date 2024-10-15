@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_product_category")]
-        public ActionResult<int> AddProductCategory(ProductCategoryPostDTO productCategoryPostDTO)
+        public ActionResult<int> AddProductCategory([FromBody] ProductCategoryPostDTO productCategoryPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_product_category")]
-        public ActionResult<int> PutProductCategory(ProductCategoryGetDTO productCategoryDTO)
+        public ActionResult<int> PutProductCategory([FromBody] ProductCategoryGetDTO productCategoryDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_product_category")]
-        public ActionResult<int> DeleteProductCategory(int productCategoryId)
+        public ActionResult<int> DeleteProductCategory([FromBody] int productCategoryId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_product_categories")]
         public ActionResult<IEnumerable<ProductCategoryGetDTO>> GetProductCategories()
         {

@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,6 +19,7 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_buyer")]
         public ActionResult<int> AddBuyer([FromBody] BuyerPostDTO buyerPostDTO)
         {
@@ -33,6 +35,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_buyer")]
         public ActionResult<int> PutBuyer([FromBody] BuyerGetDTO buyerDTO)
         {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_buyer")]
-        public ActionResult<int> DeleteBuyer(int buyerDtoId)
+        public ActionResult<int> DeleteBuyer([FromBody] int buyerDtoId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_buyers")]
         public ActionResult<IEnumerable<BuyerGetDTO>> GetBuyers()
         {

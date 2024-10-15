@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template: "add_product_type")]
-        public ActionResult<int> AddProductType(ProductTypePostDTO productTypePostDTO)
+        public ActionResult<int> AddProductType([FromBody] ProductTypePostDTO productTypePostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_product_type")]
-        public ActionResult<int> PutProductType(ProductTypeGetDTO productTypeDTO)
+        public ActionResult<int> PutProductType([FromBody] ProductTypeGetDTO productTypeDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_product_type")]
-        public ActionResult<int> DeleteProductType(int productTypeId)
+        public ActionResult<int> DeleteProductType([FromBody] int productTypeId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_product_types")]
         public ActionResult<IEnumerable<ProductTypeGetDTO>> GetProductTypes()
         {

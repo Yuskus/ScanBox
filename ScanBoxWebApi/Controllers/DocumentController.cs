@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -17,8 +18,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template:"add_document")]
-        public ActionResult<int> AddDocument(DocumentPostDTO documentPostDTO)
+        public ActionResult<int> AddDocument([FromBody] DocumentPostDTO documentPostDTO)
         {
             try
             {
@@ -32,8 +34,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_document")]
-        public ActionResult<int> PutDocument(DocumentGetDTO documentDTO)
+        public ActionResult<int> PutDocument([FromBody] DocumentGetDTO documentDTO)
         {
             try
             {
@@ -51,8 +54,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_document")]
-        public ActionResult<int> DeleteDocument(int documentId)
+        public ActionResult<int> DeleteDocument([FromBody] int documentId)
         {
             try
             {
@@ -70,6 +74,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_documents")]
         public ActionResult<IEnumerable<DocumentGetDTO>> GetDocuments()
         {

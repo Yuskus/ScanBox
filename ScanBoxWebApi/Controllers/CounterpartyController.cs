@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_counterparty")]
-        public ActionResult<int> AddCounterparty(CounterpartyPostDTO counterpartyPostDTO)
+        public ActionResult<int> AddCounterparty([FromBody] CounterpartyPostDTO counterpartyPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_counterparty")]
-        public ActionResult<int> PutCounterparty(CounterpartyGetDTO counterpartyDTO)
+        public ActionResult<int> PutCounterparty([FromBody] CounterpartyGetDTO counterpartyDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_counterparty")]
-        public ActionResult<int> DeleteCounterparty(int counterpartyId)
+        public ActionResult<int> DeleteCounterparty([FromBody] int counterpartyId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_counterparties")]
         public ActionResult<IEnumerable<CounterpartyGetDTO>> GetCounterparties()
         {
