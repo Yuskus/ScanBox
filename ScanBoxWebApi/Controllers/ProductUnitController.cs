@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template: "add_product_unit")]
-        public ActionResult<int> AddProductUnit(ProductUnitPostDTO productUnitPostDTO)
+        public ActionResult<int> AddProductUnit([FromBody] ProductUnitPostDTO productUnitPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_product_unit")]
-        public ActionResult<int> PutProductUnit(ProductUnitGetDTO productUnitDTO)
+        public ActionResult<int> PutProductUnit([FromBody] ProductUnitGetDTO productUnitDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_product_unit")]
-        public ActionResult<int> DeleteProductUnit(int productUnitId)
+        public ActionResult<int> DeleteProductUnit([FromBody] int productUnitId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_product_units")]
         public ActionResult<IEnumerable<ProductUnitGetDTO>> GetProductUnits()
         {

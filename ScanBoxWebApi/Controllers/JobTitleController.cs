@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -17,8 +18,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_job_title")]
-        public ActionResult<int> AddJobTitle(JobTitlePostDTO jobTitlePostDTO)
+        public ActionResult<int> AddJobTitle([FromBody] JobTitlePostDTO jobTitlePostDTO)
         {
             try
             {
@@ -32,8 +34,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_job_title")]
-        public ActionResult<int> PutJobTitle(JobTitleGetDTO jobTitleDTO)
+        public ActionResult<int> PutJobTitle([FromBody] JobTitleGetDTO jobTitleDTO)
         {
             try
             {
@@ -51,8 +54,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_job_title")]
-        public ActionResult<int> DeleteJobTitle(int jobTitleId)
+        public ActionResult<int> DeleteJobTitle([FromBody] int jobTitleId)
         {
             try
             {
@@ -70,6 +74,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_job_titles")]
         public ActionResult<IEnumerable<JobTitleGetDTO>> GetJobTitles()
         {

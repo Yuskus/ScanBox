@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template: "add_prices")]
-        public ActionResult<int> AddPrices(PricesPostDTO pricesPostDTO)
+        public ActionResult<int> AddPrices([FromBody] PricesPostDTO pricesPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_prices")]
-        public ActionResult<int> PutPrices(PricesGetDTO pricesDTO)
+        public ActionResult<int> PutPrices([FromBody] PricesGetDTO pricesDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_prices")]
-        public ActionResult<int> DeletePrices(int priceId)
+        public ActionResult<int> DeletePrices([FromBody] int priceId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_prices")]
         public ActionResult<IEnumerable<PricesGetDTO>> GetPrices()
         {

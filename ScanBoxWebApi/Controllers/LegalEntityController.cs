@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_legal_entity")]
-        public ActionResult<int> AddLegalEntity(LegalEntityPostDTO legalEntityPostDTO)
+        public ActionResult<int> AddLegalEntity([FromBody] LegalEntityPostDTO legalEntityPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_legal_entity")]
-        public ActionResult<int> PutLegalEntity(LegalEntityGetDTO legalEntityDTO)
+        public ActionResult<int> PutLegalEntity([FromBody] LegalEntityGetDTO legalEntityDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_legal_entity")]
-        public ActionResult<int> DeleteLegalEntity(int legalEntityId)
+        public ActionResult<int> DeleteLegalEntity([FromBody] int legalEntityId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_legal_entities")]
         public ActionResult<IEnumerable<LegalEntityGetDTO>> GetLegalEntities()
         {

@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -17,8 +18,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_individual")]
-        public ActionResult<int> AddIndividual(IndividualPostDTO individualPostDTO)
+        public ActionResult<int> AddIndividual([FromBody] IndividualPostDTO individualPostDTO)
         {
             try
             {
@@ -32,8 +34,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_individual")]
-        public ActionResult<int> PutIndividual(IndividualGetDTO individualDTO)
+        public ActionResult<int> PutIndividual([FromBody] IndividualGetDTO individualDTO)
         {
             try
             {
@@ -51,8 +54,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_individual")]
-        public ActionResult<int> DeleteIndividual(int individualId)
+        public ActionResult<int> DeleteIndividual([FromBody] int individualId)
         {
             try
             {
@@ -70,6 +74,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_individuals")]
         public ActionResult<IEnumerable<IndividualGetDTO>> GetIndividuals()
         {

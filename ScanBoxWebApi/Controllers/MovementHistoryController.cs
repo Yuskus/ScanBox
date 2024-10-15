@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template: "add_movement_history")]
-        public ActionResult<int> AddMovement(MovementHistoryPostDTO movementHistoryPostDTO)
+        public ActionResult<int> AddMovement([FromBody] MovementHistoryPostDTO movementHistoryPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_movement_history")]
-        public ActionResult<int> PutMovement(MovementHistoryGetDTO movementHistoryDTO)
+        public ActionResult<int> PutMovement([FromBody] MovementHistoryGetDTO movementHistoryDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_movement_history")]
-        public ActionResult<int> DeleteMovement(int movementHistoryId)
+        public ActionResult<int> DeleteMovement([FromBody] int movementHistoryId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_movement_history")]
         public ActionResult<IEnumerable<MovementHistoryGetDTO>> GetMovementHistory()
         {

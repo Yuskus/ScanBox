@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -17,8 +18,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template: "add_document_type")]
-        public ActionResult<int> AddDocumentType(DocumentTypePostDTO documentTypePostDTO)
+        public ActionResult<int> AddDocumentType([FromBody] DocumentTypePostDTO documentTypePostDTO)
         {
             try
             {
@@ -32,8 +34,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_document_type")]
-        public ActionResult<int> PutDocumentType(DocumentTypeGetDTO documentTypeDTO)
+        public ActionResult<int> PutDocumentType([FromBody] DocumentTypeGetDTO documentTypeDTO)
         {
             try
             {
@@ -51,8 +54,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_document_type")]
-        public ActionResult<int> DeleteDocumentType(int documentTypeId)
+        public ActionResult<int> DeleteDocumentType([FromBody] int documentTypeId)
         {
             try
             {
@@ -70,6 +74,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_documents_types")]
         public ActionResult<IEnumerable<DocumentTypeGetDTO>> GetDocumentsTypes()
         {

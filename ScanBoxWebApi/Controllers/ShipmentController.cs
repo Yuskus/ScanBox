@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpPost(template: "add_shipment")]
-        public ActionResult<int> AddShipment(ShipmentPostDTO shipmentPostDTO)
+        public ActionResult<int> AddShipment([FromBody] ShipmentPostDTO shipmentPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut(template: "put_shipment")]
-        public ActionResult<int> PutShipment(ShipmentGetDTO shipmentDTO)
+        public ActionResult<int> PutShipment([FromBody] ShipmentGetDTO shipmentDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete(template: "delete_shipment")]
-        public ActionResult<int> DeleteShipment(int shipmentId)
+        public ActionResult<int> DeleteShipment([FromBody] int shipmentId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_shipments")]
         public ActionResult<IEnumerable<ShipmentGetDTO>> GetShipments()
         {

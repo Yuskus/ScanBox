@@ -1,5 +1,6 @@
 ﻿using DatabaseModel.DTO.GetDTO;
 using DatabaseModel.DTO.PostDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
 
@@ -18,8 +19,9 @@ namespace ScanBoxWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_supplier")]
-        public ActionResult<int> AddSupplier(SupplierPostDTO supplierPostDTO)
+        public ActionResult<int> AddSupplier([FromBody] SupplierPostDTO supplierPostDTO)
         {
             try
             {
@@ -33,8 +35,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_supplier")]
-        public ActionResult<int> PutSupplier(SupplierGetDTO supplierDTO)
+        public ActionResult<int> PutSupplier([FromBody] SupplierGetDTO supplierDTO)
         {
             try
             {
@@ -52,8 +55,9 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_supplier")]
-        public ActionResult<int> DeleteSupplier(int supplierId)
+        public ActionResult<int> DeleteSupplier([FromBody] int supplierId)
         {
             try
             {
@@ -71,6 +75,7 @@ namespace ScanBoxWebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet(template: "get_suppliers")]
         public ActionResult<IEnumerable<SupplierGetDTO>> GetSuppliers()
         {
