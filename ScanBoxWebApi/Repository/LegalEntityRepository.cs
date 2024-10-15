@@ -9,8 +9,8 @@ namespace ScanBoxWebApi.Repository
 {
     public class LegalEntityRepository : ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO>
     {
-        public readonly ScanBoxDbContext _context;
-        public readonly IMapper _mapper;
+        private readonly ScanBoxDbContext _context;
+        private readonly IMapper _mapper;
 
         public LegalEntityRepository(ScanBoxDbContext context, IMapper mapper)
         {
