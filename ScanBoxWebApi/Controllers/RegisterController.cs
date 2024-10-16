@@ -1,4 +1,4 @@
-﻿using DatabaseModel.DTO;
+﻿using ScanBoxWebApi.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
@@ -8,10 +8,10 @@ namespace ScanBoxWebApi.Controllers
     [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
-    public class RegisterController(IRegister register, ILogger logger) : ControllerBase
+    public class RegisterController(IRegister register, ILogger<RegisterController> logger) : ControllerBase
     {
         private readonly IRegister _register = register;
-        private readonly ILogger _logger = logger;
+        private readonly ILogger<RegisterController> _logger = logger;
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "register_user")]

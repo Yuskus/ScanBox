@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using DatabaseModel;
 using DatabaseModel.Context;
-using DatabaseModel.DTO.GetDTO;
-using DatabaseModel.DTO.PostDTO;
+using ScanBoxWebApi.DTO.GetDTO;
+using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Repository

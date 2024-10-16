@@ -1,5 +1,5 @@
-﻿using DatabaseModel.DTO.GetDTO;
-using DatabaseModel.DTO.PostDTO;
+﻿using ScanBoxWebApi.DTO.GetDTO;
+using ScanBoxWebApi.DTO.PostDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;

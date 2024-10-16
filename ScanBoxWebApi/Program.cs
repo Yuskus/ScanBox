@@ -1,6 +1,6 @@
 using DatabaseModel.Context;
-using DatabaseModel.DTO.GetDTO;
-using DatabaseModel.DTO.PostDTO;
+using ScanBoxWebApi.DTO.GetDTO;
+using ScanBoxWebApi.DTO.PostDTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -78,11 +78,14 @@ namespace ScanBoxWebApi
                 };
             });
 
-            // контекст бд (проверить строку подключения и миграции)
-            builder.Services.AddDbContext<ScanBoxDbContext>(options =>
+            
+            /*builder.Services.AddDbContext<ScanBoxDbContext>(options =>
             {
-                options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("ScanBoxDb"));
-            });
+                options.UseLazyLoadingProxies().UseNpgsql();
+            });*/
+
+            // контекст бд (проверить строку подключения и миграции)
+            builder.Services.AddScoped(x => new ScanBoxDbContext(builder.Configuration.GetConnectionString("ScanBoxDb")!));
 
             // маппинг
             builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -115,6 +118,9 @@ namespace ScanBoxWebApi
             // прочие имплементации
             builder.Services.AddTransient<IShipmentComparer<ShipmentGetDTO>, ShipmentComparer>();
             builder.Services.AddTransient<ITableConverter, TableToCsvConverter>();
+
+            // добавление логирования
+            builder.Logging.AddConsole();
 
             var app = builder.Build();
 

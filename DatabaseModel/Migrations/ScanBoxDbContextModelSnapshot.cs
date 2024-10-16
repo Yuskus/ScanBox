@@ -127,6 +127,10 @@ namespace DatabaseModel.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("document_type_id");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("integer")
+                        .HasColumnName("number");
+
                     b.Property<int>("WarehouseEmployeeId")
                         .HasColumnType("integer")
                         .HasColumnName("warehouse_employee_id");

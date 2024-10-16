@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DatabaseModel;
 using DatabaseModel.Context;
-using DatabaseModel.DTO;
+using ScanBoxWebApi.DTO;
 using ScanBoxWebApi.Abstractions;
 using ScanBoxWebApi.Utilities;
 
@@ -9,7 +9,7 @@ namespace ScanBoxWebApi.Implementations
 {
     public class Register(ScanBoxDbContext context, IMapper mapper) : IRegister
     {
-        private readonly ScanBoxDbContext _context = context; // работают ли подстановки вне системных классов ASP?
+        private readonly ScanBoxDbContext _context = context;
         private readonly IMapper _mapper = mapper;
 
         public int RegisterUser(RegisterFormDTO registerForm)

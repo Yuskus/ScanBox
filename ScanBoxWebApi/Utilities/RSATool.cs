@@ -7,7 +7,7 @@ namespace ScanBoxWebApi.Utilities
         public static RSA GetKey(string keyname)
         {
             var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText(Path.Combine("..", "rsa", keyname)));
+            rsa.ImportFromPem(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "rsa", keyname)));
             return rsa;
         }
     }
