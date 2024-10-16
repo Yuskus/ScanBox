@@ -1,4 +1,4 @@
-﻿using DatabaseModel.DTO;
+﻿using ScanBoxWebApi.DTO;
 
 namespace ScanBoxWebApi.Abstractions
 {

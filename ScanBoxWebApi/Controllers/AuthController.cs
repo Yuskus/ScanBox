@@ -1,4 +1,4 @@
-﻿using DatabaseModel.DTO;
+﻿using ScanBoxWebApi.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
@@ -7,11 +7,11 @@ namespace ScanBoxWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(ITokenGenerator tokenGenerator, IUserRightsService userService, ILogger<BuyerController> logger) : ControllerBase
+    public class AuthController(ITokenGenerator tokenGenerator, IUserRightsService userService, ILogger<AuthController> logger) : ControllerBase
     {
         private readonly ITokenGenerator _tokenGenerator = tokenGenerator;
         private readonly IUserRightsService _userService = userService;
-        private readonly ILogger<BuyerController> _logger = logger;
+        private readonly ILogger<AuthController> _logger = logger;
 
         [AllowAnonymous]
         [HttpPost(template: "login")]

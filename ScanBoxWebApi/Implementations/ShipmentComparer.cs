@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DatabaseModel.Context;
-using DatabaseModel.DTO.GetDTO;
+using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Implementations
