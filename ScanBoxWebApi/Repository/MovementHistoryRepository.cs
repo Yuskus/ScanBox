@@ -45,7 +45,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<MovementHistoryGetDTO> GetElemetsList()
         {
-            var movementHistoryEntity = _context.MovementHistory.Select(x => _mapper.Map<MovementHistoryGetDTO>(x));
+            var movementHistoryEntity = _context.MovementHistory.Select(x => _mapper.Map<MovementHistoryGetDTO>(x)).ToList();
             return movementHistoryEntity;
         }
 

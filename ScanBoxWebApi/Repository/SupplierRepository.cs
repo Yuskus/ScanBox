@@ -46,7 +46,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<SupplierGetDTO> GetElemetsList()
         {
-            var supplierEntity = _context.Suppilers.Select(x => _mapper.Map<SupplierGetDTO>(x));
+            var supplierEntity = _context.Suppilers.Select(x => _mapper.Map<SupplierGetDTO>(x)).ToList();
             return supplierEntity;
         }
 
