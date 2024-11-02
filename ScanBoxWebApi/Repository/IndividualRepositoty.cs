@@ -44,7 +44,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<IndividualGetDTO> GetElemetsList()
         {
-            var individualEntity = _context.Individuals.Select(x => _mapper.Map<IndividualGetDTO>(x));
+            var individualEntity = _context.Individuals.Select(x => _mapper.Map<IndividualGetDTO>(x)).ToList();
             return individualEntity;
         }
 

@@ -41,7 +41,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<CounterpartyGetDTO> GetElemetsList()
         {
-            var counterpartyEntity = _context.Counterparties.Select(x => _mapper.Map<CounterpartyGetDTO>(x));
+            var counterpartyEntity = _context.Counterparties.Select(x => _mapper.Map<CounterpartyGetDTO>(x)).ToList();
             return counterpartyEntity;
         }
 

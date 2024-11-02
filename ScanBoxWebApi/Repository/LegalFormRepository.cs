@@ -44,7 +44,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<LegalFormGetDTO> GetElemetsList()
         {
-            var legalFormEntity = _context.LegalForms.Select(x => _mapper.Map<LegalFormGetDTO>(x));
+            var legalFormEntity = _context.LegalForms.Select(x => _mapper.Map<LegalFormGetDTO>(x)).ToList();
             return legalFormEntity;
         }
 
