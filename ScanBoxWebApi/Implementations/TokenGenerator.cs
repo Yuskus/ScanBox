@@ -18,7 +18,7 @@ namespace ScanBoxWebApi.Implementations
 
         private string GenerateJwtToken(UserRightsDTO userDTO)
         {
-            var key         = new RsaSecurityKey(RSATool.GetKey("private_key.pem"));
+            var key         = new RsaSecurityKey(RSATool.GetPrivateKey());
             var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
             var token       = new JwtSecurityToken(_configuration["Jwt:Issuer"],
                                                    _configuration["Jwt:Audience"],

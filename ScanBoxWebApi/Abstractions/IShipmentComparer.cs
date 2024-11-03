@@ -1,10 +1,12 @@
-﻿namespace ScanBoxWebApi.Abstractions
+﻿using ScanBoxWebApi.DTO.GetDTO;
+
+namespace ScanBoxWebApi.Abstractions
 {
-    public interface IShipmentComparer<T>
+    public interface IShipmentComparer
     {
         int Compare(int documentId);
-        IEnumerable<T> GetMissingUnits(int documentId);
-        IEnumerable<T> GetUnwantedUnits(int documentId);
-        IEnumerable<T> GetFoundUnits(int documentId);
+        IEnumerable<ShipmentGetDTO> GetMissingUnits(int documentId);
+        IEnumerable<ShipmentGetDTO> GetUnwantedUnits(int documentId);
+        IEnumerable<ShipmentGetDTO> GetFoundUnits(int documentId);
     }
 }

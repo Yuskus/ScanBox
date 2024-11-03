@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public DocumentRepository(ScanBoxDbContext context, IMapper mapper)
+        public DocumentRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
 
         public int Create(DocumentPostDTO documentDto)
@@ -25,7 +28,8 @@ namespace ScanBoxWebApi.Repository
             {
                 documentEntity = _mapper.Map<DocumentEntity>(documentDto);
                 _context.Add(documentEntity);
-                _context.SaveChanges();                
+                _context.SaveChanges();
+                _cache.Remove("documents");
             }
             return documentEntity.Id;
         }
@@ -39,13 +43,19 @@ namespace ScanBoxWebApi.Repository
                 result = documentEntity.Id;
                 _context.Remove(documentEntity);
                 _context.SaveChanges();
+                _cache.Remove("documents");
             }
             return result;
         }
 
         public IEnumerable<DocumentGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("documents", out IEnumerable<DocumentGetDTO>? documents))
+            {
+                if (documents is not null) return documents;
+            }
             var documentEntity = _context.Document.Select(x => _mapper.Map<DocumentGetDTO>(x)).ToList();
+            _cache.Set("documents", documentEntity, TimeSpan.FromMinutes(30));
             return documentEntity;
         }
 
@@ -61,6 +71,7 @@ namespace ScanBoxWebApi.Repository
                 documentEntity.CounterpartyId = documentDto.CounterpartyId;
                 
                 _context.SaveChanges();
+                _cache.Remove("documents");
                 return documentEntity.Id;
             }
             return -1;

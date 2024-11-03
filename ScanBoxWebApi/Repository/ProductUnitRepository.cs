@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public ProductUnitRepository(ScanBoxDbContext context, IMapper mapper)
+        public ProductUnitRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(ProductUnitPostDTO productUnitDto)
         {
@@ -25,6 +28,7 @@ namespace ScanBoxWebApi.Repository
                 productUnitEntity = _mapper.Map<ProductUnitEntity>(productUnitDto);
                 _context.Add(productUnitEntity);
                 _context.SaveChanges();
+                _cache.Remove("product_units");
             }
             return productUnitEntity.Id;
         }
@@ -39,13 +43,19 @@ namespace ScanBoxWebApi.Repository
                 result = productUnitEntity.Id;
                 _context.Remove(productUnitEntity);
                 _context.SaveChanges();
+                _cache.Remove("product_units");
             }
             return result;
         }
 
         public IEnumerable<ProductUnitGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("product_units", out IEnumerable<ProductUnitGetDTO>? productUnits))
+            {
+                if (productUnits is not null) return productUnits;
+            }
             var productUnitEntity = _context.ProductUnits.Select(x => _mapper.Map<ProductUnitGetDTO>(x)).ToList();
+            _cache.Set("product_units", productUnitEntity, TimeSpan.FromMinutes(30));
             return productUnitEntity;
         }
 
@@ -62,6 +72,7 @@ namespace ScanBoxWebApi.Repository
                 productUnitEntity.SupplierId = productUnitDto.SupplierId;
 
                 _context.SaveChanges();
+                _cache.Remove("product_units");
                 return productUnitEntity.Id;
             }
             return -1;

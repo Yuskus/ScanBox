@@ -5,7 +5,7 @@ using ScanBoxWebApi.Abstractions;
 
 namespace ScanBoxWebApi.Implementations
 {
-    public class ShipmentComparer : IShipmentComparer<ShipmentGetDTO>
+    public class ShipmentComparer : IShipmentComparer
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
@@ -34,7 +34,7 @@ namespace ScanBoxWebApi.Implementations
             var shipment = GetShipment(documentId);
             var history = GetHistory(documentId);
 
-            return [.. history.Except(shipment)];
+            return [.. history.Except(shipment) ];
         }
 
         public IEnumerable<ShipmentGetDTO> GetFoundUnits(int documentId)
@@ -42,7 +42,7 @@ namespace ScanBoxWebApi.Implementations
             var shipment = GetShipment(documentId);
             var history = GetHistory(documentId);
 
-            return [.. history.Intersect(shipment)];
+            return [.. history.Intersect(shipment) ];
         }
 
         private IQueryable<ShipmentGetDTO> GetShipment(int documentId)
@@ -50,7 +50,9 @@ namespace ScanBoxWebApi.Implementations
             var shipment = _context.Shipments.Where(x => x.DocumentId == documentId)
                                              .Select(x => _mapper.Map<ShipmentGetDTO>(x));
 
-            return shipment.Any() ? shipment : throw new ArgumentException($"{documentId} the list does not contain any elements");
+            if (!shipment.Any()) throw new ArgumentException($"{documentId} the list does not contain any elements");
+
+            return shipment;
         }
 
         private IQueryable<ShipmentGetDTO> GetHistory(int documentId)

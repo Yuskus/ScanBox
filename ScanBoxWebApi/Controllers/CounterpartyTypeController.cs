@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<CounterpartyTypeController> _logger;
         private readonly ITableConverter<CounterpartyTypeGetDTO> _tableConverter;
 
-        public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, ILogger<CounterpartyTypeController> logger, ITableConverter<CounterpartyTypeGetDTO> tableConverter)
+        public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, 
+                                          ILogger<CounterpartyTypeController> logger, 
+                                          ITableConverter<CounterpartyTypeGetDTO> tableConverter)
         {
             _counterpartyTypeRepository = counterpartyTypeRepository;
             _logger = logger;

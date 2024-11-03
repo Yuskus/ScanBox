@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<PricesController> _logger;
         private readonly ITableConverter<PricesGetDTO> _tableConverter;
 
-        public PricesController(ICrudMethodRepository<PricesGetDTO, PricesPostDTO> pricesRepository, ILogger<PricesController> logger, ITableConverter<PricesGetDTO> tableConverter)
+        public PricesController(ICrudMethodRepository<PricesGetDTO, PricesPostDTO> pricesRepository, 
+                                ILogger<PricesController> logger, 
+                                ITableConverter<PricesGetDTO> tableConverter)
         {
             _pricesRepository = pricesRepository;
             _logger = logger;

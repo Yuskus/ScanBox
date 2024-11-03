@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public WarehouseEmployeeRepository(ScanBoxDbContext context, IMapper mapper)
+        public WarehouseEmployeeRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(WarehouseEmployeePostDTO warehouseEployeeDto)
         {
@@ -26,6 +29,7 @@ namespace ScanBoxWebApi.Repository
                 warehouseEmployeeEntity = _mapper.Map<WarehouseEmployeeEntity>(warehouseEployeeDto);
                 _context.Add(warehouseEmployeeEntity);
                 _context.SaveChanges();
+                _cache.Remove("warehouse_employees");
             }
             return warehouseEmployeeEntity.Id;
         }
@@ -40,13 +44,19 @@ namespace ScanBoxWebApi.Repository
                 result = warehouseEmployeeEntity.Id;
                 _context.Remove(warehouseEmployeeEntity);
                 _context.SaveChanges();
+                _cache.Remove("warehouse_employees");
             }
             return result;
         }
 
         public IEnumerable<WarehouseEmployeeGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("warehouse_employees", out IEnumerable<WarehouseEmployeeGetDTO>? warehouseEmployees))
+            {
+                if (warehouseEmployees is not null) return warehouseEmployees;
+            }
             var warehouseEmployeeEntity = _context.WarehouseEmployees.Select(x => _mapper.Map<WarehouseEmployeeGetDTO>(x)).ToList();
+            _cache.Set("warehouse_employees", warehouseEmployeeEntity, TimeSpan.FromMinutes(30));
             return warehouseEmployeeEntity;
         }
 
@@ -66,6 +76,7 @@ namespace ScanBoxWebApi.Repository
                 warehouseEmployeeEntity.Phone = warehouseEployeeDto.Phone;
                     
                 _context.SaveChanges();
+                _cache.Remove("warehouse_employees");
                 return warehouseEmployeeEntity.Id;
             }
             return -1;

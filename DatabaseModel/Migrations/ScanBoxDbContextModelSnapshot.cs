@@ -540,7 +540,7 @@ namespace DatabaseModel.Migrations
                         .HasColumnType("date")
                         .HasColumnName("production_date");
 
-                    b.Property<double>("RealizationPrice")
+                    b.Property<double?>("RealizationPrice")
                         .HasColumnType("decimal(10, 2)")
                         .HasColumnName("realization_price");
 

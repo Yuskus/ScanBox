@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public SupplierRepository(ScanBoxDbContext context, IMapper mapper)
+        public SupplierRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(SupplierPostDTO supplierDto)
         {
@@ -26,6 +29,7 @@ namespace ScanBoxWebApi.Repository
                 supplierEntity = _mapper.Map<SupplierEntity>(supplierDto);
                 _context.Add(supplierEntity);
                 _context.SaveChanges();
+                _cache.Remove("suppilers");
             }
             return supplierEntity.Id;
         }
@@ -40,13 +44,19 @@ namespace ScanBoxWebApi.Repository
                 result = supplierEntity.Id;
                 _context.Remove(supplierEntity);
                 _context.SaveChanges();
+                _cache.Remove("suppilers");
             }
             return result;
         }
 
         public IEnumerable<SupplierGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("suppilers", out IEnumerable<SupplierGetDTO>? suppilers))
+            {
+                if (suppilers is not null) return suppilers;
+            }
             var supplierEntity = _context.Suppilers.Select(x => _mapper.Map<SupplierGetDTO>(x)).ToList();
+            _cache.Set("suppilers", supplierEntity, TimeSpan.FromMinutes(30));
             return supplierEntity;
         }
 
@@ -59,6 +69,7 @@ namespace ScanBoxWebApi.Repository
                 supplierEntity.CounterpartyId = supplierDto.CounterpartyId;
 
                 _context.SaveChanges();
+                _cache.Remove("suppilers");
                 return supplierEntity.Id;
             }
             return -1;

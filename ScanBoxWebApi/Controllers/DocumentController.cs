@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<DocumentController> _logger;
         private readonly ITableConverter<DocumentGetDTO> _tableConverter;
 
-        public DocumentController(ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> documentRepository, ILogger<DocumentController> logger, ITableConverter<DocumentGetDTO> tableConverter)
+        public DocumentController(ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> documentRepository, 
+                                  ILogger<DocumentController> logger, 
+                                  ITableConverter<DocumentGetDTO> tableConverter)
         {
             _documentRepository = documentRepository;
             _logger = logger;

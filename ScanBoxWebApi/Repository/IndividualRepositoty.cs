@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public IndividualRepositoty (ScanBoxDbContext context, IMapper mapper)
+        public IndividualRepositoty (ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(IndividualPostDTO individualDto)
         {
@@ -25,6 +28,7 @@ namespace ScanBoxWebApi.Repository
                 individualEntity = _mapper.Map<IndividualEntity>(individualDto);
                 _context.Add(individualEntity);
                 _context.SaveChanges();
+                _cache.Remove("individuals");
             }
             return individualEntity.Id;
         }
@@ -38,13 +42,19 @@ namespace ScanBoxWebApi.Repository
                 result = individualEntity.Id;
                 _context.Remove(individualEntity);
                 _context.SaveChanges();
+                _cache.Remove("individuals");
             }
             return result;
         }
 
         public IEnumerable<IndividualGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("individuals", out IEnumerable<IndividualGetDTO>? individuals))
+            {
+                if (individuals is not null) return individuals;
+            }
             var individualEntity = _context.Individuals.Select(x => _mapper.Map<IndividualGetDTO>(x)).ToList();
+            _cache.Set("individuals", individualEntity, TimeSpan.FromMinutes(30));
             return individualEntity;
         }
 
@@ -59,6 +69,7 @@ namespace ScanBoxWebApi.Repository
                 individualEntity.Patronymic = individualDto.Patronymic;
 
                 _context.SaveChanges();
+                _cache.Remove("individuals");
                 return individualEntity.Id;
             }
             return -1;
