@@ -45,7 +45,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<JobTitleGetDTO> GetElemetsList()
         {
-            var jobTitelEntity = _context.JobTitles.Select(x => _mapper.Map<JobTitleGetDTO>(x));
+            var jobTitelEntity = _context.JobTitles.Select(x => _mapper.Map<JobTitleGetDTO>(x)).ToList();
             return jobTitelEntity;
         }
 

@@ -45,7 +45,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<DocumentTypeGetDTO> GetElemetsList()
         {
-            var documentTypeEntity = _context.DocumentType.Select(x => _mapper.Map<DocumentTypeGetDTO>(x));
+            var documentTypeEntity = _context.DocumentType.Select(x => _mapper.Map<DocumentTypeGetDTO>(x)).ToList();
             return documentTypeEntity;
         }
 
