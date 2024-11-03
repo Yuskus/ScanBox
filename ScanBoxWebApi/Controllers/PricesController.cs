@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<PricesGetDTO, PricesPostDTO> _pricesRepository;
         private readonly ILogger<PricesController> _logger;
+        private readonly ITableConverter<PricesGetDTO> _tableConverter;
 
-        public PricesController(ICrudMethodRepository<PricesGetDTO, PricesPostDTO> pricesRepository, ILogger<PricesController> logger)
+        public PricesController(ICrudMethodRepository<PricesGetDTO, PricesPostDTO> pricesRepository, ILogger<PricesController> logger, ITableConverter<PricesGetDTO> tableConverter)
         {
             _pricesRepository = pricesRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of Prices: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_prices_csv")]
+        public ActionResult<string> GetPricesAsCsv()
+        {
+            try
+            {
+                var list = _pricesRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of prices as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

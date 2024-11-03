@@ -3,6 +3,7 @@ using ScanBoxWebApi.DTO.PostDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
+using ScanBoxWebApi.Repository;
 
 namespace ScanBoxWebApi.Controllers
 {
@@ -12,11 +13,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> _counterpartyRepository;
         private readonly ILogger<CountepartyController> _logger;
+        private readonly ITableConverter<CounterpartyGetDTO> _tableConverter;
 
-        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger<CountepartyController> logger)
+        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger<CountepartyController> logger, ITableConverter<CounterpartyGetDTO> tableConverter)
         {
             _counterpartyRepository = counterpartyRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +90,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of counterparty: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_counterparties_csv")]
+        public ActionResult<string> GetCounterpartiesAsCsv()
+        {
+            try
+            {
+                var list = _counterpartyRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of counterparties as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

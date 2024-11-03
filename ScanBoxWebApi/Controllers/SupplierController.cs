@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO> _supplierRepository;
         private readonly ILogger<SupplierController> _logger;
+        private readonly ITableConverter<SupplierGetDTO> _tableConverter;
 
-        public SupplierController(ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO> supplierRepository, ILogger<SupplierController> logger)
+        public SupplierController(ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO> supplierRepository, ILogger<SupplierController> logger, ITableConverter<SupplierGetDTO> tableConverter)
         {
             _supplierRepository = supplierRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of Supplier: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_suppliers_csv")]
+        public ActionResult<string> GetSuppliersAsCsv()
+        {
+            try
+            {
+                var list = _supplierRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of suppliers as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

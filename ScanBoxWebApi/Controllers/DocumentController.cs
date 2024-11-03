@@ -12,10 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> _documentRepository;
         private readonly ILogger<DocumentController> _logger;
-        public DocumentController(ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> documentRepository, ILogger<DocumentController> logger)
+        private readonly ITableConverter<DocumentGetDTO> _tableConverter;
+
+        public DocumentController(ICrudMethodRepository<DocumentGetDTO, DocumentPostDTO> documentRepository, ILogger<DocumentController> logger, ITableConverter<DocumentGetDTO> tableConverter)
         {
             _documentRepository = documentRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize]
@@ -86,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of documents: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_documents_csv")]
+        public ActionResult<string> GetDocumentsAsCsv()
+        {
+            try
+            {
+                var list = _documentRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of documents as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

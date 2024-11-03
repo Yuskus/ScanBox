@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<MovementHistoryGetDTO, MovementHistoryPostDTO> _movementHistoryRepository;
         private readonly ILogger<MovementHistoryController> _logger;
+        private readonly ITableConverter<MovementHistoryGetDTO> _tableConverter;
 
-        public MovementHistoryController(ICrudMethodRepository<MovementHistoryGetDTO, MovementHistoryPostDTO> movementHistoryRepository, ILogger<MovementHistoryController> logger)
+        public MovementHistoryController(ICrudMethodRepository<MovementHistoryGetDTO, MovementHistoryPostDTO> movementHistoryRepository, ILogger<MovementHistoryController> logger, ITableConverter<MovementHistoryGetDTO> tableConverter)
         {
             _movementHistoryRepository = movementHistoryRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of MovementHistory: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_movement_history_csv")]
+        public ActionResult<string> GetMovementHistoryAsCsv()
+        {
+            try
+            {
+                var list = _movementHistoryRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of movement history as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

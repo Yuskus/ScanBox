@@ -78,12 +78,6 @@ namespace ScanBoxWebApi
                 };
             });
 
-            
-            /*builder.Services.AddDbContext<ScanBoxDbContext>(options =>
-            {
-                options.UseLazyLoadingProxies().UseNpgsql();
-            });*/
-
             // контекст бд (проверить строку подключения и миграции)
             builder.Services.AddScoped(x => new ScanBoxDbContext(builder.Configuration.GetConnectionString("ScanBoxDb")!));
 
@@ -117,7 +111,7 @@ namespace ScanBoxWebApi
             
             // прочие имплементации
             builder.Services.AddTransient<IShipmentComparer<ShipmentGetDTO>, ShipmentComparer>();
-            builder.Services.AddTransient<ITableConverter, TableToCsvConverter>();
+            builder.Services.AddTransient<ITableConverter<T>, TableToCsvConverter<T>>();
 
             // добавление логирования
             builder.Logging.AddConsole();

@@ -12,10 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO> _jobTitleRepository;
         private readonly ILogger<JobTitleController> _logger;
-        public JobTitleController(ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>  jobtiTleRepository, ILogger<JobTitleController> logger)
+        private readonly ITableConverter<JobTitleGetDTO> _tableConverter;
+
+        public JobTitleController(ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>  jobtiTleRepository, ILogger<JobTitleController> logger, ITableConverter<JobTitleGetDTO> tableConverter)
         {
             _jobTitleRepository = jobtiTleRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -86,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of JobTitle: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_job_titles_csv")]
+        public ActionResult<string> GetJobTitlesAsCsv()
+        {
+            try
+            {
+                var list = _jobTitleRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of job titles as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

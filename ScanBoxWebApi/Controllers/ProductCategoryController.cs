@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<ProductCategoryGetDTO, ProductCategoryPostDTO> _productCategoryRepository;
         private readonly ILogger<ProductCategoryController> _logger;
+        private readonly ITableConverter<ProductCategoryGetDTO> _tableConverter;
 
-        public ProductCategoryController(ICrudMethodRepository<ProductCategoryGetDTO, ProductCategoryPostDTO> productCategoryRepository, ILogger<ProductCategoryController> logger)
+        public ProductCategoryController(ICrudMethodRepository<ProductCategoryGetDTO, ProductCategoryPostDTO> productCategoryRepository, ILogger<ProductCategoryController> logger, ITableConverter<ProductCategoryGetDTO> tableConverter)
         {
             _productCategoryRepository = productCategoryRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of ProductCategory: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_product_categories_csv")]
+        public ActionResult<string> GetProductCategoriesAsCsv()
+        {
+            try
+            {
+                var list = _productCategoryRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of product categories as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }
