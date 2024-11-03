@@ -13,11 +13,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO> _legalFormRepository;
         private readonly ILogger<LegalFormController> _logger;
+        private readonly ITableConverter<LegalFormGetDTO> _tableConverter;
 
-        public LegalFormController(ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO> legalFormRepository, ILogger<LegalFormController> logger)
+        public LegalFormController(ICrudMethodRepository<LegalFormGetDTO, LegalFormPostDTO> legalFormRepository, ILogger<LegalFormController> logger, ITableConverter<LegalFormGetDTO> tableConverter)
         {
             _legalFormRepository = legalFormRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -88,6 +90,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of LegalForm: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_legal_forms_csv")]
+        public ActionResult<string> GetLegalFormsAsCsv()
+        {
+            try
+            {
+                var list = _legalFormRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of legal forms as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

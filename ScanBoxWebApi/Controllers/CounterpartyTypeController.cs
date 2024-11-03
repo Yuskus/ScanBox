@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> _counterpartyTypeRepository;
         private readonly ILogger<CounterpartyTypeController> _logger;
+        private readonly ITableConverter<CounterpartyTypeGetDTO> _tableConverter;
 
-        public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, ILogger<CounterpartyTypeController> logger)
+        public CounterpartyTypeController(ICrudMethodRepository<CounterpartyTypeGetDTO, CounterpartyTypePostDTO> counterpartyTypeRepository, ILogger<CounterpartyTypeController> logger, ITableConverter<CounterpartyTypeGetDTO> tableConverter)
         {
             _counterpartyTypeRepository = counterpartyTypeRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of counterpartyType: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_counterparty_types_csv")]
+        public ActionResult<string> GetCounterpartyTypesAsCsv()
+        {
+            try
+            {
+                var list = _counterpartyTypeRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of counterparty types as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

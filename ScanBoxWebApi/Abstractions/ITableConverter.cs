@@ -1,7 +1,7 @@
 ﻿namespace ScanBoxWebApi.Abstractions
 {
-    public interface ITableConverter
+    public interface ITableConverter<T> where T : class
     {
-        public string Convert(string jsonArray);
+        public string Convert(IEnumerable<T> array);
     }
 }

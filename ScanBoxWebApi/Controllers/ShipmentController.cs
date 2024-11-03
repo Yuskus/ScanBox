@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO> _shipmentRepository;
         private readonly ILogger<ShipmentController> _logger;
+        private readonly ITableConverter<ShipmentGetDTO> _tableConverter;
 
-        public ShipmentController(ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO> shipmentRepository, ILogger<ShipmentController> logger)
+        public ShipmentController(ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO> shipmentRepository, ILogger<ShipmentController> logger, ITableConverter<ShipmentGetDTO> tableConverter)
         {
             _shipmentRepository = shipmentRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of Shipment: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_shipments_csv")]
+        public ActionResult<string> GetShipmentsAsCsv()
+        {
+            try
+            {
+                var list = _shipmentRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of shipments as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

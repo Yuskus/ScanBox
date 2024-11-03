@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<ManufacturerGetDTO, ManufacturerPostDTO> _manufacturerRepository;
         private readonly ILogger<ManufacturerController> _logger;
+        private readonly ITableConverter<ManufacturerGetDTO> _tableConverter;
 
-        public ManufacturerController(ICrudMethodRepository<ManufacturerGetDTO, ManufacturerPostDTO> manufacturerRepository, ILogger<ManufacturerController> logger)
+        public ManufacturerController(ICrudMethodRepository<ManufacturerGetDTO, ManufacturerPostDTO> manufacturerRepository, ILogger<ManufacturerController> logger, ITableConverter<ManufacturerGetDTO> tableConverter)
         {
             _manufacturerRepository = manufacturerRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of Manufacturer: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_manufacturers_csv")]
+        public ActionResult<string> GetManufacturersAsCsv()
+        {
+            try
+            {
+                var list = _manufacturerRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of manufacturers as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO> _warehouseEmployeeRepository;
         private readonly ILogger<WarehouseEmployeeController> _logger;
+        private readonly ITableConverter<WarehouseEmployeeGetDTO> _tableConverter;
 
-        public WarehouseEmployeeController(ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO> warehouseEmployeeRepository, ILogger<WarehouseEmployeeController> logger)
+        public WarehouseEmployeeController(ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO> warehouseEmployeeRepository, ILogger<WarehouseEmployeeController> logger, ITableConverter<WarehouseEmployeeGetDTO> tableConverter)
         {
             _warehouseEmployeeRepository = warehouseEmployeeRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of WarehouseEmployee: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_warehouse_employees_csv")]
+        public ActionResult<string> GetWarehouseEmployeesAsCsv()
+        {
+            try
+            {
+                var list = _warehouseEmployeeRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of warehouse employees as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

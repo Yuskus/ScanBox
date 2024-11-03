@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO> _legalEntityRepository;
         private readonly ILogger<LegalEntityController> _logger;
+        private readonly ITableConverter<LegalEntityGetDTO> _tableConverter;
 
-        public LegalEntityController(ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO> legalEntityRepository, ILogger<LegalEntityController> logger)
+        public LegalEntityController(ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO> legalEntityRepository, ILogger<LegalEntityController> logger, ITableConverter<LegalEntityGetDTO> tableConverter)
         {
             _legalEntityRepository = legalEntityRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize(Roles = "Admin")]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of LegalEntity: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_legal_entities_csv")]
+        public ActionResult<string> GetLegalEntitiesAsCsv()
+        {
+            try
+            {
+                var list = _legalEntityRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of legal entities as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }

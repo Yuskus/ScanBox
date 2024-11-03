@@ -12,11 +12,13 @@ namespace ScanBoxWebApi.Controllers
     {
         private readonly ICrudMethodRepository<ProductTypeGetDTO, ProductTypePostDTO> _productTypeRepository;
         private readonly ILogger<ProductTypeController> _logger;
+        private readonly ITableConverter<ProductTypeGetDTO> _tableConverter;
 
-        public ProductTypeController(ICrudMethodRepository<ProductTypeGetDTO, ProductTypePostDTO> productTypeRepository, ILogger<ProductTypeController> logger)
+        public ProductTypeController(ICrudMethodRepository<ProductTypeGetDTO, ProductTypePostDTO> productTypeRepository, ILogger<ProductTypeController> logger, ITableConverter<ProductTypeGetDTO> tableConverter)
         {
             _productTypeRepository = productTypeRepository;
             _logger = logger;
+            _tableConverter = tableConverter;
         }
 
         [Authorize]
@@ -87,6 +89,23 @@ namespace ScanBoxWebApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error when requesting a list of ProductType: {Message}", ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [Authorize]
+        [HttpGet(template: "get_product_types_csv")]
+        public ActionResult<string> GetProductTypesAsCsv()
+        {
+            try
+            {
+                var list = _productTypeRepository.GetElemetsList();
+                var result = _tableConverter.Convert(list);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error when requesting a list of product types as csv: {Message}", ex.Message);
                 return StatusCode(500);
             }
         }
