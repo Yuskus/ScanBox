@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<SupplierController> _logger;
         private readonly ITableConverter<SupplierGetDTO> _tableConverter;
 
-        public SupplierController(ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO> supplierRepository, ILogger<SupplierController> logger, ITableConverter<SupplierGetDTO> tableConverter)
+        public SupplierController(ICrudMethodRepository<SupplierGetDTO, SupplierPostDTO> supplierRepository, 
+                                  ILogger<SupplierController> logger, 
+                                  ITableConverter<SupplierGetDTO> tableConverter)
         {
             _supplierRepository = supplierRepository;
             _logger = logger;

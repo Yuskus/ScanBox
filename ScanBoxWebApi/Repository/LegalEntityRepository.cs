@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public LegalEntityRepository(ScanBoxDbContext context, IMapper mapper)
+        public LegalEntityRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
 
         public int Create(LegalEntityPostDTO legalEntityDto)
@@ -26,6 +29,7 @@ namespace ScanBoxWebApi.Repository
                 legalEntityEntity = _mapper.Map<LegalEntityEntity>(legalEntityDto);
                 _context.Add(legalEntityEntity);
                 _context.SaveChanges();
+                _cache.Remove("legal_entities");
             }
             return legalEntityEntity.Id;
         }
@@ -39,13 +43,19 @@ namespace ScanBoxWebApi.Repository
                 result = legalEntityEntity.Id;
                 _context.Remove(legalEntityEntity);
                 _context.SaveChanges();
+                _cache.Remove("legal_entities");
             }
             return result;
         }
 
         public IEnumerable<LegalEntityGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("legal_entities", out IEnumerable<LegalEntityGetDTO>? legalEntities))
+            {
+                if (legalEntities is not null) return legalEntities;
+            }
             var legalEntityEntity = _context.LegalEntities.Select(x => _mapper.Map<LegalEntityGetDTO>(x)).ToList();
+            _cache.Set("legal_entities", legalEntityEntity, TimeSpan.FromMinutes(30));
             return legalEntityEntity;
         }
 
@@ -67,6 +77,7 @@ namespace ScanBoxWebApi.Repository
                 legalEntityEntity.ContactPerson = legalEntityDto.ContactPerson;
 
                 _context.SaveChanges();
+                _cache.Remove("legal_entities");
                 return legalEntityEntity.Id;
             }
             return -1;

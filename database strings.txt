@@ -3,6 +3,8 @@ qin:
 dotnet ef migrations add TryToFinish --project ..\DatabaseModel --context ScanBoxDbContext
 
 dotnet ef database update --connection "Host=localhost;Username=postgres;Password=example;Database=ScanBoxDb"
+or
+dotnet ef database update --connection "Host=localhost;Username=postgres;Password=example;Database=ScanBoxDb" --project ..\DatabaseModel --context ScanBoxDbContext
 
 out:
 

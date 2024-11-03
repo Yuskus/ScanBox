@@ -74,7 +74,7 @@ namespace ScanBoxWebApi
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = builder.Configuration["Jwt:Issuer"],
                     ValidAudience = builder.Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new RsaSecurityKey(RSATool.GetKey("public_key.pem"))
+                    IssuerSigningKey = new RsaSecurityKey(RSATool.GetPublicKey())
                 };
             });
 
@@ -110,11 +110,31 @@ namespace ScanBoxWebApi
             builder.Services.AddTransient<ITokenGenerator, TokenGenerator>();
             
             // прочие имплементации
-            builder.Services.AddTransient<IShipmentComparer<ShipmentGetDTO>, ShipmentComparer>();
-            builder.Services.AddTransient<ITableConverter<T>, TableToCsvConverter<T>>();
+            builder.Services.AddTransient<IShipmentComparer, ShipmentComparer>();
+            builder.Services.AddTransient<ITableConverter<BuyerGetDTO>, TableToCsvConverter<BuyerGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<CounterpartyGetDTO>, TableToCsvConverter<CounterpartyGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<CounterpartyTypeGetDTO>, TableToCsvConverter<CounterpartyTypeGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<DocumentGetDTO>, TableToCsvConverter<DocumentGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<DocumentTypeGetDTO>, TableToCsvConverter<DocumentTypeGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<IndividualGetDTO>, TableToCsvConverter<IndividualGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<JobTitleGetDTO>, TableToCsvConverter<JobTitleGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<LegalEntityGetDTO>, TableToCsvConverter<LegalEntityGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<LegalFormGetDTO>, TableToCsvConverter<LegalFormGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<ManufacturerGetDTO>, TableToCsvConverter<ManufacturerGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<MovementHistoryGetDTO>, TableToCsvConverter<MovementHistoryGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<PricesGetDTO>, TableToCsvConverter<PricesGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<ProductCategoryGetDTO>, TableToCsvConverter<ProductCategoryGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<ProductTypeGetDTO>, TableToCsvConverter<ProductTypeGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<ProductUnitGetDTO>, TableToCsvConverter<ProductUnitGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<ShipmentGetDTO>, TableToCsvConverter<ShipmentGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<SupplierGetDTO>, TableToCsvConverter<SupplierGetDTO>>();
+            builder.Services.AddTransient<ITableConverter<WarehouseEmployeeGetDTO>, TableToCsvConverter<WarehouseEmployeeGetDTO>>();
 
             // добавление логирования
             builder.Logging.AddConsole();
+
+            // добавление кэширования
+            builder.Services.AddMemoryCache(x => x.TrackStatistics = true);
 
             var app = builder.Build();
 

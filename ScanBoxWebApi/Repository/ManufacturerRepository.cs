@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public ManufacturerRepository(ScanBoxDbContext context, IMapper mapper)
+        public ManufacturerRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(ManufacturerPostDTO manufacturerDto)
         {
@@ -25,6 +28,7 @@ namespace ScanBoxWebApi.Repository
                 manufacturerEntity = _mapper.Map<ManufacturerEntity>(manufacturerDto);
                 _context.Add(manufacturerEntity);
                 _context.SaveChanges();
+                _cache.Remove("manufacturers");
             }
             return manufacturerEntity.Id;
         }
@@ -39,13 +43,19 @@ namespace ScanBoxWebApi.Repository
                 result = manufacturerEntity.Id;
                 _context.Remove(manufacturerEntity);
                 _context.SaveChanges();
+                _cache.Remove("manufacturers");
             }
             return result;
         }
 
         public IEnumerable<ManufacturerGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("manufacturers", out IEnumerable<ManufacturerGetDTO>? manufacturers))
+            {
+                if (manufacturers is not null) return manufacturers;
+            }
             var manufacturerEntity = _context.Manufacturers.Select(x => _mapper.Map<ManufacturerGetDTO>(x)).ToList();
+            _cache.Set("manufacturers", manufacturerEntity, TimeSpan.FromMinutes(30));
             return manufacturerEntity;
         }
 
@@ -57,6 +67,7 @@ namespace ScanBoxWebApi.Repository
                 manufacturerEntity.CounterpartyId = manufacturerDto.CounterpartyId;
 
                 _context.SaveChanges();
+                _cache.Remove("manufacturers");
                 return manufacturerEntity.Id;
             }
             return -1;

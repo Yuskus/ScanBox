@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<WarehouseEmployeeController> _logger;
         private readonly ITableConverter<WarehouseEmployeeGetDTO> _tableConverter;
 
-        public WarehouseEmployeeController(ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO> warehouseEmployeeRepository, ILogger<WarehouseEmployeeController> logger, ITableConverter<WarehouseEmployeeGetDTO> tableConverter)
+        public WarehouseEmployeeController(ICrudMethodRepository<WarehouseEmployeeGetDTO, WarehouseEmployeePostDTO> warehouseEmployeeRepository, 
+                                           ILogger<WarehouseEmployeeController> logger, 
+                                           ITableConverter<WarehouseEmployeeGetDTO> tableConverter)
         {
             _warehouseEmployeeRepository = warehouseEmployeeRepository;
             _logger = logger;

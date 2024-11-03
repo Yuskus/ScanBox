@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<LegalEntityController> _logger;
         private readonly ITableConverter<LegalEntityGetDTO> _tableConverter;
 
-        public LegalEntityController(ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO> legalEntityRepository, ILogger<LegalEntityController> logger, ITableConverter<LegalEntityGetDTO> tableConverter)
+        public LegalEntityController(ICrudMethodRepository<LegalEntityGetDTO, LegalEntityPostDTO> legalEntityRepository, 
+                                     ILogger<LegalEntityController> logger, 
+                                     ITableConverter<LegalEntityGetDTO> tableConverter)
         {
             _legalEntityRepository = legalEntityRepository;
             _logger = logger;

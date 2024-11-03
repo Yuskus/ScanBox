@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<ProductTypeController> _logger;
         private readonly ITableConverter<ProductTypeGetDTO> _tableConverter;
 
-        public ProductTypeController(ICrudMethodRepository<ProductTypeGetDTO, ProductTypePostDTO> productTypeRepository, ILogger<ProductTypeController> logger, ITableConverter<ProductTypeGetDTO> tableConverter)
+        public ProductTypeController(ICrudMethodRepository<ProductTypeGetDTO, ProductTypePostDTO> productTypeRepository, 
+                                     ILogger<ProductTypeController> logger, 
+                                     ITableConverter<ProductTypeGetDTO> tableConverter)
         {
             _productTypeRepository = productTypeRepository;
             _logger = logger;

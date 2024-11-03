@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public DocumentTypeRepository(ScanBoxDbContext context, IMapper mapper)
+        public DocumentTypeRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
 
         public int Create(DocumentTypePostDTO documentTypeDto)
@@ -26,6 +29,7 @@ namespace ScanBoxWebApi.Repository
                 documentTypeEntity = _mapper.Map<DocumentTypeEntity>(documentTypeDto);
                 _context.Add(documentTypeEntity);
                 _context.SaveChanges();
+                _cache.Remove("document_types");
             }
             return documentTypeEntity.Id;
         }
@@ -39,13 +43,19 @@ namespace ScanBoxWebApi.Repository
                 result = documentTypeEntity.Id;
                 _context.Remove(documentTypeEntity);
                 _context.SaveChanges();
+                _cache.Remove("document_types");
             }
             return result;
         }
 
         public IEnumerable<DocumentTypeGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("document_types", out IEnumerable<DocumentTypeGetDTO>? documentTypes))
+            {
+                if (documentTypes is not null) return documentTypes;
+            }
             var documentTypeEntity = _context.DocumentType.Select(x => _mapper.Map<DocumentTypeGetDTO>(x)).ToList();
+            _cache.Set("document_types", documentTypeEntity, TimeSpan.FromMinutes(30));
             return documentTypeEntity;
         }
 
@@ -58,6 +68,7 @@ namespace ScanBoxWebApi.Repository
                 documentTypeEntity.Description = documentTypeDto.Description;
                 
                 _context.SaveChanges();
+                _cache.Remove("document_types");
                 return documentTypeEntity.Id;
             }
             return -1;

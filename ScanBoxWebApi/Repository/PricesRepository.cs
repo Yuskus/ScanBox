@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public PricesRepository(ScanBoxDbContext context, IMapper mapper)
+        public PricesRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(PricesPostDTO pricesDto)
         {
@@ -25,6 +28,7 @@ namespace ScanBoxWebApi.Repository
                 pricesEntity = _mapper.Map<PricesEntity>(pricesDto);
                 _context.Add(pricesEntity);
                 _context.SaveChanges();
+                _cache.Remove("prices");
             }
             return pricesEntity.ProductTypeId;
         }
@@ -39,13 +43,19 @@ namespace ScanBoxWebApi.Repository
                 result = pricesEntity.ProductTypeId;
                 _context.Remove(pricesEntity);
                 _context.SaveChanges();
+                _cache.Remove("prices");
             }
             return result;
         }
 
         public IEnumerable<PricesGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("prices", out IEnumerable<PricesGetDTO>? prices))
+            {
+                if (prices is not null) return prices;
+            }
             var pricesEntity = _context.PricesList.Select(x => _mapper.Map<PricesGetDTO>(x)).ToList();
+            _cache.Set("prices", pricesEntity, TimeSpan.FromMinutes(30));
             return pricesEntity;
         }
 
@@ -60,6 +70,7 @@ namespace ScanBoxWebApi.Repository
                 pricesEntity.WholesalePrice = pricesDto.WholesalePrice;
 
                 _context.SaveChanges();
+                _cache.Remove("prices");
                 return pricesEntity.ProductTypeId;
             }
             return -1;

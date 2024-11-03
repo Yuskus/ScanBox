@@ -3,7 +3,6 @@ using ScanBoxWebApi.DTO.PostDTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScanBoxWebApi.Abstractions;
-using ScanBoxWebApi.Repository;
 
 namespace ScanBoxWebApi.Controllers
 {
@@ -15,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<CountepartyController> _logger;
         private readonly ITableConverter<CounterpartyGetDTO> _tableConverter;
 
-        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, ILogger<CountepartyController> logger, ITableConverter<CounterpartyGetDTO> tableConverter)
+        public CountepartyController(ICrudMethodRepository<CounterpartyGetDTO, CounterpartyPostDTO> counterpartyRepository, 
+                                     ILogger<CountepartyController> logger, 
+                                     ITableConverter<CounterpartyGetDTO> tableConverter)
         {
             _counterpartyRepository = counterpartyRepository;
             _logger = logger;

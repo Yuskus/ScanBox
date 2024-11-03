@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<JobTitleController> _logger;
         private readonly ITableConverter<JobTitleGetDTO> _tableConverter;
 
-        public JobTitleController(ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>  jobtiTleRepository, ILogger<JobTitleController> logger, ITableConverter<JobTitleGetDTO> tableConverter)
+        public JobTitleController(ICrudMethodRepository<JobTitleGetDTO, JobTitlePostDTO>  jobtiTleRepository, 
+                                  ILogger<JobTitleController> logger, 
+                                  ITableConverter<JobTitleGetDTO> tableConverter)
         {
             _jobTitleRepository = jobtiTleRepository;
             _logger = logger;

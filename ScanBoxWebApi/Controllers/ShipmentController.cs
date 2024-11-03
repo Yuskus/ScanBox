@@ -14,7 +14,9 @@ namespace ScanBoxWebApi.Controllers
         private readonly ILogger<ShipmentController> _logger;
         private readonly ITableConverter<ShipmentGetDTO> _tableConverter;
 
-        public ShipmentController(ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO> shipmentRepository, ILogger<ShipmentController> logger, ITableConverter<ShipmentGetDTO> tableConverter)
+        public ShipmentController(ICrudMethodRepository<ShipmentGetDTO, ShipmentPostDTO> shipmentRepository, 
+                                  ILogger<ShipmentController> logger, 
+                                  ITableConverter<ShipmentGetDTO> tableConverter)
         {
             _shipmentRepository = shipmentRepository;
             _logger = logger;

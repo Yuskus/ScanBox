@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -11,11 +12,13 @@ namespace ScanBoxWebApi.Repository
     {
         private readonly ScanBoxDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public ShipmentRepository(ScanBoxDbContext context, IMapper mapper)
+        public ShipmentRepository(ScanBoxDbContext context, IMapper mapper, IMemoryCache cache)
         {
             _context = context;
             _mapper = mapper;
+            _cache = cache;
         }
         public int Create(ShipmentPostDTO shipmentDto)
         {
@@ -26,6 +29,7 @@ namespace ScanBoxWebApi.Repository
                 shipmentEntity = _mapper.Map<ShipmentEntity>(shipmentDto);
                 _context.Add(shipmentEntity);
                 _context.SaveChanges();
+                _cache.Remove("shipments");
             }
             return shipmentEntity.Id;
         }
@@ -40,13 +44,19 @@ namespace ScanBoxWebApi.Repository
                 result = shipmentEntity.Id;
                 _context.Remove(shipmentEntity);
                 _context.SaveChanges();
+                _cache.Remove("shipments");
             }
             return result;
         }
 
         public IEnumerable<ShipmentGetDTO> GetElemetsList()
         {
+            if (_cache.TryGetValue("shipments", out IEnumerable<ShipmentGetDTO>? shipments))
+            {
+                if (shipments is not null) return shipments;
+            }
             var shipmentEntity = _context.Shipments.Select(x => _mapper.Map<ShipmentGetDTO>(x)).ToList();
+            _cache.Set("", shipmentEntity, TimeSpan.FromMinutes(30));
             return shipmentEntity;
         }
 
@@ -60,6 +70,7 @@ namespace ScanBoxWebApi.Repository
                 shipmentEntity.ProductUnitId = shipmentDto.ProductUnitId;
 
                 _context.SaveChanges();
+                _cache.Remove("shipments");
                 return shipmentEntity.Id;
             }
             return -1;
