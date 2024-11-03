@@ -45,7 +45,7 @@ namespace ScanBoxWebApi.Repository
 
         public IEnumerable<LegalEntityGetDTO> GetElemetsList()
         {
-            var legalEntityEntity = _context.LegalEntities.Select(x => _mapper.Map<LegalEntityGetDTO>(x));
+            var legalEntityEntity = _context.LegalEntities.Select(x => _mapper.Map<LegalEntityGetDTO>(x)).ToList();
             return legalEntityEntity;
         }
 
