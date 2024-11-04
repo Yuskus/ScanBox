@@ -23,7 +23,7 @@ namespace ScanBoxWebApi.Repository
 
         public int Create(DocumentTypePostDTO documentTypeDto)
         {
-            var documentTypeEntity = _context.DocumentType.FirstOrDefault(x => x.DoctypeName.Equals(documentTypeDto.DoctypeName, StringComparison.InvariantCultureIgnoreCase));
+            var documentTypeEntity = _context.DocumentType.FirstOrDefault(x => x.DoctypeName.ToLower() == documentTypeDto.DoctypeName.ToLower());
             if (documentTypeEntity is null)
             {
                 documentTypeEntity = _mapper.Map<DocumentTypeEntity>(documentTypeDto);
