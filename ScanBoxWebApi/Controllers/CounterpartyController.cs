@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_counterparty")]
-        public ActionResult<int> AddCounterparty([FromBody] CounterpartyPostDTO counterpartyPostDTO)
+        public async Task<ActionResult<int>> AddCounterparty([FromBody] CounterpartyPostDTO counterpartyPostDTO)
         {
             try
             {
-                var result = _counterpartyRepository.Create(counterpartyPostDTO);
+                var result = await _counterpartyRepository.Create(counterpartyPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_counterparty")]
-        public ActionResult<int> PutCounterparty([FromBody] CounterpartyGetDTO counterpartyDTO)
+        public async Task<ActionResult<int>> PutCounterparty([FromBody] CounterpartyGetDTO counterpartyDTO)
         {
             try
             {
-                var result = _counterpartyRepository.Update(counterpartyDTO);
+                var result = await _counterpartyRepository.Update(counterpartyDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_counterparty")]
-        public ActionResult<int> DeleteCounterparty([FromBody] int counterpartyId)
+        public async Task<ActionResult<int>> DeleteCounterparty([FromBody] int counterpartyId)
         {
             try
             {
-                var result = _counterpartyRepository.Delete(counterpartyId);
+                var result = await _counterpartyRepository.Delete(counterpartyId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_counterparties")]
-        public ActionResult<IEnumerable<CounterpartyGetDTO>> GetCounterparties()
+        public async Task<ActionResult<IEnumerable<CounterpartyGetDTO>>> GetCounterparties()
         {
             try
             {
-                var result = _counterpartyRepository.GetElemetsList();
+                var result = await _counterpartyRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_counterparties_csv")]
-        public ActionResult<string> GetCounterpartiesAsCsv()
+        public async Task<ActionResult<string>> GetCounterpartiesAsCsv()
         {
             try
             {
-                var list = _counterpartyRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _counterpartyRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

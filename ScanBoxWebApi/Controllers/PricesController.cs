@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPost(template: "add_prices")]
-        public ActionResult<int> AddPrices([FromBody] PricesPostDTO pricesPostDTO)
+        public async Task<ActionResult<int>> AddPrices([FromBody] PricesPostDTO pricesPostDTO)
         {
             try
             {
-                var result = _pricesRepository.Create(pricesPostDTO);
+                var result = await _pricesRepository.Create(pricesPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPut(template: "put_prices")]
-        public ActionResult<int> PutPrices([FromBody] PricesGetDTO pricesDTO)
+        public async Task<ActionResult<int>> PutPrices([FromBody] PricesGetDTO pricesDTO)
         {
             try
             {
-                var result = _pricesRepository.Update(pricesDTO);
+                var result = await _pricesRepository.Update(pricesDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpDelete(template: "delete_prices")]
-        public ActionResult<int> DeletePrices([FromBody] int priceId)
+        public async Task<ActionResult<int>> DeletePrices([FromBody] int priceId)
         {
             try
             {
-                var result = _pricesRepository.Delete(priceId);
+                var result = await _pricesRepository.Delete(priceId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_prices")]
-        public ActionResult<IEnumerable<PricesGetDTO>> GetPrices()
+        public async Task<ActionResult<IEnumerable<PricesGetDTO>>> GetPrices()
         {
             try
             {
-                var result = _pricesRepository.GetElemetsList();
+                var result = await _pricesRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_prices_csv")]
-        public ActionResult<string> GetPricesAsCsv()
+        public async Task<ActionResult<string>> GetPricesAsCsv()
         {
             try
             {
-                var list = _pricesRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _pricesRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

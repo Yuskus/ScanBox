@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -20,47 +21,47 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
             _cache = cache;
         }
-        public int Create(IndividualPostDTO individualDto)
+        public async Task<int> Create(IndividualPostDTO individualDto)
         {
-            var individualEntity = _context.Individuals.FirstOrDefault(x => x.CounterpartyId == individualDto.CounterpartyId);
+            var individualEntity = await _context.Individuals.FirstOrDefaultAsync(x => x.CounterpartyId == individualDto.CounterpartyId);
             if (individualEntity == null)
             {
                 individualEntity = _mapper.Map<IndividualEntity>(individualDto);
-                _context.Add(individualEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(individualEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("individuals");
             }
             return individualEntity.Id;
         }
 
-        public int Delete(int individualId)
+        public async Task<int> Delete(int individualId)
         {
-            var individualEntity = _context.Individuals.FirstOrDefault(x => x.Id == individualId);
+            var individualEntity = await _context.Individuals.FirstOrDefaultAsync(x => x.Id == individualId);
             int result = -1;
             if (individualEntity is not null)
             {
                 result = individualEntity.Id;
                 _context.Remove(individualEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("individuals");
             }
             return result;
         }
 
-        public IEnumerable<IndividualGetDTO> GetElemetsList()
+        public async Task<IEnumerable<IndividualGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("individuals", out IEnumerable<IndividualGetDTO>? individuals))
             {
                 if (individuals is not null) return individuals;
             }
-            var individualEntity = _context.Individuals.Select(x => _mapper.Map<IndividualGetDTO>(x)).ToList();
+            var individualEntity = await _context.Individuals.Select(x => _mapper.Map<IndividualGetDTO>(x)).ToListAsync();
             _cache.Set("individuals", individualEntity, TimeSpan.FromMinutes(30));
             return individualEntity;
         }
 
-        public int Update(IndividualGetDTO individualDto)
+        public async Task<int> Update(IndividualGetDTO individualDto)
         {
-            var individualEntity = _context.Individuals.FirstOrDefault(x => x.Id == individualDto.Id);
+            var individualEntity = await _context.Individuals.FirstOrDefaultAsync(x => x.Id == individualDto.Id);
             if (individualEntity is not null)
             {
                 individualEntity.CounterpartyId = individualDto.CounterpartyId;
@@ -68,7 +69,7 @@ namespace ScanBoxWebApi.Repository
                 individualEntity.Name = individualDto.Name;
                 individualEntity.Patronymic = individualDto.Patronymic;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("individuals");
                 return individualEntity.Id;
             }

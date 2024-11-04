@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_manufacturer")]
-        public ActionResult<int> AddManufacturer([FromBody] ManufacturerPostDTO manufacturerPostDTO)
+        public async Task<ActionResult<int>> AddManufacturer([FromBody] ManufacturerPostDTO manufacturerPostDTO)
         {
             try
             {
-                var result = _manufacturerRepository.Create(manufacturerPostDTO);
+                var result = await _manufacturerRepository.Create(manufacturerPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_manufacturer")]
-        public ActionResult<int> PutManufacturer([FromBody] ManufacturerGetDTO manufacturerDTO)
+        public async Task<ActionResult<int>> PutManufacturer([FromBody] ManufacturerGetDTO manufacturerDTO)
         {
             try
             {
-                var result = _manufacturerRepository.Update(manufacturerDTO);
+                var result = await _manufacturerRepository.Update(manufacturerDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_manufacturer")]
-        public ActionResult<int> DeleteManufacturer([FromBody] int manufacturerId)
+        public async Task<ActionResult<int>> DeleteManufacturer([FromBody] int manufacturerId)
         {
             try
             {
-                var result = _manufacturerRepository.Delete(manufacturerId);
+                var result = await _manufacturerRepository.Delete(manufacturerId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_manufacturers")]
-        public ActionResult<IEnumerable<ManufacturerGetDTO>> GetManufacturers()
+        public async Task<ActionResult<IEnumerable<ManufacturerGetDTO>>> GetManufacturers()
         {
             try
             {
-                var result = _manufacturerRepository.GetElemetsList();
+                var result = await _manufacturerRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_manufacturers_csv")]
-        public ActionResult<string> GetManufacturersAsCsv()
+        public async Task<ActionResult<string>> GetManufacturersAsCsv()
         {
             try
             {
-                var list = _manufacturerRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _manufacturerRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -20,55 +21,55 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
             _cache = cache;
         }
-        public int Create(ProductCategoryPostDTO productGategoryDto)
+        public async Task<int> Create(ProductCategoryPostDTO productGategoryDto)
         {
-            var productCategoryEntity = _context.ProductCategories.FirstOrDefault(x => x.CategoryName.Equals(productGategoryDto.CategoryName, StringComparison.OrdinalIgnoreCase));
+            var productCategoryEntity = await _context.ProductCategories.FirstOrDefaultAsync(x => x.CategoryName.ToLower() == productGategoryDto.CategoryName.ToLower());
             if (productCategoryEntity is null)
             {
                 productCategoryEntity = _mapper.Map<ProductCategoryEntity>(productGategoryDto);
-                _context.Add(productCategoryEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(productCategoryEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("product_categories");
             }
             return productCategoryEntity.Id;
         }
 
-        public int Delete(int productCategoryId)
+        public async Task<int> Delete(int productCategoryId)
         {
-            var productCategoryEntity = _context.ProductCategories.FirstOrDefault(x => x.Id == productCategoryId);
+            var productCategoryEntity = await _context.ProductCategories.FirstOrDefaultAsync(x => x.Id == productCategoryId);
 
             int result = -1;
             if (productCategoryEntity is not null)
             {
                 result = productCategoryEntity.Id;
                 _context.Remove(productCategoryEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("product_categories");
             }
             return result;
         }
 
-        public IEnumerable<ProductCategoryGetDTO> GetElemetsList()
+        public async Task<IEnumerable<ProductCategoryGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("product_categories", out IEnumerable<ProductCategoryGetDTO>? productCategories))
             {
                 if (productCategories is not null) return productCategories;
             }
-            var productCategoryEntity = _context.ProductCategories.Select(x => _mapper.Map<ProductCategoryGetDTO>(x)).ToList();
+            var productCategoryEntity = await _context.ProductCategories.Select(x => _mapper.Map<ProductCategoryGetDTO>(x)).ToListAsync();
             _cache.Set("product_categories", productCategoryEntity, TimeSpan.FromMinutes(30));
             return productCategoryEntity;
         }
 
-        public int Update(ProductCategoryGetDTO productGategoryDto)
+        public async Task<int> Update(ProductCategoryGetDTO productGategoryDto)
         {
-            var productCategoryEntity = _context.ProductCategories.FirstOrDefault(x => x.Id == productGategoryDto.Id);
+            var productCategoryEntity = await _context.ProductCategories.FirstOrDefaultAsync(x => x.Id == productGategoryDto.Id);
 
             if (productCategoryEntity is not null)
             {
                 productCategoryEntity.CategoryName = productGategoryDto.CategoryName;
                 productCategoryEntity.Description = productGategoryDto.Description;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("product_categories");
                 return productCategoryEntity.Id;
             }

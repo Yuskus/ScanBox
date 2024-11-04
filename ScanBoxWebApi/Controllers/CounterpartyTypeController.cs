@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template:"add_counterparty_type" )]
-        public ActionResult<int> AddCounterpartyType ([FromBody] CounterpartyTypePostDTO counterpartyTypePostDTO)
+        public async Task<ActionResult<int>> AddCounterpartyType ([FromBody] CounterpartyTypePostDTO counterpartyTypePostDTO)
         {
             try
             {
-                var result = _counterpartyTypeRepository.Create(counterpartyTypePostDTO);
+                var result = await _counterpartyTypeRepository.Create(counterpartyTypePostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_counterparty_type")]
-        public ActionResult<int> PutCounterpartyType([FromBody] CounterpartyTypeGetDTO counterpartyTypeDTO)
+        public async Task<ActionResult<int>> PutCounterpartyType([FromBody] CounterpartyTypeGetDTO counterpartyTypeDTO)
         {
             try
             {
-                var result = _counterpartyTypeRepository.Update(counterpartyTypeDTO);
+                var result = await _counterpartyTypeRepository.Update(counterpartyTypeDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_counterparty_type")]
-        public ActionResult<int> DeleteCounterpartyType([FromBody] int counterpartyTypeId)
+        public async Task<ActionResult<int>> DeleteCounterpartyType([FromBody] int counterpartyTypeId)
         {
             try
             {
-                var result = _counterpartyTypeRepository.Delete(counterpartyTypeId);
+                var result = await _counterpartyTypeRepository.Delete(counterpartyTypeId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_counterparty_types")]
-        public ActionResult<IEnumerable<CounterpartyTypeGetDTO>> GetCounterpartyTypes()
+        public async Task<ActionResult<IEnumerable<CounterpartyTypeGetDTO>>> GetCounterpartyTypes()
         {
             try
             {
-                var result = _counterpartyTypeRepository.GetElemetsList();
+                var result = await _counterpartyTypeRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_counterparty_types_csv")]
-        public ActionResult<string> GetCounterpartyTypesAsCsv()
+        public async Task<ActionResult<string>> GetCounterpartyTypesAsCsv()
         {
             try
             {
-                var list = _counterpartyTypeRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _counterpartyTypeRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

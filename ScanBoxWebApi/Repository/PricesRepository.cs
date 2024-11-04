@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -20,48 +21,48 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
             _cache = cache;
         }
-        public int Create(PricesPostDTO pricesDto)
+        public async Task<int> Create(PricesPostDTO pricesDto)
         {
-            var pricesEntity = _context.PricesList.FirstOrDefault(x => x.ProductTypeId == pricesDto.ProductTypeId);
+            var pricesEntity = await _context.PricesList.FirstOrDefaultAsync(x => x.ProductTypeId == pricesDto.ProductTypeId);
             if (pricesEntity is null)
             {
                 pricesEntity = _mapper.Map<PricesEntity>(pricesDto);
-                _context.Add(pricesEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(pricesEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("prices");
             }
             return pricesEntity.ProductTypeId;
         }
 
-        public int Delete(int productTypeId)
+        public async Task<int> Delete(int productTypeId)
         {
-            var pricesEntity = _context.PricesList.FirstOrDefault(x => x.ProductTypeId == productTypeId);
+            var pricesEntity = await _context.PricesList.FirstOrDefaultAsync(x => x.ProductTypeId == productTypeId);
 
             int result = -1;
             if (pricesEntity is not null)
             {
                 result = pricesEntity.ProductTypeId;
                 _context.Remove(pricesEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("prices");
             }
             return result;
         }
 
-        public IEnumerable<PricesGetDTO> GetElemetsList()
+        public async Task<IEnumerable<PricesGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("prices", out IEnumerable<PricesGetDTO>? prices))
             {
                 if (prices is not null) return prices;
             }
-            var pricesEntity = _context.PricesList.Select(x => _mapper.Map<PricesGetDTO>(x)).ToList();
+            var pricesEntity = await _context.PricesList.Select(x => _mapper.Map<PricesGetDTO>(x)).ToListAsync();
             _cache.Set("prices", pricesEntity, TimeSpan.FromMinutes(30));
             return pricesEntity;
         }
 
-        public int Update(PricesGetDTO pricesDto)
+        public async Task<int> Update(PricesGetDTO pricesDto)
         {
-            var pricesEntity = _context.PricesList.FirstOrDefault(x => x.ProductTypeId == pricesDto.ProductTypeId);
+            var pricesEntity = await _context.PricesList.FirstOrDefaultAsync(x => x.ProductTypeId == pricesDto.ProductTypeId);
 
             if (pricesEntity is not null)
             {
@@ -69,7 +70,7 @@ namespace ScanBoxWebApi.Repository
                 pricesEntity.RetailPrice = pricesDto.RetailPrice;
                 pricesEntity.WholesalePrice = pricesDto.WholesalePrice;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("prices");
                 return pricesEntity.ProductTypeId;
             }

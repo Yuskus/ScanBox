@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_job_title")]
-        public ActionResult<int> AddJobTitle([FromBody] JobTitlePostDTO jobTitlePostDTO)
+        public async Task<ActionResult<int>> AddJobTitle([FromBody] JobTitlePostDTO jobTitlePostDTO)
         {
             try
             {
-                var result = _jobTitleRepository.Create(jobTitlePostDTO);
+                var result = await _jobTitleRepository.Create(jobTitlePostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_job_title")]
-        public ActionResult<int> PutJobTitle([FromBody] JobTitleGetDTO jobTitleDTO)
+        public async Task<ActionResult<int>> PutJobTitle([FromBody] JobTitleGetDTO jobTitleDTO)
         {
             try
             {
-                var result = _jobTitleRepository.Update(jobTitleDTO);
+                var result = await _jobTitleRepository.Update(jobTitleDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_job_title")]
-        public ActionResult<int> DeleteJobTitle([FromBody] int jobTitleId)
+        public async Task<ActionResult<int>> DeleteJobTitle([FromBody] int jobTitleId)
         {
             try
             {
-                var result = _jobTitleRepository.Delete(jobTitleId);
+                var result = await _jobTitleRepository.Delete(jobTitleId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_job_titles")]
-        public ActionResult<IEnumerable<JobTitleGetDTO>> GetJobTitles()
+        public async Task<ActionResult<IEnumerable<JobTitleGetDTO>>> GetJobTitles()
         {
             try
             {
-                var result = _jobTitleRepository.GetElemetsList();
+                var result = await _jobTitleRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_job_titles_csv")]
-        public ActionResult<string> GetJobTitlesAsCsv()
+        public async Task<ActionResult<string>> GetJobTitlesAsCsv()
         {
             try
             {
-                var list = _jobTitleRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _jobTitleRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

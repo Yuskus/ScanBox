@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPost(template: "add_document_type")]
-        public ActionResult<int> AddDocumentType([FromBody] DocumentTypePostDTO documentTypePostDTO)
+        public async Task<ActionResult<int>> AddDocumentType([FromBody] DocumentTypePostDTO documentTypePostDTO)
         {
             try
             {
-                var result = _documentTypeRepository.Create(documentTypePostDTO);
+                var result = await _documentTypeRepository.Create(documentTypePostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPut(template: "put_document_type")]
-        public ActionResult<int> PutDocumentType([FromBody] DocumentTypeGetDTO documentTypeDTO)
+        public async Task<ActionResult<int>> PutDocumentType([FromBody] DocumentTypeGetDTO documentTypeDTO)
         {
             try
             {
-                var result = _documentTypeRepository.Update(documentTypeDTO);
+                var result = await _documentTypeRepository.Update(documentTypeDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpDelete(template: "delete_document_type")]
-        public ActionResult<int> DeleteDocumentType([FromBody] int documentTypeId)
+        public async Task<ActionResult<int>> DeleteDocumentType([FromBody] int documentTypeId)
         {
             try
             {
-                var result = _documentTypeRepository.Delete(documentTypeId);
+                var result = await _documentTypeRepository.Delete(documentTypeId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_documents_types")]
-        public ActionResult<IEnumerable<DocumentTypeGetDTO>> GetDocumentsTypes()
+        public async Task<ActionResult<IEnumerable<DocumentTypeGetDTO>>> GetDocumentsTypes()
         {
             try
             {
-                var result = _documentTypeRepository.GetElemetsList();
+                var result = await _documentTypeRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_documents_types_csv")]
-        public ActionResult<string> GetDocumentsTypesAsCsv()
+        public async Task<ActionResult<string>> GetDocumentsTypesAsCsv()
         {
             try
             {
-                var list = _documentTypeRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _documentTypeRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

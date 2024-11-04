@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -21,47 +22,47 @@ namespace ScanBoxWebApi.Repository
             _cache = cache;
         }
 
-        public int Create(DocumentPostDTO documentDto)
+        public async Task<int> Create(DocumentPostDTO documentDto)
         {
-            var documentEntity = _context.Document.FirstOrDefault(x => x.Number == documentDto.Number);
+            var documentEntity = await _context.Document.FirstOrDefaultAsync(x => x.Number == documentDto.Number);
             if (documentEntity == null)
             {
                 documentEntity = _mapper.Map<DocumentEntity>(documentDto);
-                _context.Add(documentEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(documentEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("documents");
             }
             return documentEntity.Id;
         }
 
-        public int Delete(int documentId)
+        public async Task<int> Delete(int documentId)
         {
-            var documentEntity = _context.Document.FirstOrDefault(x => x.Id == documentId);
+            var documentEntity = await _context.Document.FirstOrDefaultAsync(x => x.Id == documentId);
             int result = -1;
             if (documentEntity is not null)
             {
                 result = documentEntity.Id;
                 _context.Remove(documentEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("documents");
             }
             return result;
         }
 
-        public IEnumerable<DocumentGetDTO> GetElemetsList()
+        public async Task<IEnumerable<DocumentGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("documents", out IEnumerable<DocumentGetDTO>? documents))
             {
                 if (documents is not null) return documents;
             }
-            var documentEntity = _context.Document.Select(x => _mapper.Map<DocumentGetDTO>(x)).ToList();
+            var documentEntity = await _context.Document.Select(x => _mapper.Map<DocumentGetDTO>(x)).ToListAsync();
             _cache.Set("documents", documentEntity, TimeSpan.FromMinutes(30));
             return documentEntity;
         }
 
-        public int Update(DocumentGetDTO documentDto)
+        public async Task<int> Update(DocumentGetDTO documentDto)
         {
-            var documentEntity = _context.Document.FirstOrDefault(x => x.Id == documentDto.Id);
+            var documentEntity = await _context.Document.FirstOrDefaultAsync(x => x.Id == documentDto.Id);
             if (documentEntity is not null)
             {
                 documentEntity.Number = documentDto.Number;
@@ -70,7 +71,7 @@ namespace ScanBoxWebApi.Repository
                 documentEntity.DocumentTypeId = documentDto.DocumentTypeId;
                 documentEntity.CounterpartyId = documentDto.CounterpartyId;
                 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("documents");
                 return documentEntity.Id;
             }

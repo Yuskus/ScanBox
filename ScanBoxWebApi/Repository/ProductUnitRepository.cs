@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -20,48 +21,48 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
             _cache = cache;
         }
-        public int Create(ProductUnitPostDTO productUnitDto)
+        public async Task<int> Create(ProductUnitPostDTO productUnitDto)
         {
-            var productUnitEntity = _context.ProductUnits.FirstOrDefault(x => x.UniqueBarcode.Equals(productUnitDto.UniqueBarcode));
+            var productUnitEntity = await _context.ProductUnits.FirstOrDefaultAsync(x => x.UniqueBarcode.Equals(productUnitDto.UniqueBarcode));
             if (productUnitEntity is null)
             {
                 productUnitEntity = _mapper.Map<ProductUnitEntity>(productUnitDto);
-                _context.Add(productUnitEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(productUnitEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("product_units");
             }
             return productUnitEntity.Id;
         }
 
-        public int Delete(int productUnitId)
+        public async Task<int> Delete(int productUnitId)
         {
-            var productUnitEntity = _context.ProductUnits.FirstOrDefault(x => x.Id == productUnitId);
+            var productUnitEntity = await _context.ProductUnits.FirstOrDefaultAsync(x => x.Id == productUnitId);
 
             int result = -1;
             if (productUnitEntity is not null)
             {
                 result = productUnitEntity.Id;
                 _context.Remove(productUnitEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("product_units");
             }
             return result;
         }
 
-        public IEnumerable<ProductUnitGetDTO> GetElemetsList()
+        public async Task<IEnumerable<ProductUnitGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("product_units", out IEnumerable<ProductUnitGetDTO>? productUnits))
             {
                 if (productUnits is not null) return productUnits;
             }
-            var productUnitEntity = _context.ProductUnits.Select(x => _mapper.Map<ProductUnitGetDTO>(x)).ToList();
+            var productUnitEntity = await _context.ProductUnits.Select(x => _mapper.Map<ProductUnitGetDTO>(x)).ToListAsync();
             _cache.Set("product_units", productUnitEntity, TimeSpan.FromMinutes(30));
             return productUnitEntity;
         }
 
-        public int Update(ProductUnitGetDTO productUnitDto)
+        public async Task<int> Update(ProductUnitGetDTO productUnitDto)
         {
-            var productUnitEntity = _context.ProductUnits.FirstOrDefault(x => x.Id == productUnitDto.Id);
+            var productUnitEntity = await _context.ProductUnits.FirstOrDefaultAsync(x => x.Id == productUnitDto.Id);
 
             if (productUnitEntity is not null)
             {
@@ -71,7 +72,7 @@ namespace ScanBoxWebApi.Repository
                 productUnitEntity.ProductTypeId = productUnitDto.ProductTypeId;
                 productUnitEntity.SupplierId = productUnitDto.SupplierId;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("product_units");
                 return productUnitEntity.Id;
             }

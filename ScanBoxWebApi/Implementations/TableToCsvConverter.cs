@@ -22,14 +22,12 @@ namespace ScanBoxWebApi.Implementations
             if (firstObj.ValueKind != JsonValueKind.Object) return string.Empty;
 
             // перебор значений имён колонок
-            sb.Append(string.Join(',', firstObj.EnumerateObject().Select(x => x.Name)));
-            sb.Append(';');
+            sb.AppendLine(string.Join("; ", firstObj.EnumerateObject().Select(x => x.Name)));
 
             // перебор значений во всём списке (заполняем таблицу)
             foreach (var element in jRoot.EnumerateArray())
             {
-                sb.Append(string.Join(',', firstObj.EnumerateObject().Select(x => x.Value)));
-                sb.Append(';');
+                sb.AppendLine(string.Join("; ", element.EnumerateObject().Select(x => x.Value)));
             }
 
             return sb.ToString();

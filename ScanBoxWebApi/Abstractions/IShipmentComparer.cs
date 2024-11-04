@@ -4,9 +4,9 @@ namespace ScanBoxWebApi.Abstractions
 {
     public interface IShipmentComparer
     {
-        int Compare(int documentId);
-        IEnumerable<ShipmentGetDTO> GetMissingUnits(int documentId);
-        IEnumerable<ShipmentGetDTO> GetUnwantedUnits(int documentId);
-        IEnumerable<ShipmentGetDTO> GetFoundUnits(int documentId);
+        Task<int> Compare(int documentId);
+        Task<IEnumerable<ShipmentGetDTO>> GetMissingUnits(int documentId);
+        Task<IEnumerable<ShipmentGetDTO>> GetUnwantedUnits(int documentId);
+        Task<IEnumerable<ShipmentGetDTO>> GetFoundUnits(int documentId);
     }
 }

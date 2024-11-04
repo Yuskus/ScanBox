@@ -15,11 +15,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "register_user")]
-        public ActionResult RegisterUser([FromBody] RegisterFormDTO registerForm)
+        public async Task<ActionResult<int>> RegisterUser([FromBody] RegisterFormDTO registerForm)
         {
             try
             {
-                int result = _register.RegisterUser(registerForm);
+                int result = await _register.RegisterUser(registerForm);
                 if (result < 0) return BadRequest(result);
                 return Ok(result);
             }
@@ -32,11 +32,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "update_user_role")]
-        public ActionResult UpdateUserRole([FromBody] UserRightsDTO UserDTO)
+        public async Task<ActionResult<int>> UpdateUserRole([FromBody] UserRightsDTO UserDTO)
         {
             try
             {
-                int result = _register.UpdateRoleUser(UserDTO);
+                int result = await _register.UpdateRoleUser(UserDTO);
                 if (result < 0) return BadRequest(result);
                 return Ok(result);
             }
@@ -49,11 +49,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_user")]
-        public ActionResult DeleteUser([FromBody] string name)
+        public async Task<ActionResult<int>> DeleteUser([FromBody] string name)
         {
             try
             {
-                int result = _register.DeleteUser(name);
+                int result = await _register.DeleteUser(name);
                 if (result < 0) return BadRequest(result);
                 return Ok(result);
             }

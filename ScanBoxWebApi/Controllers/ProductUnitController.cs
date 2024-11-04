@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPost(template: "add_product_unit")]
-        public ActionResult<int> AddProductUnit([FromBody] ProductUnitPostDTO productUnitPostDTO)
+        public async Task<ActionResult<int>> AddProductUnit([FromBody] ProductUnitPostDTO productUnitPostDTO)
         {
             try
             {
-                var result = _productUnitRepository.Create(productUnitPostDTO);
+                var result = await _productUnitRepository.Create(productUnitPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPut(template: "put_product_unit")]
-        public ActionResult<int> PutProductUnit([FromBody] ProductUnitGetDTO productUnitDTO)
+        public async Task<ActionResult<int>> PutProductUnit([FromBody] ProductUnitGetDTO productUnitDTO)
         {
             try
             {
-                var result = _productUnitRepository.Update(productUnitDTO);
+                var result = await _productUnitRepository.Update(productUnitDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpDelete(template: "delete_product_unit")]
-        public ActionResult<int> DeleteProductUnit([FromBody] int productUnitId)
+        public async Task<ActionResult<int>> DeleteProductUnit([FromBody] int productUnitId)
         {
             try
             {
-                var result = _productUnitRepository.Delete(productUnitId);
+                var result = await _productUnitRepository.Delete(productUnitId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_product_units")]
-        public ActionResult<IEnumerable<ProductUnitGetDTO>> GetProductUnits()
+        public async Task<ActionResult<IEnumerable<ProductUnitGetDTO>>> GetProductUnits()
         {
             try
             {
-                var result = _productUnitRepository.GetElemetsList();
+                var result = await _productUnitRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_product_units_csv")]
-        public ActionResult<string> GetProductUnitsAsCsv()
+        public async Task<ActionResult<string>> GetProductUnitsAsCsv()
         {
             try
             {
-                var list = _productUnitRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _productUnitRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

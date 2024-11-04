@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_individual")]
-        public ActionResult<int> AddIndividual([FromBody] IndividualPostDTO individualPostDTO)
+        public async Task<ActionResult<int>> AddIndividual([FromBody] IndividualPostDTO individualPostDTO)
         {
             try
             {
-                var result = _individualRepository.Create(individualPostDTO);
+                var result = await _individualRepository.Create(individualPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_individual")]
-        public ActionResult<int> PutIndividual([FromBody] IndividualGetDTO individualDTO)
+        public async Task<ActionResult<int>> PutIndividual([FromBody] IndividualGetDTO individualDTO)
         {
             try
             {
-                var result = _individualRepository.Update(individualDTO);
+                var result = await _individualRepository.Update(individualDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_individual")]
-        public ActionResult<int> DeleteIndividual([FromBody] int individualId)
+        public async Task<ActionResult<int>> DeleteIndividual([FromBody] int individualId)
         {
             try
             {
-                var result = _individualRepository.Delete(individualId);
+                var result = await _individualRepository.Delete(individualId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_individuals")]
-        public ActionResult<IEnumerable<IndividualGetDTO>> GetIndividuals()
+        public async Task<ActionResult<IEnumerable<IndividualGetDTO>>> GetIndividuals()
         {
             try
             {
-                var result = _individualRepository.GetElemetsList();
+                var result = await _individualRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_individuals_csv")]
-        public ActionResult<string> GetIndividualsAsCsv()
+        public async Task<ActionResult<string>> GetIndividualsAsCsv()
         {
             try
             {
-                var list = _individualRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _individualRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

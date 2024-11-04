@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -20,55 +21,55 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
             _cache = cache;
         }
-        public int Create(SupplierPostDTO supplierDto)
+        public async Task<int> Create(SupplierPostDTO supplierDto)
         {
-            var supplierEntity = _context.Suppilers.FirstOrDefault(x => x.CounterpartyId == supplierDto.CounterpartyId);
+            var supplierEntity = await _context.Suppilers.FirstOrDefaultAsync(x => x.CounterpartyId == supplierDto.CounterpartyId);
 
             if (supplierEntity is null)
             {
                 supplierEntity = _mapper.Map<SupplierEntity>(supplierDto);
-                _context.Add(supplierEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(supplierEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("suppilers");
             }
             return supplierEntity.Id;
         }
 
-        public int Delete(int supplierId)
+        public async Task<int> Delete(int supplierId)
         {
-            var supplierEntity = _context.Suppilers.FirstOrDefault(x => x.Id == supplierId);
+            var supplierEntity = await _context.Suppilers.FirstOrDefaultAsync(x => x.Id == supplierId);
 
             int result = -1;
             if (supplierEntity is not null)
             {
                 result = supplierEntity.Id;
                 _context.Remove(supplierEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("suppilers");
             }
             return result;
         }
 
-        public IEnumerable<SupplierGetDTO> GetElemetsList()
+        public async Task<IEnumerable<SupplierGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("suppilers", out IEnumerable<SupplierGetDTO>? suppilers))
             {
                 if (suppilers is not null) return suppilers;
             }
-            var supplierEntity = _context.Suppilers.Select(x => _mapper.Map<SupplierGetDTO>(x)).ToList();
+            var supplierEntity = await _context.Suppilers.Select(x => _mapper.Map<SupplierGetDTO>(x)).ToListAsync();
             _cache.Set("suppilers", supplierEntity, TimeSpan.FromMinutes(30));
             return supplierEntity;
         }
 
-        public int Update(SupplierGetDTO supplierDto)
+        public async Task<int> Update(SupplierGetDTO supplierDto)
         {
-            var supplierEntity = _context.Suppilers.FirstOrDefault(x => x.Id == supplierDto.Id);
+            var supplierEntity = await _context.Suppilers.FirstOrDefaultAsync(x => x.Id == supplierDto.Id);
 
             if (supplierEntity is not null)
             {
                 supplierEntity.CounterpartyId = supplierDto.CounterpartyId;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("suppilers");
                 return supplierEntity.Id;
             }

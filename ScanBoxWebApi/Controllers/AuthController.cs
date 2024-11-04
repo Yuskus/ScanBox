@@ -15,14 +15,14 @@ namespace ScanBoxWebApi.Controllers
 
         [AllowAnonymous]
         [HttpPost(template: "login")]
-        public ActionResult<string> Auth([FromBody] LoginFormDTO loginForm)
+        public async Task<ActionResult<string>> Auth([FromBody] LoginFormDTO loginForm)
         {
             try
             {
-                var userModel = _userService.Authenticate(loginForm);
+                var userModel = await _userService.Authenticate(loginForm);
                 if (userModel is not null)
                 {
-                    var tokenString = _tokenGenerator.GetToken(userModel);
+                    string tokenString = _tokenGenerator.GetToken(userModel);
                     return Ok(tokenString);
                 }
                 return BadRequest("Please pass the valid Username and Password");

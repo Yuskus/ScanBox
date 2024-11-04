@@ -26,11 +26,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_legal_form")]
-        public ActionResult<int> AddLegalForm([FromBody] LegalFormPostDTO legalFormPostDTO)
+        public async Task<ActionResult<int>> AddLegalForm([FromBody] LegalFormPostDTO legalFormPostDTO)
         {
             try
             {
-                var result = _legalFormRepository.Create(legalFormPostDTO);
+                var result = await _legalFormRepository.Create(legalFormPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -42,11 +42,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_legal_form")]
-        public ActionResult<int> PutLegalForm([FromBody] LegalFormGetDTO legalFormDTO)
+        public async Task<ActionResult<int>> PutLegalForm([FromBody] LegalFormGetDTO legalFormDTO)
         {
             try
             {
-                var result = _legalFormRepository.Update(legalFormDTO);
+                var result = await _legalFormRepository.Update(legalFormDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -62,11 +62,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_legal_form")]
-        public ActionResult<int> DeleteLegalForm([FromBody] int legalFormId)
+        public async Task<ActionResult<int>> DeleteLegalForm([FromBody] int legalFormId)
         {
             try
             {
-                var result = _legalFormRepository.Delete(legalFormId);
+                var result = await _legalFormRepository.Delete(legalFormId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -82,11 +82,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_legal_forms")]
-        public ActionResult<IEnumerable<LegalFormGetDTO>> GetLegalForms()
+        public async Task<ActionResult<IEnumerable<LegalFormGetDTO>>> GetLegalForms()
         {
             try
             {
-                var result = _legalFormRepository.GetElemetsList();
+                var result = await _legalFormRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -98,12 +98,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_legal_forms_csv")]
-        public ActionResult<string> GetLegalFormsAsCsv()
+        public async Task<ActionResult<string>> GetLegalFormsAsCsv()
         {
             try
             {
-                var list = _legalFormRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _legalFormRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

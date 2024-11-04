@@ -4,8 +4,8 @@ namespace ScanBoxWebApi.Abstractions
 {
     public interface IRegister
     {
-        int RegisterUser(RegisterFormDTO registerForm);
-        int UpdateRoleUser(UserRightsDTO UserDTO);
-        int DeleteUser(string name);
+        Task<int> RegisterUser(RegisterFormDTO registerForm);
+        Task<int> UpdateRoleUser(UserRightsDTO UserDTO);
+        Task<int> DeleteUser(string name);
     }
 }

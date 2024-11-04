@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -20,49 +21,49 @@ namespace ScanBoxWebApi.Repository
             _mapper = mapper;
             _cache = cache;
         }
-        public int Create(WarehouseEmployeePostDTO warehouseEployeeDto)
+        public async Task<int> Create(WarehouseEmployeePostDTO warehouseEployeeDto)
         {
-            var warehouseEmployeeEntity = _context.WarehouseEmployees.FirstOrDefault(x => x.Phone.Equals(warehouseEployeeDto.Phone));
+            var warehouseEmployeeEntity = await _context.WarehouseEmployees.FirstOrDefaultAsync(x => x.Phone.Equals(warehouseEployeeDto.Phone));
 
             if (warehouseEmployeeEntity is null)
             {
                 warehouseEmployeeEntity = _mapper.Map<WarehouseEmployeeEntity>(warehouseEployeeDto);
-                _context.Add(warehouseEmployeeEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(warehouseEmployeeEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("warehouse_employees");
             }
             return warehouseEmployeeEntity.Id;
         }
 
-        public int Delete(int warehouseEployeeId)
+        public async Task<int> Delete(int warehouseEployeeId)
         {
-            var warehouseEmployeeEntity = _context.WarehouseEmployees.FirstOrDefault(x => x.Id == warehouseEployeeId);
+            var warehouseEmployeeEntity = await _context.WarehouseEmployees.FirstOrDefaultAsync(x => x.Id == warehouseEployeeId);
 
             int result = -1;
             if (warehouseEmployeeEntity is not null)
             {
                 result = warehouseEmployeeEntity.Id;
                 _context.Remove(warehouseEmployeeEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("warehouse_employees");
             }
             return result;
         }
 
-        public IEnumerable<WarehouseEmployeeGetDTO> GetElemetsList()
+        public async Task<IEnumerable<WarehouseEmployeeGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("warehouse_employees", out IEnumerable<WarehouseEmployeeGetDTO>? warehouseEmployees))
             {
                 if (warehouseEmployees is not null) return warehouseEmployees;
             }
-            var warehouseEmployeeEntity = _context.WarehouseEmployees.Select(x => _mapper.Map<WarehouseEmployeeGetDTO>(x)).ToList();
+            var warehouseEmployeeEntity = await _context.WarehouseEmployees.Select(x => _mapper.Map<WarehouseEmployeeGetDTO>(x)).ToListAsync();
             _cache.Set("warehouse_employees", warehouseEmployeeEntity, TimeSpan.FromMinutes(30));
             return warehouseEmployeeEntity;
         }
 
-        public int Update(WarehouseEmployeeGetDTO warehouseEployeeDto)
+        public async Task<int> Update(WarehouseEmployeeGetDTO warehouseEployeeDto)
         {
-            var warehouseEmployeeEntity = _context.WarehouseEmployees.FirstOrDefault(x => x.Id == warehouseEployeeDto.Id);
+            var warehouseEmployeeEntity = await _context.WarehouseEmployees.FirstOrDefaultAsync(x => x.Id == warehouseEployeeDto.Id);
 
             if (warehouseEmployeeEntity is not null)
             {
@@ -75,7 +76,7 @@ namespace ScanBoxWebApi.Repository
                 warehouseEmployeeEntity.Address = warehouseEployeeDto.Address;
                 warehouseEmployeeEntity.Phone = warehouseEployeeDto.Phone;
                     
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("warehouse_employees");
                 return warehouseEmployeeEntity.Id;
             }

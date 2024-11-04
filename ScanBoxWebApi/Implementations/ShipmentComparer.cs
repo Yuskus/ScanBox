@@ -2,6 +2,7 @@
 using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Implementations
 {
@@ -16,33 +17,35 @@ namespace ScanBoxWebApi.Implementations
             _mapper = mapper;
         }
 
-        public int Compare(int documentId)
+        public async Task<int> Compare(int documentId)
         {
-            return _context.Shipments.Count(x => x.DocumentId == documentId) - _context.MovementHistory.Count(x => x.DocumentId == documentId);
+            int ship = await _context.Shipments.CountAsync(x => x.DocumentId == documentId);
+            int moves = await _context.MovementHistory.CountAsync(x => x.DocumentId == documentId);
+            return ship - moves;
         }
 
-        public IEnumerable<ShipmentGetDTO> GetMissingUnits(int documentId)
+        public async Task<IEnumerable<ShipmentGetDTO>> GetMissingUnits(int documentId)
         {
             var shipment = GetShipment(documentId);
             var history = GetHistory(documentId);
 
-            return [.. shipment.Except(history) ];
+            return await shipment.Except(history).ToListAsync();
         }
 
-        public IEnumerable<ShipmentGetDTO> GetUnwantedUnits(int documentId)
+        public async Task<IEnumerable<ShipmentGetDTO>> GetUnwantedUnits(int documentId)
         {
             var shipment = GetShipment(documentId);
             var history = GetHistory(documentId);
 
-            return [.. history.Except(shipment) ];
+            return await history.Except(shipment).ToListAsync();
         }
 
-        public IEnumerable<ShipmentGetDTO> GetFoundUnits(int documentId)
+        public async Task<IEnumerable<ShipmentGetDTO>> GetFoundUnits(int documentId)
         {
             var shipment = GetShipment(documentId);
             var history = GetHistory(documentId);
 
-            return [.. history.Intersect(shipment) ];
+            return await history.Intersect(shipment).ToListAsync();
         }
 
         private IQueryable<ShipmentGetDTO> GetShipment(int documentId)

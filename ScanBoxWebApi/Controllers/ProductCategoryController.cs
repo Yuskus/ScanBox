@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_product_category")]
-        public ActionResult<int> AddProductCategory([FromBody] ProductCategoryPostDTO productCategoryPostDTO)
+        public async Task<ActionResult<int>> AddProductCategory([FromBody] ProductCategoryPostDTO productCategoryPostDTO)
         {
             try
             {
-                var result = _productCategoryRepository.Create(productCategoryPostDTO);
+                var result = await _productCategoryRepository.Create(productCategoryPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_product_category")]
-        public ActionResult<int> PutProductCategory([FromBody] ProductCategoryGetDTO productCategoryDTO)
+        public async Task<ActionResult<int>> PutProductCategory([FromBody] ProductCategoryGetDTO productCategoryDTO)
         {
             try
             {
-                var result = _productCategoryRepository.Update(productCategoryDTO);
+                var result = await _productCategoryRepository.Update(productCategoryDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_product_category")]
-        public ActionResult<int> DeleteProductCategory([FromBody] int productCategoryId)
+        public async Task<ActionResult<int>> DeleteProductCategory([FromBody] int productCategoryId)
         {
             try
             {
-                var result = _productCategoryRepository.Delete(productCategoryId);
+                var result = await _productCategoryRepository.Delete(productCategoryId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_product_categories")]
-        public ActionResult<IEnumerable<ProductCategoryGetDTO>> GetProductCategories()
+        public async Task<ActionResult<IEnumerable<ProductCategoryGetDTO>>> GetProductCategories()
         {
             try
             {
-                var result = _productCategoryRepository.GetElemetsList();
+                var result = await _productCategoryRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_product_categories_csv")]
-        public ActionResult<string> GetProductCategoriesAsCsv()
+        public async Task<ActionResult<string>> GetProductCategoriesAsCsv()
         {
             try
             {
-                var list = _productCategoryRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _productCategoryRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

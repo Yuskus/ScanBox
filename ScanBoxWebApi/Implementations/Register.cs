@@ -4,6 +4,7 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO;
 using ScanBoxWebApi.Abstractions;
 using ScanBoxWebApi.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Implementations
 {
@@ -12,43 +13,43 @@ namespace ScanBoxWebApi.Implementations
         private readonly ScanBoxDbContext _context = context;
         private readonly IMapper _mapper = mapper;
 
-        public int RegisterUser(RegisterFormDTO registerForm)
+        public async Task<int> RegisterUser(RegisterFormDTO registerForm)
         {
-            if (_context.Users.Any(x => x.Username.Equals(registerForm.Username))) return -1;
+            if (await _context.Users.AnyAsync(x => x.Username.Equals(registerForm.Username))) return -1;
 
             var userEntity = _mapper.Map<UserEntity>(registerForm);
             (byte[] hash, byte[] salt) = Hasher.CreatePasswordHash(registerForm.Password);
             userEntity.Password = hash;
             userEntity.Salt = salt;
 
-            _context.Users.Add(userEntity);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(userEntity);
+            await _context.SaveChangesAsync();
             return userEntity.Id;
         }
-        public int UpdateRoleUser(UserRightsDTO UserDTO)
+        public async Task<int> UpdateRoleUser(UserRightsDTO UserDTO)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Username.Equals(UserDTO.Username));
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username.Equals(UserDTO.Username));
             int result = -1;
 
             if (user is not null)
             {
                 user.Role = (int)UserDTO.Role;
                 result = user.Id;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return result;
         }
-        public int DeleteUser(string name)
+        public async Task<int> DeleteUser(string name)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Username.Equals(name));
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username.Equals(name));
             int result = -1;
 
             if (user is not null)
             {
                 result = user.Id;
                 _context.Users.Remove(user);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return result;

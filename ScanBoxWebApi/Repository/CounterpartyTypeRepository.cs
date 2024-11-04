@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -21,55 +22,55 @@ namespace ScanBoxWebApi.Repository
             _cache = cache;
         }
 
-        public int Create(CounterpartyTypePostDTO counterpartyTypeDto)
+        public async Task<int> Create(CounterpartyTypePostDTO counterpartyTypeDto)
         {
-            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x => x.TypeName.Equals(counterpartyTypeDto.TypeName));
+            var counterpartyTypeEntity = await _context.CounterpartiesTypes.FirstOrDefaultAsync(x => x.TypeName.Equals(counterpartyTypeDto.TypeName));
 
             if (counterpartyTypeEntity == null)
             {
                 counterpartyTypeEntity = _mapper.Map<CounterpartyTypeEntity>(counterpartyTypeDto);
-                _context.Add(counterpartyTypeEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(counterpartyTypeEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("counterparty_type");
                 return counterpartyTypeEntity.Id;
             }
             return -1;
         }
 
-        public int Delete(int counterpartyTypeId)
+        public async Task<int> Delete(int counterpartyTypeId)
         {
-            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x =>x.Id == counterpartyTypeId);
+            var counterpartyTypeEntity = await _context.CounterpartiesTypes.FirstOrDefaultAsync(x => x.Id == counterpartyTypeId);
             int result = -1;
             if (counterpartyTypeEntity is not null)
             {
                 result = counterpartyTypeEntity.Id;
                 _context.Remove(counterpartyTypeEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("counterparty_type");
             }
             return result;
         }
 
 
-        public IEnumerable<CounterpartyTypeGetDTO> GetElemetsList()
+        public async Task<IEnumerable<CounterpartyTypeGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("counterparty_type", out IEnumerable<CounterpartyTypeGetDTO>? counterpartyType))
             {
                 if (counterpartyType is not null) return counterpartyType;
             }
-            var counterpartyTypeEntity = _context.CounterpartiesTypes.Select(x => _mapper.Map<CounterpartyTypeGetDTO>(x)).ToList();
+            var counterpartyTypeEntity = await _context.CounterpartiesTypes.Select(x => _mapper.Map<CounterpartyTypeGetDTO>(x)).ToListAsync();
             _cache.Set("", counterpartyTypeEntity, TimeSpan.FromMinutes(30));
             return counterpartyTypeEntity;
         }
 
-        public int Update(CounterpartyTypeGetDTO counterpartyTypeDto)
+        public async Task<int> Update(CounterpartyTypeGetDTO counterpartyTypeDto)
         {
-            var counterpartyTypeEntity = _context.CounterpartiesTypes.FirstOrDefault(x => x.Id == counterpartyTypeDto.Id);
+            var counterpartyTypeEntity = await _context.CounterpartiesTypes.FirstOrDefaultAsync(x => x.Id == counterpartyTypeDto.Id);
             if (counterpartyTypeEntity is not null)
             {
                 counterpartyTypeEntity.TypeName = counterpartyTypeDto.TypeName;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("counterparty_type");
                 return counterpartyTypeEntity.Id;
             }

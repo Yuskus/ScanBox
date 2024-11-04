@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPost(template: "add_shipment")]
-        public ActionResult<int> AddShipment([FromBody] ShipmentPostDTO shipmentPostDTO)
+        public async Task<ActionResult<int>> AddShipment([FromBody] ShipmentPostDTO shipmentPostDTO)
         {
             try
             {
-                var result = _shipmentRepository.Create(shipmentPostDTO);
+                var result = await _shipmentRepository.Create(shipmentPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpPut(template: "put_shipment")]
-        public ActionResult<int> PutShipment([FromBody] ShipmentGetDTO shipmentDTO)
+        public async Task<ActionResult<int>> PutShipment([FromBody] ShipmentGetDTO shipmentDTO)
         {
             try
             {
-                var result = _shipmentRepository.Update(shipmentDTO);
+                var result = await _shipmentRepository.Update(shipmentDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpDelete(template: "delete_shipment")]
-        public ActionResult<int> DeleteShipment([FromBody] int shipmentId)
+        public async Task<ActionResult<int>> DeleteShipment([FromBody] int shipmentId)
         {
             try
             {
-                var result = _shipmentRepository.Delete(shipmentId);
+                var result = await _shipmentRepository.Delete(shipmentId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_shipments")]
-        public ActionResult<IEnumerable<ShipmentGetDTO>> GetShipments()
+        public async Task<ActionResult<IEnumerable<ShipmentGetDTO>>> GetShipments()
         {
             try
             {
-                var result = _shipmentRepository.GetElemetsList();
+                var result = await _shipmentRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_shipments_csv")]
-        public ActionResult<string> GetShipmentsAsCsv()
+        public async Task<ActionResult<string>> GetShipmentsAsCsv()
         {
             try
             {
-                var list = _shipmentRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _shipmentRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

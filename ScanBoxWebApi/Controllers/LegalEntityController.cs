@@ -25,11 +25,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost(template: "add_legal_entity")]
-        public ActionResult<int> AddLegalEntity([FromBody] LegalEntityPostDTO legalEntityPostDTO)
+        public async Task<ActionResult<int>> AddLegalEntity([FromBody] LegalEntityPostDTO legalEntityPostDTO)
         {
             try
             {
-                var result = _legalEntityRepository.Create(legalEntityPostDTO);
+                var result = await _legalEntityRepository.Create(legalEntityPostDTO);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,11 +41,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut(template: "put_legal_entity")]
-        public ActionResult<int> PutLegalEntity([FromBody] LegalEntityGetDTO legalEntityDTO)
+        public async Task<ActionResult<int>> PutLegalEntity([FromBody] LegalEntityGetDTO legalEntityDTO)
         {
             try
             {
-                var result = _legalEntityRepository.Update(legalEntityDTO);
+                var result = await _legalEntityRepository.Update(legalEntityDTO);
                 if (result == -1)
                 {
                     return NotFound();
@@ -61,11 +61,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete(template: "delete_legal_entity")]
-        public ActionResult<int> DeleteLegalEntity([FromBody] int legalEntityId)
+        public async Task<ActionResult<int>> DeleteLegalEntity([FromBody] int legalEntityId)
         {
             try
             {
-                var result = _legalEntityRepository.Delete(legalEntityId);
+                var result = await _legalEntityRepository.Delete(legalEntityId);
                 if (result == -1)
                 {
                     return NotFound();
@@ -81,11 +81,11 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_legal_entities")]
-        public ActionResult<IEnumerable<LegalEntityGetDTO>> GetLegalEntities()
+        public async Task<ActionResult<IEnumerable<LegalEntityGetDTO>>> GetLegalEntities()
         {
             try
             {
-                var result = _legalEntityRepository.GetElemetsList();
+                var result = await _legalEntityRepository.GetElemetsList();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,12 +97,12 @@ namespace ScanBoxWebApi.Controllers
 
         [Authorize]
         [HttpGet(template: "get_legal_entities_csv")]
-        public ActionResult<string> GetLegalEntitiesAsCsv()
+        public async Task<ActionResult<string>> GetLegalEntitiesAsCsv()
         {
             try
             {
-                var list = _legalEntityRepository.GetElemetsList();
-                var result = _tableConverter.Convert(list);
+                var list = await _legalEntityRepository.GetElemetsList();
+                string result = _tableConverter.Convert(list);
                 return Ok(result);
             }
             catch (Exception ex)

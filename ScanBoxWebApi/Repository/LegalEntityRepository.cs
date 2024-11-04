@@ -5,6 +5,7 @@ using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using ScanBoxWebApi.Abstractions;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScanBoxWebApi.Repository
 {
@@ -21,47 +22,47 @@ namespace ScanBoxWebApi.Repository
             _cache = cache;
         }
 
-        public int Create(LegalEntityPostDTO legalEntityDto)
+        public async Task<int> Create(LegalEntityPostDTO legalEntityDto)
         {
-            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.INN.Equals(legalEntityDto.INN));
+            var legalEntityEntity = await _context.LegalEntities.FirstOrDefaultAsync(x => x.INN.Equals(legalEntityDto.INN));
             if (legalEntityEntity == null)
             {
                 legalEntityEntity = _mapper.Map<LegalEntityEntity>(legalEntityDto);
-                _context.Add(legalEntityEntity);
-                _context.SaveChanges();
+                await _context.AddAsync(legalEntityEntity);
+                await _context.SaveChangesAsync();
                 _cache.Remove("legal_entities");
             }
             return legalEntityEntity.Id;
         }
 
-        public int Delete(int legalEntityId)
+        public async Task<int> Delete(int legalEntityId)
         {
-            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.Id == legalEntityId);
+            var legalEntityEntity = await _context.LegalEntities.FirstOrDefaultAsync(x => x.Id == legalEntityId);
             int result = -1;
             if (legalEntityEntity is not null)
             {
                 result = legalEntityEntity.Id;
                 _context.Remove(legalEntityEntity);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("legal_entities");
             }
             return result;
         }
 
-        public IEnumerable<LegalEntityGetDTO> GetElemetsList()
+        public async Task<IEnumerable<LegalEntityGetDTO>> GetElemetsList()
         {
             if (_cache.TryGetValue("legal_entities", out IEnumerable<LegalEntityGetDTO>? legalEntities))
             {
                 if (legalEntities is not null) return legalEntities;
             }
-            var legalEntityEntity = _context.LegalEntities.Select(x => _mapper.Map<LegalEntityGetDTO>(x)).ToList();
+            var legalEntityEntity = await _context.LegalEntities.Select(x => _mapper.Map<LegalEntityGetDTO>(x)).ToListAsync();
             _cache.Set("legal_entities", legalEntityEntity, TimeSpan.FromMinutes(30));
             return legalEntityEntity;
         }
 
-        public int Update(LegalEntityGetDTO legalEntityDto)
+        public async Task<int> Update(LegalEntityGetDTO legalEntityDto)
         {
-            var legalEntityEntity = _context.LegalEntities.FirstOrDefault(x => x.Id == legalEntityDto.Id);
+            var legalEntityEntity = await _context.LegalEntities.FirstOrDefaultAsync(x => x.Id == legalEntityDto.Id);
             if (legalEntityEntity is not null)
             {
                 legalEntityEntity.CounterpartyId = legalEntityDto.CounterpartyId;
@@ -76,7 +77,7 @@ namespace ScanBoxWebApi.Repository
                 legalEntityEntity.LegalAddress = legalEntityDto.LegalAddress;
                 legalEntityEntity.ContactPerson = legalEntityDto.ContactPerson;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 _cache.Remove("legal_entities");
                 return legalEntityEntity.Id;
             }
