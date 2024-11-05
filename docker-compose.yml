@@ -6,25 +6,29 @@ services:
     build:
       context: .
       dockerfile: ScanBoxWebApi/Dockerfile
+    env_file:
+    - .env
     depends_on:
-      - postgres
+      - db_postgres
     ports:
       - 5290:8080
       - 7290:8081
     networks:
       - mynetwork
 
-  postgres:
+  db_postgres:
     image: elestio/postgres:${SOFTWARE_VERSION_TAG}
-    container_name: postgres
+    container_name: db_postgres
     restart: always
+    env_file:
+    - .env
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_ADMIN_NAME}
       POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD}
       PGDATA: /var/lib/postgresql/data
     ports:
-      - 4778:5432
+      - "${DB_PORT}:5432"
     volumes:
       - postgres:/var/lib/postgresql/data
     networks:
@@ -34,14 +38,16 @@ services:
     image: elestio/pgadmin:REL-8_12
     container_name: pgadmin
     restart: always
+    env_file:
+    - .env
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
       PGADMIN_LISTEN_PORT: 8080
     depends_on:
-      - postgres
+      - db_postgres
     ports:
-      - 6917:8080
+      - "${PG_PORT}:8080"
     volumes:
       - pgadmin:/var/lib/pgadmin/data
     networks:

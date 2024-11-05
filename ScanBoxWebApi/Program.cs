@@ -2,7 +2,6 @@ using DatabaseModel.Context;
 using ScanBoxWebApi.DTO.GetDTO;
 using ScanBoxWebApi.DTO.PostDTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ScanBoxWebApi.Abstractions;
@@ -19,7 +18,8 @@ namespace ScanBoxWebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Configuration.AddJsonFile("appsettings.json");
+            builder.Configuration.AddJsonFile("appsettings.json")
+                                 .AddEnvironmentVariables();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -79,7 +79,8 @@ namespace ScanBoxWebApi
             });
 
             // контекст бд (проверить строку подключения и миграции)
-            builder.Services.AddScoped(x => new ScanBoxDbContext(builder.Configuration.GetConnectionString("ScanBoxDb")!));
+            string connectionString = builder.Configuration["DB_CONNECTION_STRING"] ?? throw new Exception("Warning! Connection string was not found!");
+            builder.Services.AddScoped(x => new ScanBoxDbContext(connectionString));
 
             // маппинг
             builder.Services.AddAutoMapper(typeof(MappingProfile));

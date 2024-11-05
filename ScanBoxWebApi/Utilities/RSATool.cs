@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace ScanBoxWebApi.Utilities
 {
@@ -14,7 +15,9 @@ namespace ScanBoxWebApi.Utilities
         public static RSA GetPrivateKey()
         {
             var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "rsa", "private_key.pem")));
+            string key64 = Environment.GetEnvironmentVariable("PRIVATE_KEY") ?? throw new Exception("Warning! Private key is not found!");
+            string privateKey = Encoding.UTF8.GetString(Convert.FromBase64String(key64));
+            rsa.ImportFromPem(privateKey);
             return rsa;
         }
     }
